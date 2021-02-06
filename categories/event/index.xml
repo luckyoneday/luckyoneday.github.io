@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Event on youting&#39;s blog</title>
+    <link>http://localhost:1313/categories/event/</link>
+    <description>Recent content in Event on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 14 Jul 2020 20:57:50 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/event/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>input 事件</title>
+      <link>http://localhost:1313/post/3-input-event-overview/</link>
+      <pubDate>Tue, 14 Jul 2020 20:57:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/3-input-event-overview/</guid>
+      <description>&lt;p&gt;背景是业务中的一个文本框应该禁止「输入」 &lt;code&gt;{&lt;/code&gt; 和 &lt;code&gt;}&lt;/code&gt;。但是不能直接对 &lt;code&gt;value&lt;/code&gt; 进行&lt;code&gt;replace&lt;/code&gt;操作。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

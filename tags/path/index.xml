@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>path on youting&#39;s blog</title>
+    <link>http://localhost:1313/tags/path/</link>
+    <description>Recent content in path on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Dec 2019 08:43:03 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/path/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>记录下各种 path</title>
+      <link>http://localhost:1313/daily/11-path/</link>
+      <pubDate>Mon, 09 Dec 2019 08:43:03 +0800</pubDate>
+      
+      <guid>http://localhost:1313/daily/11-path/</guid>
+      <description>// 本来是想写服务端渲染热更新 &amp;ndash; server 端，emmmmm 没配置好，换个话题 😂 总是看别人的代码里面有这样的写法path.resolve(__dirna</description>
+    </item>
+    
+  </channel>
+</rss>

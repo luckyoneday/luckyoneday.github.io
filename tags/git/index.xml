@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on youting&#39;s blog</title>
+    <link>http://localhost:1313/tags/git/</link>
+    <description>Recent content in git on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Aug 2020 20:49:58 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git 操作 tips</title>
+      <link>http://localhost:1313/daily/37-git-notes/</link>
+      <pubDate>Sun, 30 Aug 2020 20:49:58 +0800</pubDate>
+      
+      <guid>http://localhost:1313/daily/37-git-notes/</guid>
+      <description>下载大项目时超时 具体报错： 1 2 3 4 5 6 remote: Counting objects: 66352, done. remote: Compressing objects: 100% (10417/10417), done. error: RPC failed; curl 18 transfer closed with outstanding read data remaining fatal: The remote end hung up unexpectedly fatal: early EOF fatal: index-pack failed 解决方法： 1 2 3 $ git clone http://github.com/large-repository --depth 1 $</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on youting&#39;s blog</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 04 Feb 2021 15:24:54 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Electron</title>
+      <link>http://localhost:1313/tags/electron/</link>
+      <pubDate>Thu, 04 Feb 2021 15:24:54 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/electron/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>http://localhost:1313/tags/javascript/</link>
+      <pubDate>Thu, 04 Feb 2021 15:24:54 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Performance</title>
+      <link>http://localhost:1313/tags/performance/</link>
+      <pubDate>Sat, 30 Jan 2021 20:17:53 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>http://localhost:1313/tags/git/</link>
+      <pubDate>Sun, 30 Aug 2020 20:49:58 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sketch</title>
+      <link>http://localhost:1313/tags/sketch/</link>
+      <pubDate>Mon, 24 Aug 2020 10:47:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/sketch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BDD</title>
+      <link>http://localhost:1313/tags/bdd/</link>
+      <pubDate>Wed, 19 Aug 2020 16:46:37 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/bdd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>e2e</title>
+      <link>http://localhost:1313/tags/e2e/</link>
+      <pubDate>Wed, 19 Aug 2020 16:46:37 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/e2e/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>歌词</title>
+      <link>http://localhost:1313/tags/%E6%AD%8C%E8%AF%8D/</link>
+      <pubDate>Sun, 16 Aug 2020 19:36:07 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/%E6%AD%8C%E8%AF%8D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Event</title>
+      <link>http://localhost:1313/tags/event/</link>
+      <pubDate>Tue, 14 Jul 2020 20:57:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/event/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TypeScript</title>
+      <link>http://localhost:1313/tags/typescript/</link>
+      <pubDate>Mon, 15 Jun 2020 20:32:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>http://localhost:1313/tags/react/</link>
+      <pubDate>Thu, 11 Jun 2020 21:43:56 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React-Router</title>
+      <link>http://localhost:1313/tags/react-router/</link>
+      <pubDate>Thu, 11 Jun 2020 21:43:56 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/react-router/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xpath</title>
+      <link>http://localhost:1313/tags/xpath/</link>
+      <pubDate>Wed, 10 Jun 2020 10:47:22 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/xpath/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>翻译</title>
+      <link>http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/</link>
+      <pubDate>Sun, 08 Mar 2020 21:03:31 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>css</title>
+      <link>http://localhost:1313/tags/css/</link>
+      <pubDate>Mon, 06 Jan 2020 13:42:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transform</title>
+      <link>http://localhost:1313/tags/transform/</link>
+      <pubDate>Mon, 06 Jan 2020 13:42:41 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/transform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>path</title>
+      <link>http://localhost:1313/tags/path/</link>
+      <pubDate>Mon, 09 Dec 2019 08:43:03 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/path/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSR</title>
+      <link>http://localhost:1313/tags/ssr/</link>
+      <pubDate>Sun, 08 Dec 2019 08:37:33 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/ssr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bash</title>
+      <link>http://localhost:1313/tags/bash/</link>
+      <pubDate>Sun, 01 Dec 2019 12:03:17 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>koa</title>
+      <link>http://localhost:1313/tags/koa/</link>
+      <pubDate>Fri, 29 Nov 2019 13:36:19 +0800</pubDate>
+      
+      <guid>http://localhost:1313/tags/koa/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

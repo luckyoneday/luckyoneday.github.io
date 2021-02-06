@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on youting&#39;s blog</title>
+    <link>http://localhost:1313/categories/javascript/</link>
+    <description>Recent content in JavaScript on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 24 Aug 2020 10:47:12 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sketch 插件</title>
+      <link>http://localhost:1313/post/4-sketch-plugin/</link>
+      <pubDate>Mon, 24 Aug 2020 10:47:12 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/4-sketch-plugin/</guid>
+      <description>&lt;p&gt;Sketch 插件可以通过 &lt;a href=&#34;https://developer.sketch.com/plugins/javascript-api&#34;&gt;JS API&lt;/a&gt; 和 &lt;a href=&#34;https://developer.sketch.com/plugins/internal-api&#34;&gt;OC&lt;/a&gt; 来实现，OC 比较深入 Sketch 的内部用法，但是当发布新版 Sketch 时会对 API 有较大的修改，且官网比较推荐使用 JS API，所以本文也就主要介绍 JS API 写插件的方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>input 事件</title>
+      <link>http://localhost:1313/post/3-input-event-overview/</link>
+      <pubDate>Tue, 14 Jul 2020 20:57:50 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/3-input-event-overview/</guid>
+      <description>&lt;p&gt;背景是业务中的一个文本框应该禁止「输入」 &lt;code&gt;{&lt;/code&gt; 和 &lt;code&gt;}&lt;/code&gt;。但是不能直接对 &lt;code&gt;value&lt;/code&gt; 进行&lt;code&gt;replace&lt;/code&gt;操作。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
