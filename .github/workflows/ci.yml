@@ -8,18 +8,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2.3.4
         with:
           submodules: true
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2.2.2
+        uses: peaceiris/actions-hugo@v2.4.13
         with:
-          hugo-version: "0.64.1"
+          hugo-version: "0.80.0"
           extended: true
       - name: Build
         run: hugo -D
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.5.1
+        uses: peaceiris/actions-gh-pages@v3.8.0
         env:
           EXTERNAL_REPOSITORY: luckyoneday/luckyoneday.github.io
           PUBLISH_BRANCH: master
