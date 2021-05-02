@@ -5,3 +5,4 @@ deploy.sh
 public
 gh-pages
 gh-pages.pub
+.vscode
