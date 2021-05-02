@@ -32,7 +32,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   name = "首页"
   weight = 10
   identifier = "home"
-  url = "/index"
+  url = "/"
 [[menu.main]]
   name = "标签"
   weight = 30
