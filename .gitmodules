@@ -1,5 +1,5 @@
 [submodule "themes/even"]
-	path = hugo-theme-even
+	path = theme/even
 	url = https://github.com/olOwOlo/hugo-theme-even.git
 [submodule "public"]
   path = public
