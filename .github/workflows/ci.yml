@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.2.2
+        with:
+          hugo-version: "0.64.1"
+          extended: true
+      - name: Build
+        run: hugo -D
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.5.1
+        env:
+          EXTERNAL_REPOSITORY: luckyoneday/luckyoneday.github.io
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: ./public
