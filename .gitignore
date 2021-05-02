@@ -3,3 +3,5 @@ deploy.sh
 *.swap
 
 public
+gh-pages
+gh-pages.pub
