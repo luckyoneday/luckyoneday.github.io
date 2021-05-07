@@ -7,7 +7,7 @@ toc: false
 keywords: ["daily"]
 description: "是风动"
 author: "youting"
-tags: ["歌词"]
+tags: ["lyric"]
 ---
 
 {{% music "545505696" %}}

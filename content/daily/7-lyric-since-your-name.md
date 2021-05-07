@@ -7,7 +7,7 @@ toc: false
 keywords: ["daily"]
 description: "从你的名字开始"
 author: "youting"
-tags: ["歌词"]
+tags: ["lyric"]
 ---
 
 {{% music "437250973" %}}

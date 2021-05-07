@@ -12,7 +12,10 @@ author: "youting"
 
 ## 浏览器解析渲染机制
 
-- 解析 HTML，生成 DOM 树，解析 CSS，生成 CSSOM 树；
+浏览器内核指的是浏览器运行的最核心的程序，分为两个部分，一个是渲染引擎，另一个是 JS 引擎。
+
+- 解析 HTML，生成 DOM 树；
+- 解析 CSS，生成 CSSOM 树；
 - 将 DOM 树和 CSSOM 树结合，生成**渲染树**；
 - Layout（回流）：根据生成的渲染树，进行回流，得到节点的几何信息（位置，大小）；
 - Painting（重绘）：根据渲染树以及回流得到的几何信息，得到节点的绝对像素；
@@ -28,6 +31,44 @@ author: "youting"
 
 - 一些不会渲染输出的节点，比如 script、meta、link 等；
 - 一些通过 css 进行隐藏的节点，比如 `display: none`。（通过 `visibility` 和 `opacity` 隐藏的节点还是会显示在渲染树上的）
+
+### 浏览器在渲染过程中遇到 JS 文件怎么处理
+
+如果遇到 `<script>` 标签就停止渲染，执行 JS 代码。一因为浏览器的 GUI 渲染线程与 JS 引擎线程是互斥的关系，JavaScript 的加载、解析与执行会阻塞 DOM 的构建，也就是说，在构建 DOM 时，HTML 解析器若遇到了 JavaScript，那么它会暂停构建 DOM，将控制权移交给 JavaScript 引擎，等 JavaScript 引擎运行完毕，浏览器再从中断的地方恢复 DOM 构建。
+
+而且一旦引入了 JavaScript，CSSOM 也会阻塞 DOM 的构建，因为 JavaScript 可以更改 CSSOM，如果浏览器尚未完成 CSSOM 的下载和构建，而我们却想在此时运行脚本，那么浏览器将延迟脚本执行和 DOM 构建，直至其完成 CSSOM 的下载和构建。也就是说，在这种情况下，浏览器会先下载和构建 CSSOM，然后再执行 JavaScript，最后再继续构建 DOM。
+
+### defer 和 async 的作用
+
+- 没有 `defer` 和 `async`，浏览器会立即加载并执行指定的脚本，不会等待后续载入的文档元素。
+- `async` 属性表示异步执行引入的 JavaScript 文件，与 `defer` 的区别在于，如果已经加载好，就会立即开始执行--无论此刻是 HTML 解析阶段还是 `DOMContentLoaded` 触发之后。但是会阻塞 `load` 事件，即 `async-script` 可能在 `DOMContentLoaded` 触发之前或之后执行，但是一定会在 `load` 触发之前执行。
+- `defer` 表示延迟执行引入的 JavaScript 文件，即这段 JavaScript 加载时 HTML 并未停止解析，这两个过程是并行的。整个 document 解析完毕且 `defer-script` 也加载完成之后（这两件事情的顺序无关），会执行所有由 `defer-script` 加载的 JavaScript 代码，然后触发 `DOMContentLoaded` 事件。
+
+`defer` 与相比普通 script，有两点区别：载入 JavaScript 文件时不阻塞 HTML 的解析，执行阶段被放到 HTML 标签解析完成之后。
+在加载多个 JS 脚本的时候，`async` 是无顺序的加载，而 `defer` 是有顺序的加载。
+
+### 浏览器在渲染过程中遇到 CSS 文件怎么处理
+
+CSS 文件是有单独的下载线程异步下载的，不会阻塞 DOM 树的解析，但是会阻塞 render 树的形成。也就是会阻塞页面的渲染。
+
+### 为什么操作 DOM 慢
+
+操作 DOM 时，JS 引擎需要通过“桥接接口”来使渲染引擎发生改变，这个操作会比较昂贵。
+
+### 触发的事件
+
+- `readystatechange`：`readyState` 改变时触发
+  - `loading`：表示页面仍在加载
+  - `interactive`：表示文档已加载和解析，但子资源仍在加载（CSS、image）
+  - `complete`：文档和所有子资源都加载完成，等待 load 事件触发
+- `DOMContentLoaded`：DOM 树渲染完成，不论子资源是否加载完成
+- `load`：所有资源都已加载完成
+
+{{% admonition info "顺序" %}}
+
+readystatechange， loading 状态 -> readystatechange， interactive 状态 ->DOMContentLoaded 事件 -> readystatechange， complete 状态 -> window.onload
+
+{{% /admonition %}}
 
 ## 回流和重绘
 
@@ -68,5 +109,6 @@ author: "youting"
 
 ## 参考资料
 
+- [深入浅出浏览器渲染原理](https://github.com/ljianshu/Blog/issues/51)
 - [回流与重绘](https://juejin.cn/post/6844903942137053192)
 - [你真的了解回流和重绘吗](https://segmentfault.com/a/1190000017329980)

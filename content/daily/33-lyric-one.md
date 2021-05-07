@@ -6,7 +6,7 @@ draft: false
 toc: false
 keywords: ["daily"]
 description: "一"
-tags: ["歌词"]
+tags: ["lyric"]
 author: "youting"
 ---
 

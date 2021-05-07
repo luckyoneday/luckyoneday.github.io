@@ -3,6 +3,7 @@ deploy.sh
 *.swap
 
 public
+resources
 gh-pages
 gh-pages.pub
 .vscode

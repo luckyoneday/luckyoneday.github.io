@@ -7,7 +7,7 @@ toc: false
 keywords: ["daily"]
 description: "千年一声唱"
 author: "youting"
-tags: ["歌词"]
+tags: ["lyric"]
 ---
 
 新丰美酒斗十千 咸阳游侠多少年

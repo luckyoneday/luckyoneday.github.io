@@ -24,7 +24,7 @@ author: "youting"
 
 - 合理使用选择器：
 
-  - 不要嵌套使用过多复杂选择器；不要三层以上；
+  - 不要嵌套使用过多复杂选择器；不要三层以上（查找样式表是按照从右到左的顺序匹配的）；
   - 使用 id 选择器没有必要进行嵌套；
   - 通配符和属性选择器效率较低，尽量避免使用；
 
@@ -115,32 +115,40 @@ css 中使用 @media 查询，可以针对不同的媒体类型定义不同的�
 
 ## CSS3 新增的特性
 
-### 新增选择器
+{{% admonition info "新增选择器" %}}
 
 - `:nth-child(n)`
 - `:first-of-type`
 - `:last-child`
 - `:disabled`
 
-### 边框
+{{% /admonition %}}
+
+{{% admonition info "边框" %}}
 
 - `border-radius`
 - `box-shadow`
 - `border-image`
 
-### 背景
+{{% /admonition %}}
+
+{{% admonition info "背景" %}}
 
 - `background-clip`
 - `background-origin`
 - `background-size`
 - `background-break`
 
-### 文字
+{{% /admonition %}}
+
+{{% admonition info "文字" %}}
 
 - `word-wrap`
 - `text-overflow`
 - `text-shadow`
 - `text-decoration`
+
+{{% /admonition %}}
 
 单行文本溢出显示省略号：
 
@@ -160,7 +168,7 @@ overflow: hidden;
 text-overflow: ellipsis;
 ```
 
-### transition
+{{% admonition info "transition" %}}
 
 ```css
 transition-property: width;
@@ -169,11 +177,15 @@ transition-timing-function: linear;
 transition-delay: 2s;
 ```
 
-### transform
+{{% /admonition %}}
 
-不支持 inline 元素。
+{{% admonition info "transform" %}}
 
-`transform-origin` 修改 transform base 的位置。
+{{% admonition type="info" title="提示" %}}
+
+不支持 inline 元素。`transform-origin` 修改 transform base 的位置。
+
+{{% /admonition %}}
 
 ```css
 transform: translate(120px, 50%); /* 位移 */
@@ -182,7 +194,9 @@ transform: rotate(0.5turn); /* 旋转 */
 transform: skew(30deg, 20deg); /* 倾斜 */
 ```
 
-### animation
+{{% /admonition %}}
+
+{{% admonition info "animation" %}}
 
 ```css
 animation-name：name;
@@ -202,10 +216,14 @@ animation-fill-mode：动画填充模式，backwards、forwards
 }
 ```
 
-### 渐变
+{{% /admonition %}}
+
+{{% admonition info "渐变" %}}
 
 - `linear-gradient`
 - `radial-gradient`
+
+{{% /admonition %}}
 
 ### flex
 

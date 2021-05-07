@@ -200,6 +200,8 @@ export default function withFetchHOC(Component, options) {
 - 使用了 `react-router-config` 中的 `matchRoutes` 方法，可以处理嵌套路由，并且可以匹配到形如 `/detail/:hash` 的路由，同时 `match` 可以拿到 `{hash: xxxxx}` 的内容。
 - 服务端和客户端可以分别维护一份 `context` ，作为 `options` 中 `fetch` 的参数回传，使 `fetch` 方法可以获取到 `query`、`hash` 等参数，进行接口请求：
 
+<!-- <br /> -->
+
 ```js
 // 服务端
 const optContext = {

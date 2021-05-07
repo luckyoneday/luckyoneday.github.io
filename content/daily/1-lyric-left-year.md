@@ -6,7 +6,7 @@ draft: false
 keywords: ["daily"]
 description: "余年"
 author: "youting"
-tags: ["歌词"]
+tags: ["lyric"]
 ---
 
 时光在岁月长河里 不停地轮回

@@ -7,7 +7,7 @@ toc: false
 keywords: ["daily"]
 description: "丹歌惊鸿"
 author: "youting"
-tags: ["歌词"]
+tags: ["lyric"]
 ---
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=3&id=1368235488&auto=1&height=66"></iframe>
