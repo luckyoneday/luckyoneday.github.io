@@ -1,6 +1,6 @@
 ---
 title: "面试"
-menu: "main"
+menu: "main-hide"
 weight: 50
 ---
 
