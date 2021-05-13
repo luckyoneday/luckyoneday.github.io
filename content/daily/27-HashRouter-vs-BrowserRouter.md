@@ -50,15 +50,16 @@ History 的属性：
 `pushState` 和 `replaceState` 方法都接收三个参数，分别是 state 对象，title 标题和目标 url
 
 ```js
-console.log(history.length); // 1
+history.length; // 1
 
 window.history.pushState({ foo: "bar" }, "page 2", "bar.html");
-console.log(window.history.state); // { foo: "bar"; }
+window.location.href; // https://www.baidu.com/bar.html
+window.history.state; // { foo: "bar"; }
 
-console.log(history.length); // 2
-window.history.replaceState({ foo: "bar" }, "page 2", "foo.html");
+history.length; // 2
+window.history.replaceState({ foo: "bar" }, "page 2", "foo.html"); // replaceState 不会增加 history 长度
 
-console.log(history.length); // 2
+history.length; // 2
 ```
 
 每次触发 `history.go()` 、 `history.back()` 和 `history.forward()` 都会触发一个 `popstate` 事件：
