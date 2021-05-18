@@ -10,6 +10,26 @@ tags: ["interview"]
 author: "youting"
 ---
 
+## 项目相关
+
+- [codeceptjs basic](https://codecept.io/basics/)
+
+- [puppeteer](https://pptr.dev/)
+
+puppeteer-core 不包括 `PUPPETEER_*` 的环境变量，不下载 Chromium。
+
+- sketch
+
+- electron
+
+- webSocket
+
+- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+
+- drag and drop
+
+- canvas
+
 ## 一些参考资料
 
 - [HTTP 和数据结构与算法](https://hit-alibaba.github.io/interview/)
