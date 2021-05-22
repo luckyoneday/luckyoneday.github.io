@@ -57,7 +57,7 @@ module: {
 - sass-loader: 处理 sass
 - file-loader: 分发文件到 output 目录并返回相对路径
 - url-loader: 和 file-loader 类似，但是当文件小于设定的 limit 时可以返回一个 Data Url
-- babel-loader :用 babel 来转换 ES6 文件到 ES5
+- babel-loader: 用 babel 来转换 ES6 文件到 ES5
 
 ## plugin
 

@@ -41,8 +41,8 @@ author: "youting"
 ### defer 和 async 的作用
 
 - 没有 `defer` 和 `async`，浏览器会立即加载并执行指定的脚本，不会等待后续载入的文档元素。
-- `async` 属性表示异步执行引入的 JavaScript 文件，与 `defer` 的区别在于，如果已经加载好，就会立即开始执行--无论此刻是 HTML 解析阶段还是 `DOMContentLoaded` 触发之后。但是会阻塞 `load` 事件，即 `async-script` 可能在 `DOMContentLoaded` 触发之前或之后执行，但是一定会在 `load` 触发之前执行。
-- `defer` 表示延迟执行引入的 JavaScript 文件，即这段 JavaScript 加载时 HTML 并未停止解析，这两个过程是并行的。整个 document 解析完毕且 `defer-script` 也加载完成之后（这两件事情的顺序无关），会执行所有由 `defer-script` 加载的 JavaScript 代码，然后触发 `DOMContentLoaded` 事件。
+- `async` 属性表示异步加载 JavaScript 文件，立即开始执行 -- 无论此刻是 HTML 解析阶段还是 `DOMContentLoaded` 触发之后。但是会阻塞 `load` 事件，即 `async-script` 可能在 `DOMContentLoaded` 触发之前或之后执行，但是一定会在 `load` 触发之前执行。
+- `defer` 表示异步加载、延迟执行，即这段 JavaScript 加载时 HTML 并未停止解析，这两个过程是并行的。整个 document 解析完毕且 `defer-script` 也加载完成之后（这两件事情的顺序无关），会执行所有由 `defer-script` 加载的 JavaScript 代码，然后触发 `DOMContentLoaded` 事件。
 
 `defer` 与相比普通 script，有两点区别：载入 JavaScript 文件时不阻塞 HTML 的解析，执行阶段被放到 HTML 标签解析完成之后。
 在加载多个 JS 脚本的时候，`async` 是无顺序的加载，而 `defer` 是有顺序的加载。

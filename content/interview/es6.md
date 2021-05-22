@@ -80,10 +80,10 @@ ES6 之前只有函数作用域和全局作用域。
 ES6 一共有 5 种方法遍历属性：
 
 - `for...in` 循环遍历对象**自身的和继承的**可枚举属性（不含 Symbol 属性）
-- `Object.keys(obj)` 返回一个数组，包括对象**自身的（不含继承的）**所有可枚举属性（不含 Symbol 属性）的键名。
+- `Object.keys(obj)` 返回一个数组，包括对象**自身的不含继承的**所有可枚举属性（不含 Symbol 属性）的键名。
 - `Object.getOwnPropertyNames` 返回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）的键名。
 - `Object.getOwnPropertySymbols` 返回一个数组，包含对象自身的所有 Symbol 属性的键名。
-- `Reflect.ownKeys` 返回一个数组，包含对象**自身的（不含继承的）**所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举。
+- `Reflect.ownKeys` 返回一个数组，包含对象**自身的不含继承的**所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举。
 
 ### Set 和 Map
 

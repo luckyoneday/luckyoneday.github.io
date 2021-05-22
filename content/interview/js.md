@@ -48,14 +48,14 @@ tags: ["interview"]
 
 ## new、call、apply、bind、Object.create
 
+{{% admonition info "new" %}}
+
 在 JavaScript 中，构造函数只是一些使用 `new` 操作符时被调用的普通函数。`new` 操作符调用时，会执行下面的操作：
 
 - 创建一个新对象
-- `this` 指向这个新对象
+- 将新对象的 `__proto__` 设置为构造函数的 `prototype`
 - 为这个对象添加属性、方法等
 - 判断返回类型，如果不是返回了对象，则返回 this
-
-{{% admonition info "new" %}}
 
 ```js
 function examNew(fn, ...args) {
@@ -131,6 +131,8 @@ Function.prototype.wbind = function (thisArg, ...args) {
 
 {{% admonition info "Object.create" %}}
 
+创建一个新对象，使用现有对象提供新对象的 `__proto__`
+
 ```js
 Object.wcreate = function (obj) {
   const tempFunc = function () {};
@@ -158,7 +160,7 @@ Object.wcreate = function (obj) {
 
 闭包可以有效的封装内部属性，对功能进行模块化封装。
 
-但是闭包会引用它外部函数作用于中的变量，当外层函数执行完毕退出函数调用栈的时候，函数中的变量可能并不会被 js 引擎的垃圾回收器回收，因而会引发内存泄露。
+但是闭包会引用它外部函数作用域中的变量，当外层函数执行完毕退出函数调用栈的时候，函数中的变量可能并不会被 js 引擎的垃圾回收器回收，因而会引发内存泄露。
 
 ## 原型链和继承
 
@@ -216,128 +218,162 @@ JavaScript 使用的垃圾回收机制自动管理内存 -- 垃圾回收是不�
 
 某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。全局执行环境只有关闭网页的时候才销毁。
 
-## ts
+## 继承
 
-### interface 和 type 的区别
+继承的优点：继承可以使子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。
 
-{{% admonition type="info" title="1.都可以用来描述对象或函数的类型，但语法不同" details="true" %}}
+{{% admonition "info" "原型链继承"  %}}
+
+子类的原型为父类的一个实例。
 
 ```ts
-interface SetPoint {
-  (x: number, y: number): void;
+function Parent1() {
+  this.name = "parent1";
+  this.play = [1, 2, 3];
 }
 
-type SetPoint = (x: number, y: number) => void;
-```
-
-{{% /admonition %}}
-
-{{% admonition type="info" title="2.type 类型别名还可以用于其他类型" details="true" %}}
-
-```ts
-//number
-type MyNumber = number;
-
-//dom
-let div = document.createElement("div");
-type MyDiv = typeof div;
-```
-
-{{% /admonition %}}
-
-{{% admonition type="info" title="3.extends 语法不同" details="true" %}}
-
-- interface extends interface
-  ```ts
-  interface PointX {
-    x: number;
-  }
-  interface Point extends PointX {
-    y: number;
-  }
-  ```
-- interface extends type
-  ```ts
-  type PointX = { x: number };
-  interface Point extends PointX {
-    y: number;
-  }
-  ```
-- type extends type
-  ```ts
-  type PointX = { x: number };
-  type PointY = { y: number };
-  type Point = PointX & PointY;
-  ```
-- type extends interface
-  ```ts
-  type PointX = { x: number };
-  interface PointY {
-    x: number;
-  }
-  type Point = PointX & PointY;
-  ```
-
-{{% /admonition %}}
-
-{{% admonition type="info" title="4.interface 可以定义多次，并会合并多次，但 type 不可以" details="true" %}}
-
-```ts
-interface User {
-  name: string;
-}
-interface User {
-  password: string;
+function Child1() {
+  this.name = "child1";
 }
 
-//此时User -> {name: string; password: string}
+Child1.prototype = new Parent1();
+
+const s1 = new Child1();
+const s2 = new Child1();
+s1.play.push(4);
+console.log(s1.play, s2.play); // [1, 2, 3, 4]
 ```
+
+两个实例使用的是同一个原型对象，内存共享。
 
 {{% /admonition %}}
 
-{{% admonition type="info" title="5.type 能使用 in 关键字生成映射类型，但 interface 不行" details="true" %}}
+{{% admonition "info" "构造函数继承"  %}}
+
+借用 `call` 调用 `Parent`。
 
 ```ts
-type Status = 200 | 500;
+function Parent2() {
+  this.name = "parent1";
+  this.play = [1, 2, 3];
+}
 
-type StatusMap = {
-  [key in Status]: string;
+Parent2.prototype.getName = function () {
+  return this.name;
 };
 
-const test: StatusMap = {
-  200: "ok",
-  500: "server error",
-};
+function Child2() {
+  Parent1.call(this);
+  this.name = "child2";
+}
 
-/**
-报错 
-接口中的计算属性名称必须引用必须引用类型为文本类型或 "unique symbol" 的表达式。
-计算属性名的类型必须为 "string"、"number"、"symbol" 或 "any"。
-“Status”仅表示类型，但在此处却作为值使用。
-**/
-//interface StatusMap2 {
-//  [key in Status]: string
-//}
+const ch = new Child2();
+console.log(ch.getName()); // error
 ```
+
+引用类型属性不会被共享，但是只会继承父类的实例属性和方法，不能继承原型属性或者方法。
 
 {{% /admonition %}}
 
-{{% admonition type="info" title="6.默认导出方式不同" details="true" %}}
+{{% admonition "info" "组合继承"  %}}
+
+结合上述两种方法。
 
 ```ts
-export default interface Person {
-  name: string;
+function Parent3() {
+  this.name = "parent3";
+  this.play = [1, 2, 3];
 }
 
-//会报错
-// export default type Person = {
-//   name: string
-// }
-
-type Person1 = {
-  name: string;
+Parent3.prototype.getName = function () {
+  return this.name;
 };
-export default Person1;
+
+function Child3() {
+  Parent3.call(this);
+  this.name = "child3";
+}
+
+Child3.prototype = new Parent3();
+Child3.prototype.constructor = Child3;
+```
+
+属性不互相影响，也可以获取到原型上的方法和属性，但是 `Parent3` 执行了两次。
+
+{{% /admonition %}}
+
+{{% admonition "info" "原型式继承"  %}}
+
+主要借助 `Object.create` 实现普通对象的继承。
+
+```ts
+const Person4 = {
+  name: "parent4",
+  play: [1, 2, 3],
+  getName: function () {
+    return this.name;
+  },
+};
+
+const p1 = Object.create(Person4);
+p1.name = "child4";
+p1.play.push(4);
+const p2 = Object.create(Person4);
+console.log(p1.play, p2.play); // [1, 2, 3, 4]
+```
+
+`Object.create` 实现的是浅拷贝，多个实例的引用类型属性指向相同的内存，会被共享。
+
+{{% /admonition %}}
+
+{{% admonition "info" "寄生式继承"  %}}
+
+在上述的继承方式上进行优化，增强浅拷贝能力。
+
+```ts
+function clone(original) {
+  const clonedItem = Object.create(original);
+  clonedItem.getPlay = function () {
+    return this.play;
+  };
+  return clonedItem;
+}
+```
+
+没啥变化啊这样写。
+
+{{% /admonition %}}
+
+{{% admonition "info" "寄生组合式继承"  %}}
+
+```ts
+function create(parent, child) {
+  child.prototype = Object.create(parent.prototype);
+  child.prototype.constructor = child;
+}
+
+function Parent6() {
+  this.name = "parent6";
+  this.play = [1, 2, 3];
+}
+
+Parent6.prototype.getName = function () {
+  return this.name;
+};
+
+function Child6() {
+  Parent1.call(this);
+  this.name = "child6";
+}
+
+create(Parent6, Child6);
+
+const n1 = new Child6();
+const n2 = new Child6();
+
+n1.play.push(4);
+console.log(n1.play, n2.play);
+console.log(n1.getName());
 ```
 
 {{% /admonition %}}

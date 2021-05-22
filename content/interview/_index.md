@@ -6,6 +6,8 @@ weight: 50
 
 - [JS 相关](./js)
 
+- [TS 相关](./ts)
+
 - [ES6 相关](./es6)
 
 - [React 相关](./react)
