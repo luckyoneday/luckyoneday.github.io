@@ -36,7 +36,7 @@ var c2 = new a.f2();
 // for in 能不能遍历到原型上的属性，缺少什么属性
 ```
 
-### 4. 依次放开 Error，看一下输出
+### 5. 依次放开 Error，看一下输出
 
 ```js
 console.log(1);
@@ -74,13 +74,13 @@ new Promise((resolve, reject) => {
 console.log(11);
 ```
 
-### 5. CORS
+### 6. CORS
 
 跨域怎么发送 cookie
 
 https://a.b.com 和 https://c.b.com 怎么共享 cookie
 
-#### 6. 二叉树深度遍历
+#### 7. 二叉树深度遍历
 
 ```js
         1
