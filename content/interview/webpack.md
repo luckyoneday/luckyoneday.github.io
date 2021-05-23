@@ -68,6 +68,8 @@ module: {
 - mini-css-extract-plugin: 提取 CSS 到一个单独的文件中
 - HtmlWebpackPlugin: 打包结束后，⾃动生成⼀个 html ⽂文件，并把打包生成的 js 模块引⼊到该 html 中
 
+### plugin tapable
+
 ## loader 和 plugin 的区别
 
 - loader 运行在打包文件之前，处理各种文件
