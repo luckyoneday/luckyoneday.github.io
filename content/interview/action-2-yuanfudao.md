@@ -80,7 +80,7 @@ console.log(11);
 
 https://a.b.com 和 https://c.b.com 怎么共享 cookie
 
-#### 7. 二叉树深度遍历
+### 7. 二叉树深度遍历
 
 ```js
         1
