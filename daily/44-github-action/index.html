@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>github action - youting&#39;s blog</title>
+  <title>github action - xuyou&#39;s blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="youting" /><meta name="description" content="博客发布方式修改--github-action" /><meta name="keywords" content="daily" />
+<meta name="author" content="xuyou" /><meta name="description" content="博客发布方式修改--github-action" /><meta name="keywords" content="daily" />
 
 
 
@@ -49,7 +49,7 @@
 <meta itemprop="description" content="博客发布方式修改--github-action">
 <meta itemprop="datePublished" content="2021-05-03T16:32:34+08:00" />
 <meta itemprop="dateModified" content="2021-05-03T16:32:34+08:00" />
-<meta itemprop="wordCount" content="369">
+<meta itemprop="wordCount" content="462">
 
 
 
@@ -71,7 +71,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/" class="logo">youting</a>
+    <a href="/" class="logo">xuyou</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -102,7 +102,7 @@
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
-  <a href="/" class="logo">youting</a>
+  <a href="/" class="logo">xuyou</a>
 </div>
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-03 </span>
         
-          <span class="more-meta"> 约 369 字 </span>
+          <span class="more-meta"> 约 462 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -148,7 +148,7 @@
 
     <div class="post-content">
       <p>之前博客发布是使用本地运行 <code>deploy.sh</code> 的方式，脚本可见 <a href="../4-deploy">deploy.sh</a>，这种方式每次发布都重新生成 <code>public</code> 文件夹，需要重新进行 git 初始化操作，导致远端 github 仓库永远只有一次 commit，看不到变更操作。所以决定修改为由 github action 在 push 代码时触发 hugo 来构建 github page。</p>
-<p>触发 github action 需要在项目根目录下新建 <code>.github/workflows</code> 文件夹，并新建一个 <code>.yml</code> 结尾的文件，内容参考 <a href="https://github.com/peaceiris/actions-hugo">actions-hugo</a></p>
+<p>触发 github action 需要在项目根目录下新建 <code>.github/workflows</code> 文件夹，并新建一个 <code>.yml</code> 结尾的文件，内容参考 <a href="https://github.com/peaceiris/actions-hugo">actions-hugo</a>。如果源 md 文件和打包出的 html 静态文件使用同一个 repo 的话，就会导致每次 push 都需要加 <code>-f</code>。为了避免这种操作可以设置两个 repo，一个存源 md 文件另一个存打包出来的，这就需要使用 <a href="https://github.com/peaceiris/actions-gh-pages">action-gh-pages</a>，并设置 <code>external_repository</code> <code>deploy_key</code> 。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -209,9 +209,7 @@
 </span><span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l">./public</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
-</div><h2 id="deploy_key">deploy_key</h2>
-<p>关于 deploy_key 可见 <a href="https://github.com/peaceiris/actions-gh-pages">action-gh-pages</a>。</p>
-<h2 id="sub-modules">sub modules</h2>
+</div><h2 id="sub-modules">sub modules</h2>
 <p>项目根目录下需要有一个 <code>.gitmodules</code> 文件，内容为</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -248,7 +246,7 @@
     <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">youting</span>
+    <span class="item-content">xuyou</span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
@@ -308,7 +306,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
   </span>
 </div>
 
