@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interview on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/interview/</link>
+    <description>Recent content in interview on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 May 2021 08:24:12 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>second</title>
+      <link>https://luckyoneday.github.io/interview/action-2-yuanfudao/</link>
+      <pubDate>Sun, 23 May 2021 08:24:12 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-2-yuanfudao/</guid>
+      <description>1. 介绍项目 讲一下项目难点，以及怎么解决。 2. setState 是同步还是异步 3. 讲一下 React Hooks 4. 看一下输出 1 2 3 4 5 6 7 8 9 10 11 12 13 var a = { f1: function () { console.log(this); }, f2: () =&amp;gt; console.log(this), }; a.f1();</description>
+    </item>
+    
+    <item>
+      <title>Typescript 和 Redux</title>
+      <link>https://luckyoneday.github.io/interview/ts-redux/</link>
+      <pubDate>Thu, 20 May 2021 15:07:04 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/ts-redux/</guid>
+      <description>typescript interface 和 type 的区别 1.都可以用来描述对象或函数的类型，但语法不同 1 2 3 4 5 interface SetPoint { (x: number, y: number): void; } type SetPoint = (x: number, y: number) =&amp;gt; void; 2.type 类型别名还可以用于其他类型 1 2 3</description>
+    </item>
+    
+    <item>
+      <title>first</title>
+      <link>https://luckyoneday.github.io/interview/action-1-banyu/</link>
+      <pubDate>Wed, 19 May 2021 15:23:27 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-1-banyu/</guid>
+      <description>一面 1. 输出什么 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 console.log(&amp;#34;1&amp;#34;); async function async1() { console.log(&amp;#34;2&amp;#34;); await console.log(&amp;#34;3&amp;#34;); console.log(&amp;#34;4&amp;#34;); } setTimeout(function () { console.log(&amp;#34;5&amp;#34;); }, 0); async1(); new Promise(function (resolve) { console.log(&amp;#34;6&amp;#34;); resolve(); }).then(function () { console.log(&amp;#34;7&amp;#34;); }); console.log(&amp;#34;8&amp;#34;); 2. 输出什么 1 2 3 4 5 6 7 8</description>
+    </item>
+    
+    <item>
+      <title>CSS面试知识点汇总</title>
+      <link>https://luckyoneday.github.io/interview/css/</link>
+      <pubDate>Sat, 01 May 2021 13:54:32 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/css/</guid>
+      <description>CSS 优化 内联首屏关键 css 异步加载非首屏 css 使用 javascript 将 link 标签查到 head 标签最后； 设置 link 标签 media 属性为 noexist，浏览器会认为当前样式表不适用当前类型，会</description>
+    </item>
+    
+    <item>
+      <title>ES6及新特性相关</title>
+      <link>https://luckyoneday.github.io/interview/es6/</link>
+      <pubDate>Tue, 27 Apr 2021 20:43:32 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/es6/</guid>
+      <description>ES6 let const ES6 之前只有函数作用域和全局作用域。 var 会带来变量提升，声明提升到当前作用域顶部，会造成污染。 在花括号 {} 内部由 let 关键字声明的函数，才是真正</description>
+    </item>
+    
+    <item>
+      <title>面试实战</title>
+      <link>https://luckyoneday.github.io/interview/action/</link>
+      <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action/</guid>
+      <description>first second</description>
+    </item>
+    
+    <item>
+      <title>一些算法</title>
+      <link>https://luckyoneday.github.io/interview/algorithm/</link>
+      <pubDate>Sat, 17 Apr 2021 12:09:44 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/algorithm/</guid>
+      <description>排序算法 冒泡排序：比较相邻的元素，如果第一个比第二个大，就交换 &amp;ndash; 这样会找出最大的元素，随后对除最后一个元素进行同样的操作。 选择排序：在剩余数</description>
+    </item>
+    
+    <item>
+      <title>手写代码</title>
+      <link>https://luckyoneday.github.io/interview/write/</link>
+      <pubDate>Sat, 17 Apr 2021 12:09:37 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/write/</guid>
+      <description>Promise promise 有三个状态 pending、fulFilled 和 rejected，默认状态为 pending；只能从 pending 到 rejected, 或者从 pending 到 fulfilled，状态</description>
+    </item>
+    
+    <item>
+      <title>前端性能相关</title>
+      <link>https://luckyoneday.github.io/interview/performance/</link>
+      <pubDate>Sat, 17 Apr 2021 12:09:26 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/performance/</guid>
+      <description>回流和重绘 css 优化 减少 http 请求、使用 http2 使用服务端渲染 静态资源使用 CDN 打包方向 tree shaking 和 minify 性能指标方向: fcp 和 fp 首先是一些性能指标： TTFB(Time To First Byte): 返回第一个字节</description>
+    </item>
+    
+    <item>
+      <title>HTML面试知识点汇总</title>
+      <link>https://luckyoneday.github.io/interview/html/</link>
+      <pubDate>Sat, 17 Apr 2021 12:09:18 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/html/</guid>
+      <description>浏览器解析渲染机制 浏览器内核指的是浏览器运行的最核心的程序，分为两个部分，一个是渲染引擎，另一个是 JS 引擎。 解析 HTML，生成 DOM 树； 解析 CSS</description>
+    </item>
+    
+    <item>
+      <title>Node 面试知识点汇总</title>
+      <link>https://luckyoneday.github.io/interview/node/</link>
+      <pubDate>Sat, 17 Apr 2021 12:09:10 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/node/</guid>
+      <description>事件循环 node 的事件循环阶段顺序大致为： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 ┌───────────────────────────┐ ┌─&amp;gt</description>
+    </item>
+    
+    <item>
+      <title>HTTP、浏览器面试知识点汇总</title>
+      <link>https://luckyoneday.github.io/interview/http/</link>
+      <pubDate>Sat, 17 Apr 2021 11:58:56 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/http/</guid>
+      <description>TCP/IP 协议 计算机之间的通信要遵循不同的协议，来实现互相之间的通信。 应用层：DNS 协议、HTTP、FTP、WebSocket 等。 传输层：TCP、U</description>
+    </item>
+    
+    <item>
+      <title>React 面试知识点汇总</title>
+      <link>https://luckyoneday.github.io/interview/react/</link>
+      <pubDate>Sat, 17 Apr 2021 11:53:24 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/react/</guid>
+      <description>react fiber 解决了什么问题 React15 以递归方式执行更新，stack Reconciler，同步更新无法阻断，无法处理高优先级的任务，会造成卡顿。即： 解决同步渲</description>
+    </item>
+    
+    <item>
+      <title>JavaScript 面试知识点汇总</title>
+      <link>https://luckyoneday.github.io/interview/js/</link>
+      <pubDate>Sat, 17 Apr 2021 11:49:26 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/js/</guid>
+      <description>执行上下文 执行上下文就是当前 JavaScript 代码被解析和执行时所处的环境，也叫做执行环境。 当函数被调用时会创建执行上下文，执行上下文创建阶段变量对象、作用</description>
+    </item>
+    
+  </channel>
+</rss>

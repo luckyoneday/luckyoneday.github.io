@@ -1,9 +1,0 @@
-deploy.sh
-.DS_Store
-*.swap
-
-public
-resources
-gh-pages
-gh-pages.pub
-.vscode

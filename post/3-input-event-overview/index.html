@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>input 事件 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="关于中文输入的input" /><meta name="keywords" content="JavaScript" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/post/3-input-event-overview/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="input 事件" />
+<meta property="og:description" content="关于中文输入的input" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/post/3-input-event-overview/" />
+<meta property="article:published_time" content="2020-07-14T20:57:50+08:00" />
+<meta property="article:modified_time" content="2020-07-14T20:57:50+08:00" />
+<meta itemprop="name" content="input 事件">
+<meta itemprop="description" content="关于中文输入的input">
+<meta itemprop="datePublished" content="2020-07-14T20:57:50+08:00" />
+<meta itemprop="dateModified" content="2020-07-14T20:57:50+08:00" />
+<meta itemprop="wordCount" content="1458">
+
+
+
+<meta itemprop="keywords" content="JavaScript,Event," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="input 事件"/>
+<meta name="twitter:description" content="关于中文输入的input"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">input 事件</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-07-14 </span>
+        
+          <span class="more-meta"> 约 1458 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#keydown-和-keypress">keydown 和 keypress</a></li>
+        <li><a href="#onchange">onchange</a></li>
+        <li><a href="#composition-event">composition event</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>背景是业务中的一个文本框应该禁止「输入」 <code>{</code> 和 <code>}</code>。但是不能直接对 <code>value</code> 进行<code>replace</code>操作。</p>
+<h2 id="keydown-和-keypress">keydown 和 keypress</h2>
+<p>因为这个输入框中存在点击文字插入的“变量体”，类似<code>{变量名}</code> 。添加、删除都会作为一个整体。原以为 <code>onKeyDown</code> 的时候禁用掉左右括号的输入就可以解决，但是在 windows 上使用中文输入法时还是可以输进去，甚至搜狗输入法还会在按下 <code>{</code> 的时候自动补齐右括号，简直不要太人性化&hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">bracketCodeSet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Set</span><span class="p">([</span><span class="mi">219</span><span class="p">,</span> <span class="mi">221</span><span class="p">]);</span>
+
+<span class="kr">const</span> <span class="nx">handleKeyDown</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">shiftKey</span> <span class="o">&amp;&amp;</span> <span class="nx">bracketCodeSet</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="nx">keyCode</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>debug 的时候发现中文输入时，左右括号的 <code>keyCode</code> 并不是 219 和 221，而是 229，而且不仅仅括号是 229，凡是中文输入时 keyDown 的键值都是 229。</p>
+<p>为什么是 229 呢，<a href="https://lists.w3.org/Archives/Public/www-dom/2010JulSep/att-0182/keyCode-spec.html#fixed-virtual-key-codes">W3C 标准</a>可以看到：</p>
+<blockquote>
+<p>If an Input Method Editor is processing key input and the event is keydown, return 229.</p>
+</blockquote>
+<p>翻译过来就是 keydown 事件如果输入法编辑器正在处理键盘输入，此时的键值则返回 229。可在<a href="https://www.w3.org/2002/09/tests/keys-cancel2.html">这里</a>分中文和英文输入输入 h，会获取到以下值：</p>
+<table>
+<thead>
+<tr>
+<th>h</th>
+<th>keydown</th>
+<th>keypress</th>
+<th>keyup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>英文</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>keyCode</td>
+<td>72</td>
+<td>104</td>
+<td>72</td>
+</tr>
+<tr>
+<td>charCode</td>
+<td>&ndash;</td>
+<td>104</td>
+<td>&ndash;</td>
+</tr>
+<tr>
+<td>character</td>
+<td></td>
+<td>h</td>
+<td></td>
+</tr>
+<tr>
+<td>中文</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>keyCode</td>
+<td>229</td>
+<td>&ndash;</td>
+<td>72</td>
+</tr>
+<tr>
+<td>charCode</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+<td>&ndash;</td>
+</tr>
+<tr>
+<td>character</td>
+<td></td>
+<td>&ndash;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>keyCode</code> 和 <code>charCode</code> 的区别就是一个是 keyboard codes（键盘的键对应的值）一个是 character codes（Unicode 字符），对于非字符值比如上下左右键，是没有 <code>charCode</code> 属性的。</p>
+<p>那为什么 keypress 和 keydown 的 <code>keyCode</code> 不一样呢！是因为 <code>keyCode</code> 是键值，但是 Unicode 码其实是分字母大小写的，当输入大写的时候就一样了，所以对于字母的处理来说，keypress 的 <code>keyCode</code> 较为准确。</p>
+<p>既然所有中文输入在 keyDown 阶段 <code>keyCode</code> 都是 229，意味着凡是中文输入法的值，按照 <code>keyCode</code> 来识别左右括号再阻止默认输入行为是没有用的。</p>
+<p>那么考虑到输入框的事件顺序：</p>
+<blockquote>
+<p>onkeydown -&gt; onkeypress -&gt; onkeyup -&gt; onchange</p>
+</blockquote>
+<p>keypress 阶段也可以阻止默认行为，但是中文输入不会触发 keypress：</p>
+<p><img src="../../static-img/3-input-event/chinese.png" alt="中文输入不会触发 keypress"></p>
+<p><img src="../../static-img/3-input-event/english.png" alt="英文输入会触发 keypress"></p>
+<p>所以想在 <code>keydown</code> 和 <code>keypress</code> 阶段通过 <code>e.preventDefault()</code> 来控制输入的想法应该是不行了。。。</p>
+<h2 id="onchange">onchange</h2>
+<p>于是在 <code>onChange</code> 的时候对插入的字符串进行了一波操作，具体方法是拿到最新的 <code>e.target.value</code> 和新输入的值 <code>e.nativeEvent.data</code> ，对新输入的值进行左右括号的 <code>replace</code> 操作随后再对 <code>e.target.value</code> 来一次匹配，大致如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">handleChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">targetValue</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">newData</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">nativeEvent</span><span class="p">.</span><span class="nx">data</span> <span class="o">||</span> <span class="s2">&#34;&#34;</span><span class="p">;</span> <span class="c1">// 新输入的 data
+</span><span class="c1"></span>
+  <span class="k">if</span> <span class="p">(</span><span class="sr">/{*}*/g</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">newData</span><span class="p">))</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">tempStr</span> <span class="o">=</span> <span class="nx">newData</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{*}*/g</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">);</span> <span class="c1">// 新输入的data去掉括号
+</span><span class="c1"></span>    <span class="nx">targetValue</span> <span class="o">=</span> <span class="nx">targetValue</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">newData</span><span class="p">,</span> <span class="nx">tempStr</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">setTextValue</span><span class="p">(</span><span class="nx">targetValue</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个方法杜绝了单独输入<code>{</code>和<code>}</code>，但是这个时候又遇到一个新的问题，就是中文输入几个拼音后再加任意一个括号时直接就替换了，不会等操作完，例如还有后续输入：</p>
+<p><img src="../../static-img/3-input-event/onchange.jpg" alt="onchange时直接匹配"></p>
+<p>大致就是杜绝了这种输入方式：</p>
+<p><img src="../../static-img/3-input-event/continue.jpg" alt="继续输入"></p>
+<p>因为当输到第一个 <code>{</code> 的时候这个字符串已经匹配结束了，后续输入就是新开字符串了。</p>
+<p>那怎么能检测出中文输入连续插入的括号呢！这就是触及到另一个事件了<code>oncompositionend</code>。</p>
+<h2 id="composition-event">composition event</h2>
+<p>由于用户间接输入文本而发生的事件，即 <a href="https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent">composition event</a>。意思就是中文输入时会触发。</p>
+<p>中文输入时触发的顺序是什么呢！</p>
+<blockquote>
+<p>onkeydown -&gt; oncompositionstart -&gt; oncompositionupdate(n 次) -&gt; onchange(n 次) -&gt; oncompositionend -&gt; onkeyup</p>
+</blockquote>
+<p><img src="../../static-img/3-input-event/da.png" alt="大"></p>
+<p>composition event 中 <code>event</code> 对象的 <code>data</code> 属性就是当前输入值：</p>
+<p><img src="../../static-img/3-input-event/e.data.jpg" alt="event.data"></p>
+<p><code>onCompositionEnd</code>会在中文输入结束时触发，例如空格、回车或选择第几个联想词。所以可以在这个事件里拿到和中文一起输入的左右括号再进行一次替换操作！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">handleCompositionEnd</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">oldData</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">newData</span> <span class="o">=</span> <span class="nx">oldData</span><span class="p">;</span>
+
+  <span class="nx">newData</span> <span class="o">=</span> <span class="nx">newData</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{*}*/g</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">newTextValue</span> <span class="o">=</span> <span class="nx">textValue</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">oldData</span><span class="p">,</span> <span class="nx">newData</span><span class="p">);</span>
+  <span class="nx">setTextValue</span><span class="p">(</span><span class="nx">newTextValue</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了让这个事件起作用，（<code>compositionend</code> 事件在 <code>change）</code> 之后)，那就需要在 <code>onChange</code> 的时候判断不是复合输入才替换字符串，那怎么识别是不是符合输入呢！其实在 <code>onchange</code> 、<code>onkeydown</code>、<code>onkeyup</code> 等事件判断是否是 composition event 的依据除了 <code>keyCode === 229</code> ，还有个 <code>isComposing</code> 属性，也可以感知到是否是 composition event，即：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">handleChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">targetValue</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="c1">// 就是这一行！！！
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">nativeEvent</span><span class="p">.</span><span class="nx">isComposing</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">newData</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">nativeEvent</span><span class="p">.</span><span class="nx">data</span> <span class="o">||</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="sr">/{*}*/g</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">newData</span><span class="p">))</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">tempStr</span> <span class="o">=</span> <span class="nx">newData</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/{*}*/g</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">);</span>
+      <span class="nx">targetValue</span> <span class="o">=</span> <span class="nx">targetValue</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">newData</span><span class="p">,</span> <span class="nx">tempStr</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">setTextValue</span><span class="p">(</span><span class="nx">targetValue</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>效果示例：<a href="https://codesandbox.io/s/onkeydown-yy1yc?file=/src/App.js">codesandbox</a></p>
+<hr>
+<p>后记：</p>
+<p>但是其实这些 keyboard event 的 <code>event</code> 对象上面还有 <code>key</code> 属性，如：</p>
+<p><img src="../../static-img/3-input-event/key.png" alt="key"></p>
+<p>但是 windows 上中文输入的时候其实 key 属性的值都是 <code>Process</code>。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-07-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          <a href="/tags/event/">Event</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/4-sketch-plugin/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Sketch 插件</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/1-translate-tell-class-from-function/">
+            <span class="next-text nav-default">React 怎么区分类组件和函数组件</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

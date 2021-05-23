@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Performance Api （上） - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="Performance Api 介绍" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/39-performance-api/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Performance Api （上）" />
+<meta property="og:description" content="Performance Api 介绍" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/39-performance-api/" />
+<meta property="article:published_time" content="2021-01-27T10:17:53+08:00" />
+<meta property="article:modified_time" content="2021-01-27T10:17:53+08:00" />
+<meta itemprop="name" content="Performance Api （上）">
+<meta itemprop="description" content="Performance Api 介绍">
+<meta itemprop="datePublished" content="2021-01-27T10:17:53+08:00" />
+<meta itemprop="dateModified" content="2021-01-27T10:17:53+08:00" />
+<meta itemprop="wordCount" content="1014">
+
+
+
+<meta itemprop="keywords" content="Performance," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Performance Api （上）"/>
+<meta name="twitter:description" content="Performance Api 介绍"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Performance Api （上）</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-27 </span>
+        
+          <span class="more-meta"> 约 1014 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <p>Performance API 可以帮助我们全面了解我们的网页，我们可以通过 Performance API 站点获取不同的浏览器，网络中的运行情况数据。</p>
+<p>Performance API 是 <a href="https://www.w3.org/TR/hr-time/">High Resolution Time API(高分辨率时间)</a> 的一部分，结合 Performance Timeline API，Navigation Timing API，User Timing API 和 Resource Timing API 使获取页面性能的能力得到了提高。</p>
+<blockquote>
+<p>注：Performance API 还在发展过程中，不停在更新新功能和废弃的功能。所以应该定期查看 MDN 或 W3C 的网站以获取最新版本的 API。</p>
+</blockquote>
+<h2 id="high-resolution-time">High Resolution Time</h2>
+<p>高分辨率时间精度可以达到千分之一毫秒，比 <code>Date.now()</code> 的毫秒精度更高一些。高分辨率时间不会随系统时间的变化而改变，因为它是从 UA 创建的全局时钟中获取的。获取当前时间的最基本方法是使用 <code>performance.now()</code>。如果范围是当前 window，则返回创建浏览器上下文的时间；如果范围是 worker，则返回创建 worker 的时间。</p>
+<h2 id="performance-timeline-api">Performance Timeline API</h2>
+<p>Performance Timeline API 是 Performance API 的扩展。 该扩展程序提供了基于特定过滤条件检索性能指标的接口:</p>
+<ul>
+<li><code>getEntries()</code> 返回所有页面可用的性能条目。当在某个页面运行 <code>performance.getEntries()</code> 时，会看到控制台返回了一个巨大的数组。大多数条目与页面加载的图像，脚本等资源有关。</li>
+<li><code>getEntriesByType(entryType)</code> 和 <code>getEntries()</code> 类似，但是会根据传入的 <code>entryType</code> 过滤资源条目。</li>
+</ul>
+<p><code>entryType</code> 大致有以下 6 种：</p>
+<ul>
+<li><code>frame</code> 一个实验性功能，可以使开发人员了解一个事件循环中，浏览器完成了多少工作。如果浏览器在一个循环中执行过多的任务，帧速率将下降并且用户体验将变差。</li>
+<li><code>resource</code> 与站点下载的所有资源有关。</li>
+<li><code>navigation</code> 与浏览器导航跳转有关。</li>
+<li><code>mark</code> 自定义标记，可以用来计算代码运行速度。</li>
+<li><code>measure</code> 可以通过 measure 来测量两个 mark 标记之间的差异。</li>
+<li><code>paint</code> 与屏幕上显示的像素有关。</li>
+</ul>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">performance</span><span class="p">.</span><span class="nx">getEntriesByType</span><span class="p">(</span><span class="s2">&#34;resource&#34;</span><span class="p">)[</span><span class="mi">2</span><span class="p">];</span>
+<span class="c1">// connectEnd: 56.274999980814755
+</span><span class="c1">// connectStart: 56.274999980814755
+</span><span class="c1">// decodedBodySize: 86659
+</span><span class="c1">// domainLookupEnd: 56.274999980814755
+</span><span class="c1">// domainLookupStart: 56.274999980814755
+</span><span class="c1">// duration: 65.14500000048429
+</span><span class="c1">// encodedBodySize: 30180
+</span><span class="c1">// entryType: &#34;resource&#34;
+</span><span class="c1">// fetchStart: 56.274999980814755
+</span><span class="c1">// initiatorType: &#34;script&#34;
+</span><span class="c1">// name: &#34;https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js&#34;
+</span><span class="c1">// nextHopProtocol: &#34;h2&#34;
+</span><span class="c1">// redirectEnd: 0
+</span><span class="c1">// redirectStart: 0
+</span><span class="c1">// requestStart: 99.92499998770654
+</span><span class="c1">// responseEnd: 121.41999998129904
+</span><span class="c1">// responseStart: 119.24999998882413
+</span><span class="c1">// secureConnectionStart: 56.274999980814755
+</span><span class="c1">// serverTiming: []
+</span><span class="c1">// startTime: 56.274999980814755
+</span><span class="c1">// transferSize: 30788
+</span><span class="c1">// workerStart: 0
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>getEntriesByName(entryName)</code> 通过 <code>entryName</code> 过滤资源条目。在上面例子里就可以通过 <code>performance.getEntriesByName(&quot;https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js&quot;)[0]</code> 获取同款。</li>
+</ul>
+<h2 id="手动计算程序时间">手动计算程序时间</h2>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">firstNow</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+<span class="c1">// 模拟大量计算
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">100000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ii</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kr">const</span> <span class="nx">secondNow</span> <span class="o">=</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="kr">const</span> <span class="nx">howLongDidOurLoopTake</span> <span class="o">=</span> <span class="nx">secondNow</span> <span class="o">-</span> <span class="nx">firstNow</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上述例子就是通过 <code>performance.now()</code> 之间的差值来获取程序运行时间。但是这样写当需要计算的时间比较多时比较难管理，这个时候就可以使用 <code>mark</code> 来创建 <code>entryType</code> 是 <code>mark</code> 的条目，随后根据 <code>measure</code> 来创建 <code>entryType</code> 是 <code>measure</code> 的条目，就可以获取到两个 <code>mark</code> 之间的时间差。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">performance</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="s2">&#34;beginSquareRootLoop&#34;</span><span class="p">);</span>
+<span class="c1">// 模拟大量计算
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ii</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">performance</span><span class="p">.</span><span class="nx">mark</span><span class="p">(</span><span class="s2">&#34;endSquareRootLoop&#34;</span><span class="p">);</span>
+
+<span class="c1">// 通过两个 mark 创建新的条目叫做 measureSquareRootLoop
+</span><span class="c1"></span><span class="nx">performance</span><span class="p">.</span><span class="nx">measure</span><span class="p">(</span>
+  <span class="s2">&#34;measureSquareRootLoop&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;beginSquareRootLoop&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;endSquareRootLoop&#34;</span>
+<span class="p">);</span>
+
+<span class="nx">performance</span><span class="p">.</span><span class="nx">getEntriesByName</span><span class="p">(</span><span class="s2">&#34;beginSquareRootLoop&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="c1">// detail: null
+</span><span class="c1">// duration: 0
+</span><span class="c1">// entryType: &#34;mark&#34;
+</span><span class="c1">// name: &#34;beginSquareRootLoop&#34;
+</span><span class="c1">// startTime: 4298507.545000059
+</span><span class="c1"></span>
+<span class="nx">performance</span><span class="p">.</span><span class="nx">getEntriesByName</span><span class="p">(</span><span class="s2">&#34;measureSquareRootLoop&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+<span class="c1">// detail: null
+</span><span class="c1">// duration: 15.754999942146242
+</span><span class="c1">// entryType: &#34;measure&#34;
+</span><span class="c1">// name: &#34;measureSquareRootLoop&#34;
+</span><span class="c1">// startTime: 4298507.545000059
+</span></code></pre></td></tr></table>
+</div>
+</div><p>其他类目分析见<a href="/daily/40-performance-api/">下篇</a>。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-01-27
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/performance/">Performance</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/40-performance-api/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Performance Api （下）</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/37-git-notes/">
+            <span class="next-text nav-default">Git 操作 tips</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

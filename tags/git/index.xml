@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/git/</link>
+    <description>Recent content in git on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 03 May 2021 16:32:34 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>github action</title>
+      <link>https://luckyoneday.github.io/daily/44-github-action/</link>
+      <pubDate>Mon, 03 May 2021 16:32:34 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/44-github-action/</guid>
+      <description>之前博客发布是使用本地运行 deploy.sh 的方式，脚本可见 deploy.sh，这种方式每次发布都重新生成 public 文件夹，需要重新进行 git 初始化操作，导致远端 github 仓库</description>
+    </item>
+    
+    <item>
+      <title>Git 操作 tips</title>
+      <link>https://luckyoneday.github.io/daily/37-git-notes/</link>
+      <pubDate>Sun, 30 Aug 2020 20:49:58 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/37-git-notes/</guid>
+      <description>下载大项目时超时 具体报错： 1 2 3 4 5 6 remote: Counting objects: 66352, done. remote: Compressing objects: 100% (10417/10417), done. error: RPC failed; curl 18 transfer closed with outstanding read data remaining fatal: The remote end hung up unexpectedly fatal: early EOF fatal: index-pack failed 解决方法： 1 2 3 $ git clone http://github.com/large-repository --depth 1 $</description>
+    </item>
+    
+  </channel>
+</rss>

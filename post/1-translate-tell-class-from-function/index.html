@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>React 怎么区分类组件和函数组件 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="how does react tell a class from a function 翻译" /><meta name="keywords" content="React" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/post/1-translate-tell-class-from-function/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="React 怎么区分类组件和函数组件" />
+<meta property="og:description" content="how does react tell a class from a function 翻译" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/post/1-translate-tell-class-from-function/" />
+<meta property="article:published_time" content="2020-03-08T21:03:31+08:00" />
+<meta property="article:modified_time" content="2020-03-08T21:03:31+08:00" />
+<meta itemprop="name" content="React 怎么区分类组件和函数组件">
+<meta itemprop="description" content="how does react tell a class from a function 翻译">
+<meta itemprop="datePublished" content="2020-03-08T21:03:31+08:00" />
+<meta itemprop="dateModified" content="2020-03-08T21:03:31+08:00" />
+<meta itemprop="wordCount" content="7013">
+
+
+
+<meta itemprop="keywords" content="React,翻译," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React 怎么区分类组件和函数组件"/>
+<meta name="twitter:description" content="how does react tell a class from a function 翻译"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">React 怎么区分类组件和函数组件</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-08 </span>
+        
+          <span class="more-meta"> 约 7013 字 </span>
+          <span class="more-meta"> 预计阅读 14 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#太长不看版">太长不看版：</a></li>
+        <li><a href="#正文从这里开始">正文从这里开始</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <blockquote>
+<p>原文标题: How Does React Tell a Class from a Function?</p>
+<p>原文链接: <a href="https://overreacted.io/how-does-react-tell-a-class-from-a-function/">https://overreacted.io/how-does-react-tell-a-class-from-a-function/</a></p>
+</blockquote>
+<h2 id="太长不看版">太长不看版：</h2>
+<p>React 会顺着原型链检查<code>isReactComponent</code>这个属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// React 内部
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Component</span> <span class="p">{}</span>
+<span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isReactComponent</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="c1">// 检查机制
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Greeting</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isReactComponent</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>存在就是 class，不存在就是 function。</p>
+<h2 id="正文从这里开始">正文从这里开始</h2>
+<p>先来看下面的一个<code>Greeting</code>组件，这是一个函数组件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Greeting</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>React 也支持定义类组件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>（在<a href="https://reactjs.org/docs/hooks-intro.html">最近的 Hooks</a>出现之前，类组件是唯一可以使用<code>state</code>之类属性的方式。）</p>
+<p>当我们想要渲染<code>&lt;Greeting /&gt;</code>，我们并不需要在意它是怎么定义的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 不论是类组件还是函数组件
+</span><span class="c1"></span><span class="o">&lt;</span><span class="nx">Greeting</span> <span class="o">/&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是 React 会关心他们的不同！</p>
+<p>如果<code>Greeting</code>是一个函数，React 需要去调用这个函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 我们的代码
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">Greeting</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+<span class="p">}</span>
+
+<span class="c1">// React内部
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">Greeting</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span> <span class="c1">// &lt;p&gt;Hello&lt;/p&gt;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>但是如果<code>Greeting</code>是一个类，React 需要用<code>new</code>操作符来创造它的一个实例并且接下来会调用它的<code>render</code>方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 我们的代码
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// React内部
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Greeting</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span> <span class="c1">// Greeting {}
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="c1">// &lt;p&gt;Hello&lt;/p&gt;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>两种情况中，React 的目的都是得到要渲染的节点（上例中是<code>&lt;p&gt;Hello&lt;/p&gt;</code>）。但是更具体的步骤取决于<code>Greeting</code>是怎么定义的。</p>
+<p><strong>所以 React 是怎么知道定义的组件是 class 还是 function 呢？</strong></p>
+<p>和<a href="https://overreacted.io/why-do-we-write-super-props/">上一篇博客</a>一样，**我们并不需要了解这个知识点一样可以用 React 进行开发。**这篇文章更多的是在讲关于 JavaScript 的知识点而不是 React。</p>
+<p>（这篇文章适合对 React 内部如何工作好奇的人阅读。你是这样的人吗？那让我们一起来深入学习呀~~）</p>
+<p><strong>这是一个很长的旅途，让我们系好安全带~这篇文章没有多少关于 React 的信息，但是我们会深入一些概念比如<code>new</code>，<code>this</code>，<code>class</code>，箭头函数，<code>prototype</code>，<code>__proto__</code>，<code>instanceof</code>，以及他们在 JavaScript 中如何一起生效。幸运的是，我们在使用 React 的时候不需要知道这么多。</strong></p>
+<p>（如果只是想知道答案，可以直接到文章末尾。）</p>
+<hr>
+<p>首先，我们需要理解函数和类是不一样的，这是很重要的。注意我们在调用类的时候需要使用<code>new</code>操作符：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 如果 Greeting 是一个函数
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">Greeting</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span> <span class="c1">// &lt;p&gt;Hello&lt;/p&gt;
+</span><span class="c1"></span>
+<span class="c1">// 如果 Greeting 是一个类
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Greeting</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span> <span class="c1">// Greeting {}
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="c1">// &lt;p&gt;Hello&lt;/p&gt;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>让我们看一下<code>new</code>操作符在 JavaScript 中的作用。</p>
+<hr>
+<p>在之前，JavaScript 中并没有 class。然而，我们可以使用普通函数表达类似类的模式。<strong>具体来说，我们可以通过在调用函数之前添加<code>new</code>，使任何函数像类构造函数：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 只是一个函数
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">fred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Fred&#34;</span><span class="p">);</span> <span class="c1">// Person {name: &#39;Fred&#39;}
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">george</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;George&#34;</span><span class="p">);</span> <span class="c1">// 不起作用
+</span></code></pre></td></tr></table>
+</div>
+</div><p>我们现在依然可以这样写！可以在 devTools 中试一下~</p>
+<p>当我们不用<code>new</code>调用<code>Person('Fred')</code>时，函数内部的<code>this</code>会指向全局和无用的东西（例如<code>window</code>或<code>undefined</code>）。所以我们的代码会垮掉或者执行一些奇怪的操作比如设置了<code>window.name</code>。</p>
+<p>通过使用<code>new</code>操作符调用，我们大致传达了这样的意思：“Hey JavaScript，我知道<code>Person</code>只是一个函数，但是让我们假装他是一个类构造函数。<strong>创建一个空的对象<code>{}</code>并且将<code>Person</code>内的<code>this</code>指向这个对象，这样我可以将一些属性赋值给它比如<code>this.name</code>。然后将这个新对象返回给我。</strong>”</p>
+<p>这就是<code>new</code>操作符做的事情。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">fred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Fred&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>new</code>操作符也使我们放在<code>Person.prototype</code>上面的属性或方法可以被<code>fred</code>对象访问到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Hi, I am &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">fred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Fred&#34;</span><span class="p">);</span>
+<span class="nx">fred</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这是 JavaScript 增加 class 语法前人们模仿 class 语法的方式。</p>
+<hr>
+<p>所以<code>new</code>操作符已经在 JavaScript 中存在了一段时间。相比之下，class 语法是最近的语法，允许我们使用更接近我们意图的方式重写这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">sayHi</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Hi, I am &#34;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">fred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Fred&#34;</span><span class="p">);</span>
+<span class="nx">fred</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>语言和 API 设计中<em>捕获开发者的意图</em>是非常重要的。</p>
+<p>如果我们写了一个函数，JavaScript 不能猜出这个函数是会像<code>alert()</code>一样被调用，还是类似于<code>new Person()</code>的构造函数被调用。忘记使用<code>new</code>调用<code>Person</code>这样的函数会导致很奇怪的行为。</p>
+<p>**使用 class 语法大致就是在对 JavaScript 说：“这不仅仅是个函数&ndash;这是一个类并且它拥有构造函数。”**如果我们在调用的时候忘记使用<code>new</code>操作符，JavaScript 会报错哒：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">fred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Fred&#34;</span><span class="p">);</span>
+<span class="c1">// 如果 Person 是一个函数，正常工作
+</span><span class="c1">// 如果 Person 是一个类：也会正常起作用
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">george</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;George&#34;</span><span class="p">);</span> <span class="c1">// 我们忘记了 `new`
+</span><span class="c1">// 如果 Person 是一个类构造函数的函数： 奇怪的行为
+</span><span class="c1">// 如果 Person 是一个类： 直接失败
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这会帮助我们提早捕获错误，而不是等到奇怪的 bug 出现，例如<code>this.name</code>被处理成<code>window.name</code>而不是<code>george.name</code>。</p>
+<p>然而，这意味着 React 需要在调用类前使用<code>new</code>操作符。不能被作为平常的函数调用，因为 JavaScript 会把这种情况视为错误！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Counter</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// React 不能这样
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Instance</span> <span class="o">=</span> <span class="nx">Counter</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这意味着有麻烦啦！</p>
+<hr>
+<p>在我们学习 React 怎么处理这种情况之前，我们需要知道大多数人用 React 都会使用像 Babel 这样的编译工具，以便于旧版本浏览器能识别像 class 这样的新语法。所以我们的设计中需要考虑编译。</p>
+<p>在 Babel 的早期版本，是可以不用<code>new</code>来调用类的。然而，这点已经被修好了&ndash;通过生成一些额外的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 一个简化的Babel输出：
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="k">this</span> <span class="k">instanceof</span> <span class="nx">Person</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s2">&#34;Cannot call a class as a function&#34;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 我们的代码：
+</span><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Fred&#34;</span><span class="p">);</span> <span class="c1">// Okay
+</span><span class="c1"></span><span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;George&#34;</span><span class="p">);</span> <span class="c1">// &#39;Cannot call a class as a function&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>我们之前在打包完的代码里可能见到过这种代码。这是<code>_classCallCheck</code>函数做的所有的事情。（我们可以通过选择“松散模式”而不进行检查来减小打包完后的代码体积，但是这样做可能会使转换代码的过程变的复杂。）</p>
+<hr>
+<p>到现在为止，我们应该粗略地理解了调用函数用<code>new</code>和不用<code>new</code>的区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>new Person()</code></th>
+<th><code>Person()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>class</code></td>
+<td><code>this</code>是<code>Person</code>的实例</td>
+<td><code>TypeError</code></td>
+</tr>
+<tr>
+<td><code>function</code></td>
+<td><code>this</code>是<code>Person</code>的实例</td>
+<td><code>this</code>指向<code>window</code>或<code>undefined</code></td>
+</tr>
+</tbody>
+</table>
+<p>这就是 React 需要正确调用组件的原因。<strong>如果组件定义为一个类组件，那么 React 需要用<code>new</code>来调用它。</strong></p>
+<p>所以 React 可以检查出组件是不是类组件吗？</p>
+<p>不是那么简单的！尽管<a href="https://stackoverflow.com/questions/29093396/how-do-you-check-the-difference-between-an-ecmascript-6-class-and-function">JavaScript 可以区分是 class 还是函数</a>，但是依然不适用于被 Babel 处理过的情况。对于浏览器来说，他们都是单纯的函数。</p>
+<hr>
+<p>所以，React 可以在每次都用<code>new</code>来调用函数吗？不幸的是，这并不是每次都奏效。</p>
+<p>对于普通的函数，用<code>new</code>来调用他们会返回一个对象实例。作为构造函数来说这样做是没问题的（比如上面的<code>Person</code>），但是对于函数组件来说就很奇怪：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Greeting</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 我们不会想在这里返回一个 `this` 的实例
+</span><span class="c1"></span>  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是这样还可以忍，这里有别的两个原因会杜绝我们的这个想法。</p>
+<hr>
+<p>不能总使用<code>new调用的</code>第一个原因是原生的箭头函数（不是被 Babel 编译过的），使用<code>new</code>调用会报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Greeting</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+<span class="k">new</span> <span class="nx">Greeting</span><span class="p">();</span> <span class="c1">// Greeting 不是构造函数
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这个行为是有意的，并且遵循了箭头函数的设计。箭头函数的一个特点就是没有他自己的<code>this</code>值&ndash;相反的，<code>this</code>指向的是最近的外层函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Friends</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">friends</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">friends</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">friends</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">friend</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span>
+      <span class="c1">// `this`是指向`render`方法的
+</span><span class="c1"></span>      <span class="o">&lt;</span><span class="nx">Friend</span> <span class="nx">size</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">size</span><span class="p">}</span> <span class="nx">name</span><span class="o">=</span><span class="p">{</span><span class="nx">friend</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">friend</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span> <span class="o">/&gt;</span>
+    <span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>所以**箭头函数没有自己的<code>this</code>。**这意味着它作为构造函数是完全无用的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// 这是无用的
+</span><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>**JavScript 不允许使用<code>new</code>来调用箭头函数。**如果我们这样做了，就了一个错误，所以我们需要避免这样做。这和 JavaScript 不允许没有<code>new</code>调用类组件是一样的。</p>
+<p>这是一个很好的规定但是它会把我们的计划打乱了。React 不能用<code>new</code>来调用每个函数因为在箭头函数中会报错的。我们可以尝试通过缺少<code>prototype</code>来检测箭头函数，而不是直接使用<code>new</code>来调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{}).</span><span class="nx">prototype</span><span class="p">(</span>
+  <span class="c1">// undefined
+</span><span class="c1"></span>  <span class="kd">function</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="p">).</span><span class="nx">prototype</span><span class="p">;</span> <span class="c1">// {constructor: f}
+</span></code></pre></td></tr></table>
+</div>
+</div><p>但是这个对于 Babel 编译出的函数<a href="https://github.com/facebook/react/issues/4599#issuecomment-136562930">不起作用</a>。这可能也不是什么大问题，但是还有另一个原因让这种方式不成立。</p>
+<hr>
+<p>我们不能总是用<code>new</code>调用函数的另一个原因是 React 需要支持返回字符串或者别的原生类型的组件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Greeting</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&#34;Hello&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Greeting</span><span class="p">();</span> <span class="c1">// &#39;Hello&#39;
+</span><span class="c1"></span><span class="k">new</span> <span class="nx">Greeting</span><span class="p">();</span> <span class="c1">// Greeting {}
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这里又需要来解决<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new"><code>new</code>操作符</a>引起的奇怪行为。与我们之前看到的一样，<code>new</code>告诉 JavaScript 引擎去创建一个新的对象，让这个函数的<code>this</code>指向这个对象，并且之后将<code>new</code>后的结果返回。</p>
+<p>然而，JavaScript 也允许使用<code>new</code>调用的函数返回别的对象来覆盖使用<code>new</code>来调用的结果。如果我们想复用这个实例时，这是一个有用的模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">zeroVector</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Vector</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">y</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">zeroVector</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 复用同样的实例
+</span><span class="c1"></span>      <span class="k">return</span> <span class="nx">zeroVector</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">zeroVector</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// b === c
+</span></code></pre></td></tr></table>
+</div>
+</div><p>然而，<code>new</code>操作符会在函数返回值不是对象时忽略它的返回值。意思就是说如果返回了一个字符串或者数字，就跟没写<code>return</code>是一样一样的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Answer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">42</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Answer</span><span class="p">();</span> <span class="c1">// 42
+</span><span class="c1"></span><span class="k">new</span> <span class="nx">Answer</span><span class="p">();</span> <span class="c1">// Answer()
+</span></code></pre></td></tr></table>
+</div>
+</div><p>使用<code>new</code>调用函数时，无法从返回原始值（如字符串或数字）的函数中读取返回值，所以如果 React 始终通过<code>new</code>来调用函数，是不能支持返回字符串的组件的。</p>
+<p>以上的种种问题导致我们需要妥协。</p>
+<hr>
+<p>到现在我们学习了什么呢？React 需要使用<code>new</code>来调用类，对于寻常的函数或者箭头函数则需要直接调用而不能使用<code>new</code>。并且也没有可靠的方式可以区分他们。</p>
+<p><strong>如果我们不能解决一般的情况，那我们可以解决一些更具体的吗？</strong></p>
+<p>当定义一个类组件时，我们都会扩展<code>React.Component</code>以便于可以使用内置的方法例如<code>this.setState()</code>。<strong>相比于检测所有的类，我们不能只检查<code>React.Component</code>的子组件吗？</strong></p>
+<p>剧透：这正是 React 所采取的方式。</p>
+<hr>
+<p>或许，常用来检查<code>Greeting</code>是不是 React 组件的方法是检查<code>Greeting.prototype instanceof React.Component</code>是否为<code>true</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">A</span> <span class="p">{}</span>
+<span class="kr">class</span> <span class="nx">B</span> <span class="kr">extends</span> <span class="nx">A</span> <span class="p">{}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">B</span><span class="p">.</span><span class="nx">prototype</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">);</span> <span class="c1">// true
+</span></code></pre></td></tr></table>
+</div>
+</div><p>我知道你在想什么。这里发生了什么呢？为了理解这里，我们需要知道 JavaScript 原型。</p>
+<p>我们都对“原型链”的概念很熟悉。JavaScript 的每个对象都有一个“原型”。当我们写下<code>fred.sayHi()</code>但是<code>fred</code>并没有一个<code>sayHi</code>的属性时，JavaScript 就会在<code>fred</code>的原型上寻找<code>sayHi</code>属性。如果还是找不到，就会沿着原型链寻找&ndash;<code>fred</code>的原型的原型，以此类推。</p>
+<p><strong>令人困惑的是，类和函数的<code>prototype</code>属性并没有指向相应的原型</strong>，我不是在开玩笑。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// Not Person&#39;s prototype
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Person</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span> <span class="c1">// Person&#39;s prototype
+</span></code></pre></td></tr></table>
+</div>
+</div><p>所以“原型链”更像是<code>__proto__.__proto__.__proto__</code>而不是<code>prototype.prototype.prototype</code>。</p>
+<p>那函数或类的<code>prototype</code>属性是什么呢？<strong>它是使用<code>new</code>创建的类或者函数的对象的<code>__proto__</code></strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">sayHi</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Hi, I am&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">fred</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s2">&#34;Fred&#34;</span><span class="p">);</span> <span class="c1">// 将 `fred.__proto__`指向`Person.prototype`
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>__proto__</code>链就是 JavaScript 寻找属性的地方：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">fred</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>
+<span class="c1">// 1、fred有一个叫做sayHi的属性吗？没有。
+</span><span class="c1">// 2、fred.__proto__上有叫做sayHi属性吗？是的，调用的就是这个！
+</span><span class="c1"></span>
+<span class="nx">fred</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+<span class="c1">// 1、fred有叫做toString的属性吗？没有。
+</span><span class="c1">// 2、fred.__proto__有叫做toString的属性吗？没有。
+</span><span class="c1">// 3、fred.__proto__.__proto__有叫做toString的属性吗？是的，调用的就是这个！
+</span></code></pre></td></tr></table>
+</div>
+</div><p>通常，除非是要调试有关于原型链的代码，否则很少会触及到<code>__proto__</code>属性。如果想在<code>fred.__proto__</code>上增加一些功能，最好是加在<code>Person.prototype</code>上面。至少这就是当初设计的方式。</p>
+<p><code>__proto__</code>属性甚至都不应该被浏览器暴露出来，因为原型链被视为语言内部的概念。但是一些浏览器增加了<code>__proto__</code>属性，渐渐地被勉强标准化（但赞成使用<code>Object.getPrototypeOf()</code>）。</p>
+<p><strong>到现在我依然觉得一个叫做<code>prototype</code>的属性并没有指向该值的原型是很奇怪的。</strong>（例如，<code>fred.prototype</code>是 undefined 因为<code>fred</code>不是一个函数。）就个人而言，我认为这是即便经验丰富的开发者都会误解 JavaScript 的原型的主要原因。</p>
+<hr>
+<p>这是很长的一篇文章，我们已经到了 80%，让我们继续！</p>
+<p>我们知道当我们调用<code>obj.foo</code>时，JavaScript 会在<code>obj.__proto__</code>，<code>obj.__proto__.__proto__.</code>中寻找。</p>
+<p>使用类，我们并不能直接接触到这种机制，但是<code>extends</code>也可以在原型链中起到很好的作用。这是 React 的类实例能调用<code>setState</code>等方法的原因：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Greeting</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span> <span class="c1">// Greeting.prototype
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span> <span class="c1">// React.Component.prototype
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">);</span> <span class="c1">// Object.prototype
+</span><span class="c1"></span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span> <span class="c1">// 在c.__proto__处找到（Greeting.prototype）
+</span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">setState</span><span class="p">();</span> <span class="c1">// 在c.__proto__.__proto__处找到（React.Component.prototype）
+</span><span class="c1"></span><span class="nx">c</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// 在c.__proto__.__proto__.__proto__处找到（Object.prototype）
+</span></code></pre></td></tr></table>
+</div>
+</div><p>换句话说，<strong>当我们使用了类，它的实例的<code>__proto__</code>链就是这个类继承结构的一个“镜像”。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// `extends`链
+</span><span class="c1"></span><span class="nx">Greeting</span>
+   <span class="o">-&gt;</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span>
+       <span class="o">-&gt;</span> <span class="nb">Object</span><span class="err">（</span><span class="nx">隐式</span><span class="err">）</span>
+
+<span class="c1">// `__proto__`链
+</span><span class="c1"></span><span class="k">new</span> <span class="nx">Greeting</span><span class="p">()</span>
+    <span class="o">-&gt;</span> <span class="nx">Greeting</span><span class="p">.</span><span class="nx">prototype</span>
+        <span class="o">-&gt;</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span>
+            <span class="o">-&gt;</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>双链！</p>
+<hr>
+<p>既然<code>__proto__</code>链反映了 class 继承结构，我们可以通过从<code>Greeting.prototype</code>来检查<code>Greeting</code>是否从<code>React.Component</code>继承而来，然后再沿着它的<code>__proto__</code>链：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// `__proto__`链
+</span><span class="c1"></span><span class="k">new</span> <span class="nx">Greeting</span><span class="p">()</span>
+    <span class="o">-&gt;</span> <span class="nx">Greeting</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 从这里开始
+</span><span class="c1"></span>        <span class="o">-&gt;</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 找到了
+</span><span class="c1"></span>            <span class="o">-&gt;</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>更方便的方法，可以使用<code>X instanceof Y</code>来进行这种搜索，它会沿着<code>x.__proto__</code>链寻找<code>Y.prototype</code>。</p>
+<p>通常的，它可以用来检查某个对象是不是某个类的实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Greeting</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="k">instanceof</span> <span class="nx">Greeting</span><span class="p">);</span> <span class="c1">// true
+</span><span class="c1">// greeting (从这里开始)
+</span><span class="c1">//     .__proto__ -&gt; Greeting.prototype（找到啦！）
+</span><span class="c1">//         .__proto_ -&gt; React.Component.prototype
+</span><span class="c1">//             .__proto__ -&gt; Object.prototype
+</span><span class="c1"></span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="k">instanceof</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">);</span> <span class="c1">// true
+</span><span class="c1">// greeting (从这里开始)
+</span><span class="c1">//     .__proto__ -&gt; Greeting.prototype
+</span><span class="c1">//         .__proto_ -&gt; React.Component.prototype（找到啦！）
+</span><span class="c1">//             .__proto__ -&gt; Object.prototype
+</span><span class="c1"></span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">);</span> <span class="c1">// true
+</span><span class="c1">// greeting (从这里开始)
+</span><span class="c1">//     .__proto__ -&gt; Greeting.prototype
+</span><span class="c1">//         .__proto_ -&gt; React.Component.prototype
+</span><span class="c1">//             .__proto__ -&gt; Object.prototype（找到啦！）
+</span><span class="c1"></span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greeting</span> <span class="k">instanceof</span> <span class="nx">Banana</span><span class="p">);</span> <span class="c1">// false
+</span><span class="c1">// greeting (从这里开始)
+</span><span class="c1">//     .__proto__ -&gt; Greeting.prototype
+</span><span class="c1">//         .__proto_ -&gt; React.Component.prototype
+</span><span class="c1">//             .__proto__ -&gt; Object.prototype（没有找到）
+</span></code></pre></td></tr></table>
+</div>
+</div><p>它也可以用来检查类是否继承自另一个类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Greeting</span><span class="p">.</span><span class="nx">prototype</span> <span class="k">instanceof</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">);</span>
+<span class="c1">// greeting
+</span><span class="c1">//     .__proto__ -&gt; Greeting.prototype（从这里开始）
+</span><span class="c1">//         .__proto_ -&gt; React.Component.prototype（找到啦）
+</span><span class="c1">//             .__proto__ -&gt; Object.prototype
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这个检查就可以帮助我们确定一个对象是类还是普通函数。</p>
+<hr>
+<p>但这并不是 React 所做的。</p>
+<p>需要注意的一点是<code>instanceof</code>操作符在项目中有多个 React 副本时失效，我们当前检查的组件会继承自另一个<code>React.Component</code>的 React 副本。在一个项目中混合使用多个 React 版本是不好的，原因有好多，但是从历史上看我们尽可能避免这种写法。（使用 Hooks 的话，我们<a href="https://github.com/facebook/react/issues/13991">可能需要</a>删除一些副本。）</p>
+<p>另一种启发是检查在原型上是不是有<code>render</code>方法。但是，当时并<a href="https://github.com/facebook/react/issues/4599#issuecomment-129714112">不清楚</a>组件的 API 会如何发展。每一次的检查都会有代价，所以我们不能增加很多个检查。如果<code>render</code>作为实例的方法存在，例如使用类属性语法，这个检查也不会起作用。</p>
+<p>所以，React 为基础组件<a href="https://github.com/facebook/react/pull/4663">增加</a>了一个特殊标志。React 会检查这个标志的存在，这就是它判断一个组件是不是 React 组件类的方法。</p>
+<p>起初，标志是在基础的<code>React.Component</code>类上：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// React 内部
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Component</span> <span class="p">{}</span>
+<span class="nx">Component</span><span class="p">.</span><span class="nx">isReactClass</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="c1">// 我们可以这样检查
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Greeting</span><span class="p">.</span><span class="nx">isReactClass</span><span class="p">);</span> <span class="c1">// Yes
+</span></code></pre></td></tr></table>
+</div>
+</div><p>然而，一些我们想要定位的 class 实例<a href="https://github.com/scala-js/scala-js/issues/1900">没有</a>复制静态属性（或者手动设置了<code>__proto__</code>），所以标志会丢失。</p>
+<p>这是 React 将这个标志<a href="https://github.com/facebook/react/pull/5021">移动到</a><code>React.Component.prototype</code>上去的原因。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// React内部
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Component</span> <span class="p">{}</span>
+<span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isReactComponent</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="c1">// 我们可以这样检查
+</span><span class="c1"></span><span class="kr">class</span> <span class="nx">Greeting</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Greeting</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">isReactComponent</span><span class="p">);</span> <span class="c1">// true
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>这才是 React 所使用的方式。</strong></p>
+<p>可能会疑惑为什么这是一个对象而不是一个布尔值。其实在实践中无所谓什么类型，但是 Jest 的早期版本（Jest 的 Good^TM 之前）的<code>自动锁定功能？？？</code>默认是开启的，会忽略原生属性，<a href="https://github.com/facebook/react/pull/4663">会破坏检查</a>。</p>
+<p><code>isReactComponent</code>的检查直到今天还<a href="https://github.com/facebook/react/blob/769b1f270e1251d9dbdce0fcbd9e92e502d059b8/packages/react-reconciler/src/ReactFiber.js#L297-L300">在 React 中</a>使用。</p>
+<p>如果不是继承自<code>React.Component</code>，React 不会在原型中找到<code>isReactComponent</code>属性，也就不会将组件视为一个类组件。现在我们知道了为什么关于<code>不能像调用函数一样调用类</code>的<a href="https://stackoverflow.com/questions/38481857/getting-cannot-call-a-class-as-a-function-in-my-react-project/42680526#42680526">最推荐的回答</a>是需要继承<code>React.Component</code>。最后，当存在<code>prototype.render</code>但是没有<code>prototype.isReactComponent</code>属性时会<a href="https://github.com/facebook/react/pull/11168">触发一个 warning</a>。</p>
+<hr>
+<p>你可能会觉得这篇文章是假的吧！<strong>最后的解决方案其实是很简单的，但是我花费了巨大的篇幅来解释为什么 React 最终使用了这种解决方案，以及备选方案都有哪些。</strong></p>
+<p>在我的开发过程中，很多库的 API 通常就是这种情况，一个 API 想要易于使用，通常需要考虑语言语义（甚至对于某些语言来说，要涵盖未来的发展方向），运行性能，有没有编译步骤，生态建设和打包的解决方案，早期 warning 和很多别的方面。最后的结果可能不是最优雅的，但是它一定是最实用的。</p>
+<p>**如果最后的 API 是成功的，使用者是不会思考实现过程的。**相反他们可以更多的专注于开发自己的应用。</p>
+<p>但是如果你是很好奇的，了解是如何起作用的也是很好的。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/react/">React</a>
+          <a href="/tags/%E7%BF%BB%E8%AF%91/">翻译</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/3-input-event-overview/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">input 事件</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2-transform/">
+            <span class="next-text nav-default">关于 transform</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

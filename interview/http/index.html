@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>HTTP、浏览器面试知识点汇总 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="HTTP、浏览器面试知识点汇总" /><meta name="keywords" content="interview" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/interview/http/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="HTTP、浏览器面试知识点汇总" />
+<meta property="og:description" content="HTTP、浏览器面试知识点汇总" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/interview/http/" />
+<meta property="article:published_time" content="2021-04-17T11:58:56+08:00" />
+<meta property="article:modified_time" content="2021-04-17T11:58:56+08:00" />
+<meta itemprop="name" content="HTTP、浏览器面试知识点汇总">
+<meta itemprop="description" content="HTTP、浏览器面试知识点汇总">
+<meta itemprop="datePublished" content="2021-04-17T11:58:56+08:00" />
+<meta itemprop="dateModified" content="2021-04-17T11:58:56+08:00" />
+<meta itemprop="wordCount" content="5102">
+
+
+
+<meta itemprop="keywords" content="interview," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="HTTP、浏览器面试知识点汇总"/>
+<meta name="twitter:description" content="HTTP、浏览器面试知识点汇总"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">HTTP、浏览器面试知识点汇总</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-17 </span>
+        
+          <span class="more-meta"> 约 5102 字 </span>
+          <span class="more-meta"> 预计阅读 11 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tcpip-协议">TCP/IP 协议</a>
+          <ul>
+            <li><a href="#tcp-协议">TCP 协议</a></li>
+            <li><a href="#三次握手四次挥手">三次握手四次挥手</a></li>
+            <li><a href="#socket">socket</a></li>
+            <li><a href="#websocket">WebSocket</a></li>
+            <li><a href="#osi-协议">OSI 协议</a></li>
+          </ul>
+        </li>
+        <li><a href="#http-和-https">HTTP 和 HTTPS</a>
+          <ul>
+            <li><a href="#http">HTTP</a></li>
+            <li><a href="#状态码">状态码</a></li>
+            <li><a href="#缓存">缓存</a></li>
+            <li><a href="#持久链接">持久链接</a></li>
+            <li><a href="#管道化">管道化</a></li>
+            <li><a href="#会话跟踪">会话跟踪</a></li>
+            <li><a href="#安全">安全</a></li>
+            <li><a href="#tls-加密">TLS 加密</a></li>
+            <li><a href="#http-和-https-的区别">HTTP 和 HTTPS 的区别</a></li>
+            <li><a href="#http20-和-http1x-相比的新特性">HTTP2.0 和 HTTP1.x 相比的新特性</a></li>
+          </ul>
+        </li>
+        <li><a href="#输入一个-url-按下回车后发生了什么">输入一个 url 按下回车后发生了什么</a>
+          <ul>
+            <li><a href="#dns">DNS</a></li>
+            <li><a href="#cdn">CDN</a></li>
+          </ul>
+        </li>
+        <li><a href="#同源-和-跨域">同源 和 跨域</a>
+          <ul>
+            <li><a href="#代理">代理</a></li>
+            <li><a href="#jsonp">JSONP</a></li>
+            <li><a href="#cors">CORS</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <h2 id="tcpip-协议">TCP/IP 协议</h2>
+<p>计算机之间的通信要遵循不同的协议，来实现互相之间的通信。</p>
+<ul>
+<li>应用层：DNS 协议、HTTP、FTP、WebSocket 等。</li>
+<li>传输层：TCP、UDP 协议，识别端口号。
+<ul>
+<li>UDP 是 IP 协议在传输层暴露的接口，简单不可靠，实现数据包形式的通信，不能保证数据包到达的顺序。不需要经过握手创建连接的过程。支持多播和广播。</li>
+<li>TCP 实现流形式的传输，虚拟了文本流的通信。</li>
+</ul>
+</li>
+<li>网络层：需要满足：1.能从物理层上在两个网络之间接收和发送 0/1 序列；2.能同时理解两种网络的帧格式。传输遵循 IP 协议的 IP 数据包，数据包携带有出发地和目的地的 IP 地址，最终允许 IP 包从互联网的一台电脑传送到另一台。IP 协议，提供点到点的服务</li>
+<li>连接层：信息以帧为单位传输，作用就是识别 0/1 序列所包含的帧。<strong>以太网</strong>和 <strong>WIFI</strong> 是现在最常用的连接层协议。</li>
+<li>物理层：光纤、电缆或者电磁波等真实存在的物理媒介。对于数字应用来说发送和解析 0 和 1 就 ok。</li>
+</ul>
+<h3 id="tcp-协议">TCP 协议</h3>
+<ul>
+<li>TCP 提供一种面向连接的、可靠的字节流服务</li>
+<li>在一个 TCP 连接中，仅有两方进行彼此通信。广播和多播不能用于 TCP</li>
+<li>TCP 使用校验和，确认和重传机制来保证可靠传输</li>
+<li>TCP 给数据分节进行排序，并使用累积确认保证数据的顺序不变和非重复</li>
+<li>TCP 使用滑动窗口机制来实现流量控制，通过动态改变窗口的大小进行拥塞控制</li>
+</ul>
+<h3 id="三次握手四次挥手">三次握手四次挥手</h3>
+<div class="admonition info"><p class="admonition-title">三次握手</p>
+<ul>
+<li>第一次握手(SYN=1, seq=x)，发送完毕后，客户端进入 SYN_SEND 状态。</li>
+<li>第二次握手(SYN=1, ACK=1, seq=y, ACKnum=x+1)，发送完毕后，服务器端进入 SYN_RCVD 状态。</li>
+<li>第三次握手(ACK=1，ACKnum=y+1)，发送完毕后，客户端进入 ESTABLISHED 状态，当服务器端接收到这个包时，也进入 ESTABLISHED 状态，TCP 握手结束。</li>
+</ul>
+</div>
+<div class="admonition info"><p class="admonition-title">四次挥手</p>
+<ul>
+<li>第一次挥手(FIN=1，seq=x)，发送完毕后，客户端进入 FIN_WAIT_1 状态。</li>
+<li>第二次挥手(ACK=1，ACKnum=x+1)，服务端发送完毕后，表明自己接受到了客户端关闭连接的请求，进入 CLOSE_WAIT 状态，客户端接收到后进入 FIN_WAIT_2 状态，等待服务器端关闭连接。</li>
+<li>第三次挥手(FIN=1，seq=y)，服务器端准备关闭连接时，向客户端发送结束连接请求，FIN 置为 1。发送完毕后，服务器端进入 LAST_ACK 状态，等待来自客户端的最后一个 ACK。</li>
+<li>第四次挥手(ACK=1，ACKnum=y+1)，客户端接收到来自服务器端的关闭请求，发送一个确认包，并进入 TIME_WAIT 状态，等待可能出现的要求重传的 ACK 包。服务器端接收到这个确认包之后，关闭连接，进入 CLOSED 状态。客户端等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 CLOSED 状态。</li>
+</ul>
+</div>
+<h3 id="socket">socket</h3>
+<p>socket 是应用层与 TCP/IP 协议族通信的中间软件抽象层，是传输控制层接口。</p>
+<h3 id="websocket">WebSocket</h3>
+<p>HTTP 协议有一个缺陷：通信只能由客户端发起，做不到服务器主动向客户端推送信息。</p>
+<p>WebSocket 协议的最大特点就是，服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于服务器推送技术的一种，替代轮询。</p>
+<h3 id="osi-协议">OSI 协议</h3>
+<ul>
+<li>应用层：提供高级 API，直接对应用户行为，HTTP、FTP</li>
+<li>展示层：也被称为语法层，将应用层的数据转化为传输格式，保留语义</li>
+<li>会话层：提供管理会话的方法（Open/Close/ReOpen/检查状态等）</li>
+<li>传输层：提供主机到主机（host-to-host）的数据通信能力</li>
+<li>网络层：提供数据在逻辑单元（例如 IP 地址）之间的传递能力</li>
+<li>数据链路层：提供数据在设备和设备之间的传输能力</li>
+<li>物理层：定义底层一个位（bit）的数据如何让变成物理信号</li>
+</ul>
+<h2 id="http-和-https">HTTP 和 HTTPS</h2>
+<h3 id="http">HTTP</h3>
+<p>无连接无状态的超文本传输协议。</p>
+<ul>
+<li>HTTP 请求组成：请求行、消息报头、请求正文</li>
+<li>HTTP 响应组成：状态行、消息报头、响应正文</li>
+</ul>
+<h3 id="状态码">状态码</h3>
+<ul>
+<li><code>200 OK</code> 客户端请求成功</li>
+<li><code>301 Moved Permanently</code> 请求永久重定向</li>
+<li><code>302 Moved Temporarily</code> 请求临时重定向</li>
+<li><code>304 Not Modified</code> 文件未修改，可以直接使用缓存的文件</li>
+<li><code>400 Bad Request</code> 由于客户端请求有语法错误，不能被服务器所理解</li>
+<li><code>401 Unauthorized</code> 请求未经授权。这个状态代码必须和 WWW-Authenticate 报头域一起使用</li>
+<li><code>403 Forbidden</code> 服务器收到请求，但是拒绝提供服务。服务器通常会在响应正文中给出不提供服务的原因</li>
+<li><code>404 Not Found</code> 请求的资源不存在，例如，输入了错误的 URL</li>
+<li><code>500 Internal Server Error</code> 服务器发生不可预期的错误，导致无法完成客户端的请求</li>
+<li><code>503 Service Unavailable</code> 服务器当前不能够处理客户端的请求，在一段时间之后，服务器可能会恢复正常</li>
+</ul>
+<h3 id="缓存">缓存</h3>
+<p>缓存的优点： 1. 减少响应延迟； 2.减少网络带宽消耗</p>
+<p>浏览器缓存主要有两类：强制缓存和协商缓存，一旦命中强制缓存不会与服务端交互，直接将数据返回，而协商缓存无论有没有命中都会与服务器交互。</p>
+<h4 id="强制缓存">强制缓存</h4>
+<p>对于强制缓存而言，响应 header 中会有两个字段来表示资源是否过期：<code>Expires/Cache-Control</code></p>
+<ul>
+<li><code>Expires</code> 指的是资源的过期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。但是由于服务端时间会和客户端时间有偏差，这个字段被 <code>Cache-Control</code> 字段替代；</li>
+<li><code>Cache-Control</code>：
+<ul>
+<li><code>max-age=xxx</code> 缓存的内容将在 xxx 秒后失效，若没有过期，则可以直接返回并使用</li>
+<li><code>no-cache</code> 需要使用协商缓存来验证缓存数据</li>
+<li><code>no-store</code> 所有内容都不会缓存，强制缓存，协商缓存都不会</li>
+</ul>
+</li>
+</ul>
+<h4 id="协商缓存">协商缓存</h4>
+<p>浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回 304 状态码，通知客户端比较成功，可以使用缓存数据。</p>
+<div class="admonition info"><p class="admonition-title">Etag / If-None-Match</p>
+<ul>
+<li>服务器响应请求时，会带 <code>Etag</code> 字段，告诉浏览器当前资源在服务器的唯一标识</li>
+<li>客户端再次发送请求时，携带 <code>If-None-Match</code> 字段，由服务端进行资源比对，若与之前的 Etag 不同，说明资源有新的修改，则返回状态码 200 并返回新的资源</li>
+<li>若相同则说明资源没有修改，则返回状态码 304</li>
+</ul>
+<div class="admonition info"><p class="admonition-title">提示</p>
+  <p>优先级高于 <code>Last-Modified / If-Modified-Since</code></p>
+</div>
+</div>
+<div class="admonition info"><p class="admonition-title">Last-Modified / If-Modified-Since</p>
+<ul>
+<li>服务器响应请求时，会带 <code>Last-Modified</code> 字段，表示资源的最后修改时间</li>
+<li>客户端再次发送请求时，携带 <code>If-Modified-Since</code> 字段，由服务端进行资源比对，若最后修改时间大于 <code>If-Modified-Since</code> 则说明资源有被修改过，则返回状态码 200 并返回新的资源</li>
+<li>若最后修改时间等于或小于 <code>If-Modified-Since</code> 则说明资源没有修改，则返回状态码 304</li>
+</ul>
+</div>
+<h3 id="持久链接">持久链接</h3>
+<p>客户端浏览器在请求头中增加 <code>Connection: Keep-Alive</code>，当服务器收到附带有 <code>Connection: Keep-Alive</code> 的请求时，它也会在响应头中添加一个同样的字段来使用 Keep-Alive 。这样一来，客户端和服务器之间的 HTTP 连接就会被保持，不会断开。</p>
+<ul>
+<li>这个连接不可能一直保持，例如 <code>Keep-Alive: timeout=5, max=100</code>，表示这个 TCP 通道可以保持 5 秒，max=100，表示这个长连接最多接收 100 次请求就断开。</li>
+<li>如何判断本次传输结束？
+<ul>
+<li>判断传输数据是否达到了 <code>Content-Length</code> 指示的大小；</li>
+<li>动态生成的文件没有 <code>Content-Length</code>，它是分块传输（chunked），这时候就要根据 chunked 编码来判断，chunked 编码的数据在最后有一个空 chunked 块，表明本次传输数据结束。</li>
+</ul>
+</li>
+</ul>
+<h3 id="管道化">管道化</h3>
+<p>管道化允许客户端在已发送的请求收到服务端的响应之前发送下一个请求，借此来减少等待时间提高吞吐。</p>
+<p>但是管道化要求服务端按照请求发送的顺序返回响应（FIFO），原因很简单，HTTP 请求和响应并没有序号标识，无法将乱序的响应与请求关联起来，如果一个响应返回延迟了，那么其后续的响应都会被延迟，直到队头的响应送达。即会造成队头阻塞。</p>
+<h3 id="会话跟踪">会话跟踪</h3>
+<p>对同一个用户对服务器的连续的请求和接受响应的监视。</p>
+<p>Cookie 和 Session</p>
+<p>在服务器端会创建一个 session 对象，产生一个 sessionID 来标识这个 session 对象，然后将这个 sessionID 放入到 Cookie 中发送到客户端，下一次访问时，sessionID 会发送到服务器，在服务器端进行识别不同的用户。</p>
+<h3 id="安全">安全</h3>
+<div class="admonition info"><p class="admonition-title">CSRF：跨站请求伪造</p>
+<p>过滤请求来源：</p>
+<ul>
+<li>关键操作只支持 POST 请求</li>
+<li>一些关键步骤设置验证码</li>
+<li>检测 Referrer</li>
+<li>设置 token，在某些请求设置 token，某些操作验证 token，token 有有效期</li>
+</ul>
+</div>
+<div class="admonition info"><p class="admonition-title">XSS：跨站脚本攻击</p>
+<ul>
+<li>需要过滤用户输入，对输入进行 escape。</li>
+<li>开启 CSP <code>Content-Security-Policy</code>
+<ul>
+<li>只允许加载本站资源 <code>Content-Security-Policy: default-src 'self'</code></li>
+<li>只允许加载 HTTPS 协议图片 <code>Content-Security-Policy: img-src https://\*</code></li>
+</ul>
+</li>
+<li><code>cookie</code> 设置 <code>HttpOnly</code></li>
+</ul>
+</div>
+<h3 id="tls-加密">TLS 加密</h3>
+<ul>
+<li>客户端发起请求（ClientHello）支持的协议版本、加密方法、压缩方法</li>
+<li>服务端回应（ServerHello）确认使用的协议版本、加密方法，返回加密公钥和服务器证书</li>
+<li>客户端回应，验证证书是否可信，如果可信，就会生成一段随机数并用公钥加密，随后发送给服务端</li>
+<li>服务端使用自己的私钥将信息解密取出随机数，然后使用这串随机数生成自己的对称主密钥并返回客户端</li>
+<li>客户端发送一个 Finished 消息给服务器端，使用对称密钥加密这次通讯的一个散列值</li>
+<li>服务器端生成自己的 hash 值，然后解密客户端发送来的信息，检查这两个值是否对应。如果对应，就向客户端发送一个 Finished 消息，也使用协商好的对称密钥加密</li>
+</ul>
+<p>接下来整个 TLS 会话都使用对称秘钥进行加密，传输应用层（HTTP）内容，即 HTTPS。</p>
+<div class="admonition info"><p class="admonition-title">中间人攻击</p>
+<p>攻击者与通讯的两端分别建立联系，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。</p>
+<p>SSL 剥离：阻止用户使用 https 访问网站。解决方案是强制浏览器使用 HTTPS 访问网站。</p>
+<p>伪造证书攻击：需要证书颁发机构能够控制自己不滥发证书。</p>
+</div>
+<h3 id="http-和-https-的区别">HTTP 和 HTTPS 的区别</h3>
+<ul>
+<li>默认端口号就不一样，HTTP 的默认端口号为 80，HTTPS 的默认端口号为 443</li>
+<li>HTTP 在传输过程中使用的是明文 传输，内容可能被窃取，而且无法验证通信方的身份，还有可能遭遇身份伪装，而 HTTPS 在应用层和传输层之间增加了 ssl 协议用来加密 内容，因此通过证书验证来验证身份，即使数据被窃取也无法解密，数据的传输更加安全。</li>
+</ul>
+<h3 id="http20-和-http1x-相比的新特性">HTTP2.0 和 HTTP1.x 相比的新特性</h3>
+<ul>
+<li>二进制分帧层：HTTP1.x 以换行符作为纯文本的分隔符，而 HTTP2.0 将所有传输的信息分割为更小的消息和帧，并对它们采用二进制格式的编码。</li>
+<li>多路复用：新的二进制分帧层突破了这些限制，实现了多向请求和响应：客户端和服务器可以把 HTTP 消息分解为互不依赖的帧，然后乱序发送，最后再在另一端把它们重新组合起来。可以带来很多好处：
+<ul>
+<li>可以并行交错的发送请求，请求之间互不影响；</li>
+<li>可以并行交错的发送响应，响应之间互不干扰；</li>
+<li>只使用一个连接即可并行发送多个请求和响应；</li>
+<li>消除不必要的延迟，从而减少页面加载的时间；</li>
+<li>不必再为绕过 HTTP1.x 限制而多做很多工作。</li>
+</ul>
+</li>
+<li>压缩报头，减少开销。</li>
+</ul>
+<h2 id="输入一个-url-按下回车后发生了什么">输入一个 url 按下回车后发生了什么</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/133906695">输入一个 url 按下回车后发生了什么</a></p>
+<h3 id="dns">DNS</h3>
+<p>Domain Name System，域名系统，因特网上作为域名和 IP 地址相互映射的一个分布式数据库。</p>
+<p>两种查询方式：递归查询和迭代查询。本地 DNS 服务器以递归的方式向根服务器进行查询；根服务器返回一级域服务器的 IP，一级域返回二级域的 IP，这是迭代查询的过程，最后本地 DNS 服务器向域名解析服务器发出请求，获得目标域名对应的 IP 地址。</p>
+<p>DNS 负载均衡：在 DNS 服务器中为同一个主机名配置多个 IP 地址，在应答 DNS 查询时，DNS 服务器对每个查询根据负载量、地理位置等引导到不同的机器上。</p>
+<h3 id="cdn">CDN</h3>
+<p>Content Delivery Network &ndash; 内容分发网络。根据用户的位置分配最近的资源，来提高用户访问的响应速度和命中率。</p>
+<p>应用了 CDN 后，本地 DNS 服务器会收到一个 CNAME 别名记录，指向全局负载均衡。于是本地 DNS 服务器会向全局负载均衡系统发出请求，会根据用户的 IP 地址、用户所在的运营商网络、检查负载情况等，得出最合适的节点然后把该节点返回给用户，就可以就近访问 CDN 的缓存代理。</p>
+<p>缓存系统有两个衡量指标：</p>
+<ul>
+<li>命中率：用户访问的资源恰好在缓存系统里，可以直接返回。命中次数与所有访问次数之比。</li>
+<li>回源率：缓存里没有，需要回源站取，回源次数与所有访问次数之比。</li>
+</ul>
+<h2 id="同源-和-跨域">同源 和 跨域</h2>
+<p>同源就是指 URL 中 protocol 协议、host 域名、port 端口这三个部分相同</p>
+<p>同源策略限制：</p>
+<ul>
+<li>AJAX</li>
+<li>无法获取 DOM 元素并操作</li>
+<li>无法获取 localStorage、Cookie、IndexDB</li>
+</ul>
+<p>某些请求不受同源策略限制：WebSocket、script、img、iframe、video、audio 标签的 src 属性等。</p>
+<p>怎么跨域请求：</p>
+<h3 id="代理">代理</h3>
+<p>前端代理可以使用 Webpack devServer proxy 功能：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">config</span><span class="p">.</span><span class="nx">devServer</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">hot</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">contentBase</span><span class="o">:</span> <span class="s2">&#34;./dist&#34;</span><span class="p">,</span>
+  <span class="nx">proxy</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&#34;/api&#34;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">target</span><span class="o">:</span> <span class="s2">&#34;http://localhost:2333&#34;</span><span class="p">,</span>
+      <span class="nx">changeOrigin</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者是 charles 转发。</p>
+<h3 id="jsonp">JSONP</h3>
+<p>动态创建一个 <code>script</code>，并将该标签的 src 属性指向跨域的接口，并将 callback 函数名作为请求的参数，只支持 get 请求。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 1. 创建回调函数callback
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">myCallback</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">res</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;btn-4&#34;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 2. 动态创建script标签，并设置src属性，注意参数cb=myCallback
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;script&#34;</span><span class="p">);</span>
+  <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&#34;http://127.0.0.1:3000/info/jsonp?cb=myCallback&#34;</span><span class="p">;</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&#34;head&#34;</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 接口请求
+</span><span class="c1"></span><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;/jsonp&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="c1">// 3. 创建script脚本内容，用`callback`函数包裹住数据
+</span><span class="c1"></span>  <span class="c1">// 形式：callback(data)
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">cb</span><span class="si">}</span><span class="sb">(</span><span class="si">${</span><span class="nx">str</span><span class="si">}</span><span class="sb">)`</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// 4. 前端收到响应数据会自动执行该脚本
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="cors">CORS</h3>
+<p>浏览器在请求头信息中添加 <code>Origin</code> 字段标识请求的来源。</p>
+<p>服务端响应信息如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Access-Control-Allow-Origin: http://xxx.com // 表示接受的跨域请求来源，* 表示接受所有域的请求
+Access-Control-Allow-Credentials: true // 值为 true，表示允许浏览器发送 Cookie 到服务器，客户端里需要设置withCredentials 属性为 true，表示带 Cookie
+</code></pre></td></tr></table>
+</div>
+</div><p>请求源不在服务器允许范围内，服务器会返回一个正常的（不带上述几个字段）的响应。浏览器发现响应头中没有 <code>Access-Control-Allow-Origin</code> 字段，则在 XMLHttpRequest 对象的 <code>onerror</code> 回调函数中捕捉错误（这种错误无法通过 HTTP 的状态码来识别，状态码有可能是 200）</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-04-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/interview/">interview</a>
+          </div>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

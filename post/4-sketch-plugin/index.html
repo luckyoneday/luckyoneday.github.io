@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Sketch 插件 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="sketch插件入门" /><meta name="keywords" content="sketch" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/post/4-sketch-plugin/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Sketch 插件" />
+<meta property="og:description" content="sketch插件入门" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/post/4-sketch-plugin/" />
+<meta property="article:published_time" content="2020-08-24T10:47:12+08:00" />
+<meta property="article:modified_time" content="2020-08-24T10:47:12+08:00" />
+<meta itemprop="name" content="Sketch 插件">
+<meta itemprop="description" content="sketch插件入门">
+<meta itemprop="datePublished" content="2020-08-24T10:47:12+08:00" />
+<meta itemprop="dateModified" content="2020-08-24T10:47:12+08:00" />
+<meta itemprop="wordCount" content="1900">
+
+
+
+<meta itemprop="keywords" content="JavaScript,Sketch," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sketch 插件"/>
+<meta name="twitter:description" content="sketch插件入门"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Sketch 插件</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-24 </span>
+        
+          <span class="more-meta"> 约 1900 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#生成插件">生成插件</a></li>
+        <li><a href="#编写插件">编写插件</a>
+          <ul>
+            <li><a href="#目录项配置">目录项配置</a></li>
+            <li><a href="#actions">actions</a></li>
+            <li><a href="#webview">webview</a></li>
+          </ul>
+        </li>
+        <li><a href="#发布插件">发布插件</a></li>
+        <li><a href="#一些额外配置">一些额外配置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>Sketch 插件可以通过 <a href="https://developer.sketch.com/plugins/javascript-api">JS API</a> 和 <a href="https://developer.sketch.com/plugins/internal-api">OC</a> 来实现，OC 比较深入 Sketch 的内部用法，但是当发布新版 Sketch 时会对 API 有较大的修改，且官网比较推荐使用 JS API，所以本文也就主要介绍 JS API 写插件的方法。</p>
+<p>Sketch 插件提供使用 webview 的方式来丰富页面元素和交互形式，所以可以使用 webview 的形式来编写插件。</p>
+<h2 id="生成插件">生成插件</h2>
+<p>可以使用 <a href="https://github.com/skpm/skpm">skpm</a> 来创建一个 Sketch 插件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">npm install -g skpm
+skpm create my-plugin-name  --template<span class="o">=</span>skpm/with-webview
+</code></pre></td></tr></table>
+</div>
+</div><p><code>skpm create &lt;project-name&gt; --template=&lt;username&gt;/&lt;repository&gt;</code> 是以 <code>&lt;username&gt;/&lt;repository&gt;</code> 为模板来创建这个插件（意思是也可以指定 github 上面别人写的开源模板！）。所以现在是以 <a href="https://github.com/skpm/sketch-module-web-view">sketch-module-web-view</a> 为模板创建。</p>
+<p>创建完文件结构大致是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">- assets  // 静态资源
+  - icon.png
+- resources // webview内嵌页面
+  - style.css
+  - webview.html
+  - webview.js
+- my-plugin-name.sketchplugin // build 出的 sketch 插件
+  - Resources
+  - Sketch
+- src // 具体文件
+  - manifest.json
+  - my-command.js
+- package.json
+- webpack.skpm.config.js
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="编写插件">编写插件</h2>
+<p>当这个时候双击 .sketchplugin 文件时，会看到目前的插件是这样的：</p>
+<p><img src="../../static-img/sketch-img/1.png" alt="default-plugin"></p>
+<h3 id="目录项配置">目录项配置</h3>
+<p>manifest.json 文件是插件的配置入口，默认内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;compatibleVersion&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="err">//</span> <span class="err">定义</span> <span class="err">sketch</span> <span class="err">需要运行该插件的最低版本，例如</span> <span class="nt">&#34;compatibleVersion&#34;</span><span class="p">:</span> <span class="mf">52.1</span>
+  <span class="s2">&#34;bundleVersion&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="err">//</span> <span class="err">commands</span> <span class="err">是一个对象数组，包含所有需要的</span> <span class="err">command</span>
+  <span class="nt">&#34;commands&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;my-command&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">command</span> <span class="err">对应的名字</span>
+      <span class="nt">&#34;identifier&#34;</span><span class="p">:</span> <span class="s2">&#34;my-plugin-name.my-command-identifier&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">command</span> <span class="err">对应的唯一标识</span>
+      <span class="nt">&#34;script&#34;</span><span class="p">:</span> <span class="s2">&#34;./my-command.js&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">command</span> <span class="err">对应的</span> <span class="err">script</span> <span class="err">文件</span>
+      <span class="err">//</span> <span class="nt">&#34;shortcut&#34;</span><span class="p">:</span> <span class="s2">&#34;ctrl shift j&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">command</span> <span class="err">对应的快捷键</span>
+      <span class="err">//</span> <span class="err">command</span> <span class="err">对应的具体</span> <span class="err">action</span>
+      <span class="nt">&#34;handlers&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;run&#34;</span><span class="p">:</span> <span class="s2">&#34;onRun&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;actions&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;Shutdown&#34;</span><span class="p">:</span> <span class="s2">&#34;onShutdown&#34;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="err">//</span> <span class="err">定义插件的操作目录布局</span>
+  <span class="nt">&#34;menu&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="err">//</span> <span class="nt">&#34;isRoot&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="err">//</span> <span class="err">插件默认会有一个子目录，如果不需要子目录就可以在根目录上设置</span> <span class="err">isRoot:</span> <span class="err">true</span>
+    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;my-plugin-name&#34;</span><span class="p">,</span> <span class="err">//</span> <span class="err">当</span> <span class="err">isRoot</span> <span class="err">设置为</span> <span class="err">true，会被忽略</span>
+    <span class="nt">&#34;items&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;my-plugin-name.my-command-identifier&#34;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当给插件配置完 <code>isRoot</code> 和快捷键之后，会发现插件变成如下：</p>
+<p><img src="../../static-img/sketch-img/2.png" alt="add-root"></p>
+<p>这只是针对单个目录的简单插件，如果插件命令较多，并且需要子目录，则需要在 <code>commands</code> 数组中增加相应的配置，同时将 <code>identifier</code> 加到 menu 项的 items 中即可。更多 <code>manifest</code> 配置可见<a href="https://developer.sketch.com/plugins/plugin-manifest">官网文档</a>。</p>
+<h3 id="actions">actions</h3>
+<p>action 是由于用户交互在应用程序中发生的事件，例如<code>OpenDocument</code>、<code>CloseDocument</code>等，当触发这些 action 时，就可以运行插件中的某些代码。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="err">//</span> <span class="err">manifest.json</span>
+<span class="s2">&#34;commands&#34;</span><span class="err">:</span> <span class="p">[{</span>
+  <span class="nt">&#34;script&#34;</span> <span class="p">:</span> <span class="s2">&#34;my-action-listener.js&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;name&#34;</span> <span class="p">:</span> <span class="s2">&#34;My Action Listener&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;handlers&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;actions&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;OpenDocument&#34;</span><span class="p">:</span> <span class="s2">&#34;onOpenDocument&#34;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+<span class="p">}]</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// my-action-listener.js
+</span><span class="c1"></span><span class="kr">export</span> <span class="kd">function</span> <span class="nx">onOpenDocument</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">context</span><span class="p">.</span><span class="nx">actionContext</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">showMessage</span><span class="p">(</span><span class="s2">&#34;Document Opened&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>具体的 action 会触发的方法需要在顶层 export 出去。</p>
+<p>这里的 <code>context</code> 是关于当前 action 所涉及到的一些信息，信息放在 <code>context.actionContext</code> 对象中（并不是所有 action 都具备一个<code>actionContext</code>属性，需要的话可以给官网提 issue）。比如当选择图层时，<code>actionContext</code> 就是选中的图层，例如<a href="https://developer.sketch.com/reference/action/selectionchanged/">selectionChanged</a>。</p>
+<p>有很多 action 是有 <code>begin/finish</code> 两个的，例如 <code>selectionChanged</code>，就有 <code>SelectionChanged.begin</code> 和 <code>SelectionChanged.finish</code>两个。如果不具体标识出来是 <code>begin</code> 还是 <code>finish</code> 而直接写 <code>selectionChanged</code> 就会触发两次。</p>
+<p>更多 <code>action</code> 可以见<a href="https://developer.sketch.com/plugins/actions">文档</a>。</p>
+<h3 id="webview">webview</h3>
+<p>当使用 <code>skpm create my-plugin-name --template=skpm/with-webview</code> 创建插件时，我们会看到 my-command.js 中存在一个 webview 示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">BrowserWindow</span> <span class="nx">from</span> <span class="s2">&#34;sketch-module-web-view&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">webviewIdentifier</span> <span class="o">=</span> <span class="s2">&#34;my-plugin-name.webview&#34;</span><span class="p">;</span> <span class="c1">// 一个独特标识
+</span><span class="c1"></span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">identifier</span><span class="o">:</span> <span class="nx">webviewIdentifier</span><span class="p">,</span>
+    <span class="nx">width</span><span class="o">:</span> <span class="mi">240</span><span class="p">,</span>
+    <span class="nx">height</span><span class="o">:</span> <span class="mi">180</span><span class="p">,</span>
+    <span class="nx">show</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">};</span>
+
+  <span class="kr">const</span> <span class="nx">browserWindow</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span> <span class="c1">// 创建一个 webview
+</span><span class="c1"></span>
+  <span class="nx">browserWindow</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s2">&#34;ready-to-show&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// webview 的事件和方法具体可见： https://github.com/skpm/sketch-module-web-view/blob/master/docs/browser-window.md
+</span><span class="c1"></span>    <span class="nx">browserWindow</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="nx">browserWindow</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&#34;../resources/webview.html&#34;</span><span class="p">));</span> <span class="c1">// 加载本地的 html，也可以加载远程的 html，就可以使用服务器上现成的页面~
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后可以通过 <code>const webContents = browserWindow.webContents</code> 获取到 <code>wenContent</code>，与页面进行通信：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// my-command.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">UI</span> <span class="nx">from</span> <span class="s2">&#34;sketch/ui&#34;</span><span class="p">;</span>
+<span class="c1">// ...
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">webContents</span> <span class="o">=</span> <span class="nx">browserWindow</span><span class="p">.</span><span class="nx">webContents</span><span class="p">;</span>
+
+<span class="c1">// webContent 的事件具体可见：https://github.com/skpm/sketch-module-web-view/blob/master/docs/web-contents.md
+</span><span class="c1"></span><span class="nx">webContents</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;did-finish-load&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">UI</span><span class="p">.</span><span class="nx">message</span><span class="p">(</span><span class="s2">&#34;UI loaded!&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 通信，监听页面上触发的 `nativeLog`，随后执行页面上的 `setRandomNumber` 方法
+</span><span class="c1"></span><span class="nx">webContents</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;nativeLog&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">UI</span><span class="p">.</span><span class="nx">message</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+  <span class="nx">webContents</span>
+    <span class="p">.</span><span class="nx">executeJavaScript</span><span class="p">(</span><span class="sb">`setRandomNumber(</span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="p">...</span>
+<span class="c1">// 页面上的方法，webview.js
+</span><span class="c1">// 使用 `window.postMessage` 触发 `nativeLog`
+</span><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;button&#34;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s2">&#34;nativeLog&#34;</span><span class="p">,</span> <span class="s2">&#34;Called from the webview&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 暴露出去的 `setRandomNumber` 方法
+</span><span class="c1"></span><span class="nb">window</span><span class="p">.</span><span class="nx">setRandomNumber</span> <span class="o">=</span> <span class="p">(</span><span class="nx">randomNumber</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;answer&#34;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span>
+    <span class="s2">&#34;Random number from the plugin: &#34;</span> <span class="o">+</span> <span class="nx">randomNumber</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>大致通信方式如下图：</p>
+<p><img src="../../static-img/sketch-img/3.png" alt="sketch-communicate"></p>
+<p>更多的关于通信的细节可见<a href="https://github.com/skpm/sketch-module-web-view/blob/master/docs/communication-plugin-webview.md">文档</a>。</p>
+<h2 id="发布插件">发布插件</h2>
+<p>其实最简单的插件发布方式就是修改当前 version 打包个 .zip，如果是在 github 上的话可以直接使用 skpm 内置的构建命令以及发布。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;postinstall&#34;</span><span class="err">:</span> <span class="s2">&#34;npm run build &amp;&amp; skpm-link&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果需要自己定义如何发布的话，就可以在 manifest.json 中添加一个 <code>&quot;appcast&quot;</code> 字段，这个字段的值是一个 xml 链接，例如 kitchen 的 appcast.xml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;appcast&#34;</span><span class="err">:</span> <span class="s2">&#34;https://kitchen.alipay.com/appcast.xml&#34;</span><span class="err">,</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打开之后会发现是一个个 <code>&lt;item&gt;</code> 的集合：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;item&gt;</span>
+  <span class="nt">&lt;enclosure</span> <span class="na">url=</span><span class="s">&#34;https://gw.alipayobjects.com/os/kitchen/e80d9df7-d0cc-4420-8738-7ed0de147b55/kitchen-2.3.1.zip&#34;</span> <span class="na">sparkle:version=</span><span class="s">&#34;2.3.1&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/item&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看出每个 item 下面都有每个版本的具体包的地址，当给 xml 添加完新版本的 item 后，Sketch 会根据 xml 链接获取是否有新的版本，随后就会显示有新的版本需要更新。</p>
+<p>这里需要注意，xml 链接需要是 https 协议！更多关于如何发布插件可见<a href="https://developer.sketch.com/plugins/publish-a-plugin">文档</a>。</p>
+<h2 id="一些额外配置">一些额外配置</h2>
+<ul>
+<li>崩溃保护：当 Sketch 运行发生崩溃，它会启用安全模式而停用所有插件。意味着当因为 bug 导致 Sketch 崩溃后，需要重启 Sketch 后重新启用插件，此时可以禁用安全模式来避免这一操作。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">defaults write com.bohemiancoding.sketch3 disableAutomaticSafeMode YES
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>插件缓存：默认 Sketch 会缓存插件，意味着本地用 <code>npm run watch</code> 对插件进行修改之后即便插件重新 build 了 Sketch 也不会重新加载该插件（就需要重启 Sketch），此时可以配置禁用缓存机制。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">defaults write com.bohemiancoding.sketch3 AlwaysReloadScript -bool YES
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>插件 WebView 调试：可通过以下配置开启 webview 调试功能。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">defaults write com.bohemiancoding.sketch3 WebKitDeveloperExtras -bool YES
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-08-24
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          <a href="/tags/sketch/">Sketch</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/5-electron-communication/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Electron 通信</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/3-input-event-overview/">
+            <span class="next-text nav-default">input 事件</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

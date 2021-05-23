@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JavaScript 面试知识点汇总 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="JavaScript 面试知识点汇总" /><meta name="keywords" content="interview" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/interview/js/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="JavaScript 面试知识点汇总" />
+<meta property="og:description" content="JavaScript 面试知识点汇总" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/interview/js/" />
+<meta property="article:published_time" content="2021-04-17T11:49:26+08:00" />
+<meta property="article:modified_time" content="2021-04-17T11:49:26+08:00" />
+<meta itemprop="name" content="JavaScript 面试知识点汇总">
+<meta itemprop="description" content="JavaScript 面试知识点汇总">
+<meta itemprop="datePublished" content="2021-04-17T11:49:26+08:00" />
+<meta itemprop="dateModified" content="2021-04-17T11:49:26+08:00" />
+<meta itemprop="wordCount" content="2830">
+
+
+
+<meta itemprop="keywords" content="interview," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript 面试知识点汇总"/>
+<meta name="twitter:description" content="JavaScript 面试知识点汇总"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JavaScript 面试知识点汇总</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-04-17 </span>
+        
+          <span class="more-meta"> 约 2830 字 </span>
+          <span class="more-meta"> 预计阅读 6 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#执行上下文">执行上下文</a></li>
+        <li><a href="#this">this</a></li>
+        <li><a href="#newcallapplybindobjectcreate">new、call、apply、bind、Object.create</a></li>
+        <li><a href="#闭包">闭包</a></li>
+        <li><a href="#原型链和继承">原型链和继承</a></li>
+        <li><a href="#事件循环">事件循环</a>
+          <ul>
+            <li><a href="#宏任务">宏任务</a></li>
+            <li><a href="#微任务">微任务</a></li>
+          </ul>
+        </li>
+        <li><a href="#垃圾回收">垃圾回收</a>
+          <ul>
+            <li><a href="#引用计数">引用计数</a></li>
+            <li><a href="#标记清除">标记清除</a></li>
+          </ul>
+        </li>
+        <li><a href="#继承">继承</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <h2 id="执行上下文">执行上下文</h2>
+<p>执行上下文就是当前 JavaScript 代码被解析和执行时所处的环境，也叫做执行环境。</p>
+<p>当函数被调用时会创建执行上下文，执行上下文创建阶段变量对象、作用域链和 this 指向会被分别指定。</p>
+<ul>
+<li>创建变量对象：首先初始化函数的参数 <code>arguments</code>，提升函数声明和变量声明（变量的声明提前有赖于 <code>var</code> 关键字）；</li>
+<li>创建作用域链：在执行期上下文的创建阶段，作用域链是在变量对象之后创建的。作用域链本身包含变量对象。作用域链用于解析变量。当被要求解析变量时，JavaScript 始终从代码嵌套的最内层开始，如果最内层没有找到变量，就会跳转到上一层父作用域中查找，直到找到该变量。</li>
+<li>确定 <code>this</code> 指向。</li>
+</ul>
+<p>变量对象创建：</p>
+<ul>
+<li>确定函数的 <code>arguments</code> 对象；</li>
+<li>函数提升，<code>function</code> 关键字声明的函数；</li>
+<li><code>var</code> 等别的变量声明</li>
+</ul>
+<p>执行上下文执行阶段变量对象（VO）会变为活动对象（AO）。随后会完成变量赋值、函数引用以及执行其他代码。</p>
+<p>多个作用域的变量对象串联起来组成的链表就是<strong>作用域链</strong>，如果在当前的变量对象里面找不到目标变量/函数，就在上一级作用域的变量对象里面查找。若这时找到了目标变量/函数，则停止查找；若找不到，一直回溯到全局作用域的变量对象里查找，若仍找不到目标变量/函数，停止查找。</p>
+<h2 id="this">this</h2>
+<p>指向当前代码运行时所处的上下文环境。<strong>函数执行时确定</strong>。</p>
+<ul>
+<li>默认指向：严格模式下指向 <code>undefined</code>；非严格模式下指向 <code>window</code>；</li>
+<li>隐式指向：调用位置的调用者决定；</li>
+<li>显式指向：<code>call</code> 、 <code>apply</code> 和 <code>bind</code></li>
+<li><code>new</code> 操作符绑定</li>
+</ul>
+<p>优先级依次升高。</p>
+<p>一些特殊情况</p>
+<ul>
+<li><code>null</code> 或者 <code>undefined</code> 作为 <code>this</code> 指向的对象传入 <code>call</code>、<code>apply</code> 或者 <code>bind</code> 时，会采用默认指向规则。</li>
+<li>箭头函数没有 <code>this</code>，<code>this</code> 指向定义时的作用域。</li>
+</ul>
+<h2 id="newcallapplybindobjectcreate">new、call、apply、bind、Object.create</h2>
+<div class="admonition info"><p class="admonition-title">new</p>
+<p>在 JavaScript 中，构造函数只是一些使用 <code>new</code> 操作符时被调用的普通函数。<code>new</code> 操作符调用时，会执行下面的操作：</p>
+<ul>
+<li>创建一个新对象</li>
+<li>将新对象的 <code>__proto__</code> 设置为构造函数的 <code>prototype</code></li>
+<li>为这个对象添加属性、方法等</li>
+<li>判断返回类型，如果不是返回了对象，则返回 this</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">examNew</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+  <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">result</span> <span class="k">instanceof</span> <span class="nb">Object</span> <span class="o">?</span> <span class="nx">result</span> <span class="o">:</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">call</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">wcall</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">thisArg</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">handledThis</span> <span class="o">=</span> <span class="nx">thisArg</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="nb">window</span> <span class="o">:</span> <span class="nb">Object</span><span class="p">(</span><span class="nx">thisArg</span><span class="p">);</span>
+
+  <span class="c1">// 在传入的 thisArg 上添加一个方法并调用，将 this 隐式绑定。
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">tempMethod</span> <span class="o">=</span> <span class="s2">&#34;tempMethod&#34;</span><span class="p">;</span>
+  <span class="nx">handledThis</span><span class="p">[</span><span class="nx">tempMethod</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+  <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">handledThis</span><span class="p">[</span><span class="nx">tempMethod</span><span class="p">](...</span><span class="nx">args</span><span class="p">);</span>
+
+  <span class="k">delete</span> <span class="nx">handledThis</span><span class="p">[</span><span class="nx">tempMethod</span><span class="p">];</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">apply</p>
+<p>区别就是第二个参数是数组，调用时展开</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">wapply</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">thisArg</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">handledThis</span> <span class="o">=</span> <span class="nx">thisArg</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="nb">window</span> <span class="o">:</span> <span class="nb">Object</span><span class="p">(</span><span class="nx">thisArg</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">tempMethod</span> <span class="o">=</span> <span class="s2">&#34;tempMethod&#34;</span><span class="p">;</span>
+
+  <span class="nx">handledThis</span><span class="p">[</span><span class="nx">tempMethod</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">handledThis</span><span class="p">[</span><span class="nx">tempMethod</span><span class="p">](...</span><span class="nx">args</span><span class="p">);</span>
+
+  <span class="k">delete</span> <span class="nx">handledThis</span><span class="p">[</span><span class="nx">tempMethod</span><span class="p">];</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">bind</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">wbind</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">thisArg</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">handledThis</span> <span class="o">=</span> <span class="nx">thisArg</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="nb">window</span> <span class="o">:</span> <span class="nb">Object</span><span class="p">(</span><span class="nx">thisArg</span><span class="p">);</span>
+
+  <span class="kr">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+  <span class="kr">const</span> <span class="nx">funcForBind</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">isNew</span> <span class="o">=</span> <span class="k">this</span> <span class="k">instanceof</span> <span class="nx">funcForBind</span><span class="p">;</span>
+    <span class="kr">const</span> <span class="nx">newThis</span> <span class="o">=</span> <span class="nx">isNew</span> <span class="o">?</span> <span class="k">this</span> <span class="o">:</span> <span class="nx">handledThis</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">context</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">newThis</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">,</span> <span class="p">...</span><span class="nx">arguments</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="nx">funcForBind</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">funcForBind</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">Object.create</p>
+<p>创建一个新对象，使用现有对象提供新对象的 <code>__proto__</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">Object</span><span class="p">.</span><span class="nx">wcreate</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">tempFunc</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+
+  <span class="nx">tempFunc</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">tempFunc</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">Object.create(null) 和 {} 的区别</p>
+<p><code>Object.create(null)</code> 虽然返回 <code>{}</code>，但是不存在任何 <code>__proto__</code> 属性。</p>
+<p><code>Object.create(Object.prototype)</code> 和 <code>{}</code> 类似。</p>
+</div>
+<p><a href="https://codesandbox.io/s/new-call-apply-95nz4">示例</a></p>
+<h2 id="闭包">闭包</h2>
+<p>内层作用域访问它外层函数作用域里的参数/变量/函数时，闭包就产生了。</p>
+<p>闭包可以有效的封装内部属性，对功能进行模块化封装。</p>
+<p>但是闭包会引用它外部函数作用域中的变量，当外层函数执行完毕退出函数调用栈的时候，函数中的变量可能并不会被 js 引擎的垃圾回收器回收，因而会引发内存泄露。</p>
+<h2 id="原型链和继承">原型链和继承</h2>
+<ul>
+<li>原型是一个对象；</li>
+<li><code>prototype</code> 是函数上面存在的属性，非函数不存在这个属性；</li>
+<li>一个对象（实例）都有一个属性 <code>__proto__</code>，指向它的构造函数的 <code>prototype</code> 属性；</li>
+<li>对象的 <code>__proto__</code> 也有自己的 <code>__proto__</code>，直到 <code>__proto__</code> 为 <code>null</code>，即原型链；</li>
+</ul>
+<div class="admonition info"><p class="admonition-title">tips</p>
+<p><code>__proto__</code> 并不是标准属性，可以使用 <code>Object.create</code> 来为新建的对象设置原型。</p>
+</div>
+<h2 id="事件循环">事件循环</h2>
+<p>JavaScript 是单线程、非阻塞的，需要操作 DOM 导致其无法多线程（一个线程添加属性，一个线程删除节点就会起冲突）；非阻塞则基于事件循环实现，可以协调各种事件、用户交互、脚本执行、UI 渲染、网络请求。</p>
+<p>主线程遇到一个同步任务时直接添加到执行栈中执行，当遇到一个异步事件时，会将这个异步事件挂起在任务队列（task queue）中。</p>
+<p>当主线程执行完当前执行栈中的任务后，会去查看任务队列是否有任务，若有则取出并执行，这个过程就是<strong>事件循环</strong>。</p>
+<p>任务队列分为宏任务和微任务：便于对任务进行优先级区分。</p>
+<h3 id="宏任务">宏任务</h3>
+<ul>
+<li><code>script</code>（整体代码）</li>
+<li><code>setTimeout</code></li>
+<li><code>setInterval</code></li>
+<li><code>I/O</code></li>
+<li>UI 交互</li>
+<li><code>setImmediate</code></li>
+</ul>
+<h3 id="微任务">微任务</h3>
+<ul>
+<li><code>Promise.then</code></li>
+<li><code>MutationObserver</code></li>
+<li><code>process.nextTick</code></li>
+</ul>
+<p>在当前执行栈为空时，主线程会查看微任务队列是否有事件存在。存在，依次执行微队列中的事件对应的回调，若微任务在执行过程中产生了新的微任务，则继续执行微任务，直到微任务队列为空；如果不存在，那么就从宏任务队列中取出一个事件并把对应的回调加入当前执行栈，执行宏任务，并执行该宏任务产生的微任务。</p>
+<h2 id="垃圾回收">垃圾回收</h2>
+<p>所谓的垃圾回收就是找出那些不再继续使用的变量，然后释放出其所占用的内存。垃圾回收会按照固定的时间间隔周期性地执行这一操作。</p>
+<p>JavaScript 使用的垃圾回收机制自动管理内存 &ndash; 垃圾回收是不可见的，可以大幅简化程序的内存管理代码，降低程序员的负担，减少因长时间运行而带来的内存泄露问题。但是程序员无法掌控内存，无法强迫进行垃圾回收，无法干预内存处理。</p>
+<h3 id="引用计数">引用计数</h3>
+<p>跟踪记录每个值被引用的次数，被引用加 1，被释放减 1。如果一个值引用次数是 0，就表示这个值不再用到了，因此可以将这块内存释放。但是循环引用会有 bug。</p>
+<h3 id="标记清除">标记清除</h3>
+<p>现代浏览器采用标记清除的方式：当变量进入执行环境时，这个变量被标记为「进入环境」。当变量离开执行环境时标记为「离开环境」。最后垃圾收集器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间（所谓的环境就是执行环境）。</p>
+<p>某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。全局执行环境只有关闭网页的时候才销毁。</p>
+<h2 id="继承">继承</h2>
+<p>继承的优点：继承可以使子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。</p>
+<div class="admonition info"><p class="admonition-title">原型链继承</p>
+<p>子类的原型为父类的一个实例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kd">function</span> <span class="nx">Parent1() {</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;parent1&#34;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">play</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Child1() {</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;child1&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Child1</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Parent1</span><span class="p">();</span>
+
+<span class="kr">const</span> <span class="nx">s1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child1</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">s2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child1</span><span class="p">();</span>
+<span class="nx">s1</span><span class="p">.</span><span class="nx">play</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s1</span><span class="p">.</span><span class="nx">play</span><span class="p">,</span> <span class="nx">s2</span><span class="p">.</span><span class="nx">play</span><span class="p">);</span> <span class="c1">// [1, 2, 3, 4]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>两个实例使用的是同一个原型对象，内存共享。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">构造函数继承</p>
+<p>借用 <code>call</code> 调用 <code>Parent</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kd">function</span> <span class="nx">Parent2() {</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;parent1&#34;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">play</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="nx">Parent2</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Child2() {</span>
+  <span class="nx">Parent1</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;child2&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">ch</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child2</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ch</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span> <span class="c1">// error
+</span></code></pre></td></tr></table>
+</div>
+</div><p>引用类型属性不会被共享，但是只会继承父类的实例属性和方法，不能继承原型属性或者方法。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">组合继承</p>
+<p>结合上述两种方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kd">function</span> <span class="nx">Parent3() {</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;parent3&#34;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">play</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="nx">Parent3</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Child3() {</span>
+  <span class="nx">Parent3</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;child3&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Child3</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Parent3</span><span class="p">();</span>
+<span class="nx">Child3</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kr">constructor</span> <span class="o">=</span> <span class="nx">Child3</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>属性不互相影响，也可以获取到原型上的方法和属性，但是 <code>Parent3</code> 执行了两次。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">原型式继承</p>
+<p>主要借助 <code>Object.create</code> 实现普通对象的继承。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">const</span> <span class="nx">Person4</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;parent4&#34;</span><span class="p">,</span>
+  <span class="nx">play</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+  <span class="nx">getName</span>: <span class="kt">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">p1</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Person4</span><span class="p">);</span>
+<span class="nx">p1</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;child4&#34;</span><span class="p">;</span>
+<span class="nx">p1</span><span class="p">.</span><span class="nx">play</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">p2</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Person4</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">play</span><span class="p">,</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">play</span><span class="p">);</span> <span class="c1">// [1, 2, 3, 4]
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>Object.create</code> 实现的是浅拷贝，多个实例的引用类型属性指向相同的内存，会被共享。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">寄生式继承</p>
+<p>在上述的继承方式上进行优化，增强浅拷贝能力。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kd">function</span> <span class="nx">clone</span><span class="p">(</span><span class="nx">original</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">clonedItem</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">original</span><span class="p">);</span>
+  <span class="nx">clonedItem</span><span class="p">.</span><span class="nx">getPlay</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">play</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="nx">clonedItem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>没啥变化啊这样写。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">寄生组合式继承</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kd">function</span> <span class="nx">create</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">child</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">parent</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+  <span class="nx">child</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kr">constructor</span> <span class="o">=</span> <span class="nx">child</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Parent6() {</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;parent6&#34;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">play</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="nx">Parent6</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Child6() {</span>
+  <span class="nx">Parent1</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;child6&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">create</span><span class="p">(</span><span class="nx">Parent6</span><span class="p">,</span> <span class="nx">Child6</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">n1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child6</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">n2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child6</span><span class="p">();</span>
+
+<span class="nx">n1</span><span class="p">.</span><span class="nx">play</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n1</span><span class="p">.</span><span class="nx">play</span><span class="p">,</span> <span class="nx">n2</span><span class="p">.</span><span class="nx">play</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n1</span><span class="p">.</span><span class="nx">getName</span><span class="p">());</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-04-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/interview/">interview</a>
+          </div>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

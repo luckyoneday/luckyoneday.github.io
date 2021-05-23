@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>服务端渲染添加样式 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="关于服务端渲染的样式" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/9-ssr-3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="服务端渲染添加样式" />
+<meta property="og:description" content="关于服务端渲染的样式" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/9-ssr-3/" />
+<meta property="article:published_time" content="2019-12-07T15:29:24+08:00" />
+<meta property="article:modified_time" content="2019-12-07T15:29:24+08:00" />
+<meta itemprop="name" content="服务端渲染添加样式">
+<meta itemprop="description" content="关于服务端渲染的样式">
+<meta itemprop="datePublished" content="2019-12-07T15:29:24+08:00" />
+<meta itemprop="dateModified" content="2019-12-07T15:29:24+08:00" />
+<meta itemprop="wordCount" content="797">
+
+
+
+<meta itemprop="keywords" content="SSR,Node," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="服务端渲染添加样式"/>
+<meta name="twitter:description" content="关于服务端渲染的样式"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">服务端渲染添加样式</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-07 </span>
+        
+          <span class="more-meta"> 约 797 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <p>客户端打包用<a href="https://github.com/webpack-contrib/mini-css-extract-plugin"><code>mini-css-extract-plugin</code></a>将 antd.css 抽出来作为单独的 css 文件，在 HTML 文件中引入；将 *.module.scss 用<a href="https://github.com/cherrry/ignore-loader"><code>ignore-loader</code></a> ignore 掉不处理（因为已经在服务端初始化时被打入 HTML 文档）。</p>
+<p>服务器端使用<a href="https://github.com/kriasoft/isomorphic-style-loader"><code>isomorphic-style-loader</code></a>通过 React Router 提供的 context 对象将 *.module.scss 文件生成的样式打入文档的<code>&lt;style&gt;</code>标签；使用<a href="https://github.com/cherrry/ignore-loader"><code>ignore-loader</code></a>忽略 css 文件（因为会作为静态资源引入文档，不需要打入 HTML 了）。</p>
+<blockquote>
+<p>为什么要用<code>isomorphic-style-loader</code>呢！</p>
+</blockquote>
+<p>因为这个 loader 可以将类名和样式注入 HTML 文档，作用同<a href="https://github.com/webpack-contrib/style-loader"><code>style-loader</code></a>，但是<code>style-loader</code>中用了 window 对象，在 node 端不能使用。那为什么需要注入文档的<code>&lt;style&gt;</code>标签，而不单独搞出来 css 文件像 antd.css 一样外部引用呢，因为用的 css modules，需要用这个插件注入局部作用域的标识符，如果解析成 css 文件那么类名就不匹配了。</p>
+<blockquote>
+<p>那<code>isomorphic-style-loader</code>是怎么个工作流程呢！</p>
+</blockquote>
+<p>这个插件提供了两个帮助方法<code>_insetCss()</code>（将 css 注入 DOM）和<code>_getCss()</code>（返回样式字符串）。可以利用最外层的 Router 的 context 对象传递样式。思路就是在渲染组件的时候，在组件内接收 context 对象，获取组件样式，放到 context 中，服务端拿到样式，插入到返回的 HTML 中的 style 标签中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">WithStylesHoc</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">styles</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kr">class</span> <span class="nx">NewComponent</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">staticContext</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">css</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">_getCss</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">staticContext</span><span class="p">.</span><span class="nx">css</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">css</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的高阶组件可以在 <code>constructor</code> 的时候拿到样式文件并传递给 props 中的 staticContext，</p>
+<p>那样式是怎么传入的呢！这就要在 server.js 里：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">context</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">css</span><span class="o">:</span> <span class="p">[]</span> <span class="p">};</span>
+<span class="kr">const</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">ReactDOMServer</span><span class="p">.</span><span class="nx">renderToString</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">StaticRouter</span> <span class="nx">context</span><span class="o">=</span><span class="p">{</span><span class="nx">context</span><span class="p">}</span> <span class="nx">location</span><span class="o">=</span><span class="p">{</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">App</span> <span class="nx">staticContext</span><span class="o">=</span><span class="p">{</span><span class="nx">context</span><span class="p">}</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/StaticRouter&gt;</span>
+<span class="p">);</span>
+
+<span class="c1">// render 完后 context.css 上已经挂了东西
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">cssStr</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">css</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">context</span><span class="p">.</span><span class="nx">css</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&#34;\n&#34;</span><span class="p">)</span> <span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+<span class="nx">ctx</span><span class="p">.</span><span class="nx">body</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s2">&#34;/* this will be replaced by css */&#34;</span><span class="p">,</span> <span class="nx">cssStr</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">WithStylesHoc</span> <span class="nx">from</span> <span class="s2">&#34;./withStylesHOC&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Styles</span> <span class="nx">from</span> <span class="s2">&#34;./index.module.scss&#34;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">HomePage</span><span class="p">(</span><span class="nx">props</span><span class="o">:</span> <span class="nx">any</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">section</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">Styles</span><span class="p">.</span><span class="nx">formSection</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">这是主页</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="o">&lt;</span><span class="err">/section&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">WithStylesHoc</span><span class="p">(</span><span class="nx">HomePage</span><span class="p">,</span> <span class="nx">Styles</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-12-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/ssr/">SSR</a>
+          <a href="/tags/node/">Node</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/10-ssr-4/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">服务端渲染热更新</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/8-ssr-2/">
+            <span class="next-text nav-default">服务端渲染路由同构</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

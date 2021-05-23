@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xpath on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/xpath/</link>
+    <description>Recent content in Xpath on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 10 Jun 2020 10:47:22 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/xpath/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>E2E测试中常报的错误汇总</title>
+      <link>https://luckyoneday.github.io/daily/26-e2e-test-errors/</link>
+      <pubDate>Wed, 10 Jun 2020 10:47:22 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/26-e2e-test-errors/</guid>
+      <description>希望可以做成一个汇总贴，保持更新啊~ 超时 1 Timeout - Async callback was not invoked within the 20000ms timeout specified by jest.setTimeout.Timeout 这个原因是超时啦！比如在等倒计时或者是等验证码的时候，超出了 timeout 时间就会</description>
+    </item>
+    
+    <item>
+      <title>Xpath的文本匹配</title>
+      <link>https://luckyoneday.github.io/daily/25-xpath-text/</link>
+      <pubDate>Tue, 09 Jun 2020 21:22:01 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/25-xpath-text/</guid>
+      <description>ummmm 确实很久没有更新过小笔记了&amp;hellip; 最近接触了一些新的东西，比如 sketch 插件比如 e2e 测试，可能接下来会穿插着这两项的小知识点记一下小笔记~ 今</description>
+    </item>
+    
+  </channel>
+</rss>

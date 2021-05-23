@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Performance on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/performance/</link>
+    <description>Recent content in Performance on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 30 Jan 2021 20:17:53 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/performance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Performance Api （下）</title>
+      <link>https://luckyoneday.github.io/daily/40-performance-api/</link>
+      <pubDate>Sat, 30 Jan 2021 20:17:53 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/40-performance-api/</guid>
+      <description>上篇指路 其他类目分析 Navigation 导航用于深入了解构建网页的关键步骤。 访问导航数据的方法是： performance.getEntriesByType(&amp;</description>
+    </item>
+    
+    <item>
+      <title>Performance Api （上）</title>
+      <link>https://luckyoneday.github.io/daily/39-performance-api/</link>
+      <pubDate>Wed, 27 Jan 2021 10:17:53 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/39-performance-api/</guid>
+      <description>Performance API 可以帮助我们全面了解我们的网页，我们可以通过 Performance API 站点获取不同的浏览器，网络中的运行情况数据。 Performance API 是 High Resolution Time API(高分辨率时间) 的一部分，</description>
+    </item>
+    
+  </channel>
+</rss>

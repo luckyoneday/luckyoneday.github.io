@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Electron 通信 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="Electron 通信" /><meta name="keywords" content="Electron" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/post/5-electron-communication/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Electron 通信" />
+<meta property="og:description" content="Electron 通信" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/post/5-electron-communication/" />
+<meta property="article:published_time" content="2021-02-04T14:52:18+08:00" />
+<meta property="article:modified_time" content="2021-02-04T14:52:18+08:00" />
+<meta itemprop="name" content="Electron 通信">
+<meta itemprop="description" content="Electron 通信">
+<meta itemprop="datePublished" content="2021-02-04T14:52:18+08:00" />
+<meta itemprop="dateModified" content="2021-02-04T14:52:18+08:00" />
+<meta itemprop="wordCount" content="1040">
+
+
+
+<meta itemprop="keywords" content="JavaScript,Electron," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Electron 通信"/>
+<meta name="twitter:description" content="Electron 通信"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Electron 通信</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-02-04 </span>
+        
+          <span class="more-meta"> 约 1040 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#主进程">主进程</a></li>
+        <li><a href="#渲染进程">渲染进程</a></li>
+        <li><a href="#如何通信">如何通信</a>
+          <ul>
+            <li><a href="#主进程给渲染进程发送消息">主进程给渲染进程发送消息</a></li>
+            <li><a href="#渲染进程给主进程发消息">渲染进程给主进程发消息</a></li>
+            <li><a href="#渲染进程给渲染进程发消息">渲染进程给渲染进程发消息</a></li>
+            <li><a href="#其他方法">其他方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>Electron 中有两种进程：主进程和渲染进程。</p>
+<h2 id="主进程">主进程</h2>
+<p>一个 electron 应用只有一个主进程，主进程指的是 <code>package.json</code> 文件中 <code>main</code> 字段指定的文件。主进程通过 <code>BrowserWindow</code> 实例来创建窗口，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="p">{</span> <span class="nx">BrowserWindow</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;electron&#34;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">({</span>
+  <span class="nx">width</span><span class="o">:</span> <span class="mi">800</span><span class="p">,</span>
+  <span class="nx">height</span><span class="o">:</span> <span class="mi">600</span><span class="p">,</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">});</span>
+
+<span class="nx">win</span><span class="p">.</span><span class="nx">loadUrl</span><span class="p">(</span><span class="s2">&#34;https://baidu.com&#34;</span><span class="p">);</span>
+<span class="nx">win</span><span class="p">.</span><span class="nx">loadUrl</span><span class="p">(</span><span class="sb">`file://</span><span class="si">${</span><span class="nx">__dirname</span><span class="si">}</span><span class="sb">/app/index.html`</span><span class="p">);</span>
+<span class="c1">// 或者
+</span><span class="c1"></span><span class="nx">win</span><span class="p">.</span><span class="nx">loadFile</span><span class="p">(</span><span class="sb">`file://</span><span class="si">${</span><span class="nx">__dirname</span><span class="si">}</span><span class="sb">/app/index.html`</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>主进程管理所有窗口极其渲染进程。</p>
+<h2 id="渲染进程">渲染进程</h2>
+<p>electron 的每一个 <code>BrowserWindow</code> 都在一个独立的渲染进程中渲染页面，当一个 <code>BrowserWindow</code> 实例被删除，它对应的渲染进程也会终止运行。每个渲染进程都是相互独立的，只需要关注自己对应的页面。</p>
+<h2 id="如何通信">如何通信</h2>
+<p>那主进程和渲染进程是怎么通信的呢？那就要用到新的模块：<code>ipcMain</code> 和 <code>ipcRenderer</code>。</p>
+<h3 id="主进程给渲染进程发送消息">主进程给渲染进程发送消息</h3>
+<p>主进程中通过 <code>BrowserWindow</code> 对象的 <code>webContents</code> 的 <a href="https://www.electronjs.org/docs/api/web-contents#contentssendchannel-args"><code>send</code></a> 方法来向渲染进程发送消息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 主进程中
+</span><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">app</span><span class="p">,</span> <span class="nx">BrowserWindow</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;electron&#34;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">win</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;ready&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">win</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BrowserWindow</span><span class="p">({</span> <span class="nx">width</span><span class="o">:</span> <span class="mi">800</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span> <span class="mi">600</span> <span class="p">});</span>
+  <span class="nx">win</span><span class="p">.</span><span class="nx">loadURL</span><span class="p">(</span><span class="sb">`file://</span><span class="si">${</span><span class="nx">__dirname</span><span class="si">}</span><span class="sb">/index.html`</span><span class="p">);</span>
+  <span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;did-finish-load&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">win</span><span class="p">.</span><span class="nx">webContents</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;ping&#34;</span><span class="p">,</span> <span class="s2">&#34;whoooooooh!&#34;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="c">&lt;!-- 在渲染进程中 --&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;electron&#34;</span><span class="p">).</span><span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;ping&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span> <span class="c1">// &#39;whoooooooh!&#39;
+</span><span class="c1"></span>      <span class="p">});</span>
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="渲染进程给主进程发消息">渲染进程给主进程发消息</h3>
+<p>主进程通过 <a href="https://www.electronjs.org/docs/api/ipc-main"><code>ipcMain</code></a> 模块的 <code>on</code> 方法监听消息。第一个参数是消息标识，第二个参数是回调函数。如 <code>ipcMain.on(channel, (event, ...args) =&gt; {})</code>，可以通过 <code>event.sender.send</code> 向发送对象回传消息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 主进程
+</span><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">ipcMain</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;electron&#34;</span><span class="p">);</span>
+
+<span class="c1">// 同步消息
+</span><span class="c1"></span><span class="nx">ipcMain</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;synchronous-message&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span> <span class="c1">// &#34;ping&#34;
+</span><span class="c1"></span>  <span class="nx">event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="s2">&#34;pong&#34;</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// 异步消息
+</span><span class="c1"></span><span class="nx">ipcMain</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;asynchronous-message&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span> <span class="c1">// &#34;ping&#34;
+</span><span class="c1"></span>  <span class="nx">event</span><span class="p">.</span><span class="nx">sender</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;asynchronous-reply&#34;</span><span class="p">,</span> <span class="s2">&#34;pong&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>渲染进程通过 <a href="https://www.electronjs.org/docs/api/ipc-renderer"><code>ipcRenderer</code></a> 模块的 <code>on</code> 方法监听消息。第一个参数是消息标识，第二个参数是回调函数。如 <code>ipcRenderer.on(channel, (event, ...arg) =&gt; {})</code> 。通过 <code>send</code> 或 <code>sendSync</code> 方法发送消息，如 <code>ipcRenderer.send(channel, ...args)</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 渲染进程的页面
+</span><span class="c1"></span><span class="kr">const</span> <span class="p">{</span> <span class="nx">ipcRenderer</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;electron&#34;</span><span class="p">);</span>
+
+<span class="c1">// 同步消息会收到 returnValue
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">sendSync</span><span class="p">(</span><span class="s2">&#34;synchronous-message&#34;</span><span class="p">,</span> <span class="s2">&#34;ping&#34;</span><span class="p">));</span> <span class="c1">// &#34;pong&#34;
+</span><span class="c1"></span>
+<span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;asynchronous-reply&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span> <span class="c1">// &#34;pong&#34;
+</span><span class="c1"></span><span class="p">});</span>
+
+<span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&#34;asynchronous-message&#34;</span><span class="p">,</span> <span class="s2">&#34;ping&#34;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="渲染进程给渲染进程发消息">渲染进程给渲染进程发消息</h3>
+<p>渲染进程也可以通过 <a href="https://www.electronjs.org/docs/api/ipc-renderer"><code>ipcRenderer</code></a> 模块的 <code>sendTo</code> 方法给别的渲染进程发送消息，如 <code>ipcRenderer.sendTo(webContentsId, channel, ...args)</code> ，这里的 <code>webContentsId</code> 对应的就是另一个渲染进程的 <code>webContentsId</code>。</p>
+<h3 id="其他方法">其他方法</h3>
+<p>看两个模块的 api 时会发现还有一些额外的方法，也可以支持进程间的通信。</p>
+<blockquote>
+<p>ipcRenderer</p>
+</blockquote>
+<ul>
+<li><code>ipcRenderer.once(channel, (event, ...arg) =&gt; {})</code> 监听到消息之后只执行一次，随后就移除掉了。</li>
+<li><code>ipcRenderer.invoke(channel, ...args)</code> 调用后会返回 Promise，针对这个方法，主进程应该使用 <code>ipcMain.handle()</code> 方法来响应，如下：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 渲染进程
+</span><span class="c1"></span><span class="nx">ipcRenderer</span><span class="p">.</span><span class="nx">invoke</span><span class="p">(</span><span class="s2">&#34;some-name&#34;</span><span class="p">,</span> <span class="nx">someArgument</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">result</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">});</span>
+
+<span class="c1">// 主进程
+</span><span class="c1"></span><span class="nx">ipcMain</span><span class="p">.</span><span class="nx">handle</span><span class="p">(</span><span class="s2">&#34;some-name&#34;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">someArgument</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">doSomeWork</span><span class="p">(</span><span class="nx">someArgument</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>invoke</code> 和 <code>send</code> 区别在哪里呢，如果不需要响应消息，可以使用 <code>send</code>。</p>
+<ul>
+<li><code>ipcRenderer.removeListener(channel, (event, ...arg) =&gt; {})</code> 从监听器数组中移除监听 <code>channel</code> 的指定 <code>listener</code>。</li>
+<li><code>ipcRenderer.removeAllListeners(channel)</code> 从监听器数组中移除监听 <code>channel</code> 的所有监听器。</li>
+</ul>
+<blockquote>
+<p>ipcMain</p>
+</blockquote>
+<ul>
+<li>
+<p><code>ipcMain.once(channel, (event, ...arg) =&gt; {})</code> 监听到消息之后只执行一次，随后就移除掉了。</p>
+</li>
+<li>
+<p><code>ipcMain.handle(channel, listener)</code> 响应 <code>ipcRenderer.invoke(channel, ...args)</code> 。</p>
+</li>
+<li>
+<p><code>ipcMain.handleOnce(channel, listener)</code> 响应 <code>ipcRenderer.invoke(channel, ...args)</code> ，也是只执行一次。</p>
+</li>
+<li>
+<p><code>ipcMain.removeListener(channel, (event, ...arg) =&gt; {})</code> 从监听器数组中移除监听 <code>channel</code> 的指定 <code>listener</code>。</p>
+</li>
+<li>
+<p><code>ipcMain.removeAllListeners(channel)</code> 从监听器数组中移除监听 <code>channel</code> 的所有监听器。</p>
+</li>
+<li>
+<p><code>ipcMain.removeHandler(channel)</code> 移除名称为 <code>channel</code> 的 <code>handler</code> 。</p>
+</li>
+</ul>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://www.imweb.io/topic/5b13a663d4c96b9b1b4c4e9c">Electron 进程通信</a></li>
+<li><a href="https://www.electronjs.org/docs/tutorial/quick-start#main-and-renderer-processes">主进程和渲染器进程</a></li>
+<li><a href="https://www.electronjs.org/docs/api/ipc-main">ipcMain</a></li>
+<li><a href="https://www.electronjs.org/docs/api/ipc-renderer">ipcRenderer</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-02-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          <a href="/tags/electron/">Electron</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/6-ssr-data/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">服务端渲染合集</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/4-sketch-plugin/">
+            <span class="next-text nav-default">Sketch 插件</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

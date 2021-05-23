@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>css in js - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="css in js" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/12-css-in-js/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="css in js" />
+<meta property="og:description" content="css in js" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/12-css-in-js/" />
+<meta property="article:published_time" content="2019-12-10T23:48:44+08:00" />
+<meta property="article:modified_time" content="2019-12-10T23:48:44+08:00" />
+<meta itemprop="name" content="css in js">
+<meta itemprop="description" content="css in js">
+<meta itemprop="datePublished" content="2019-12-10T23:48:44+08:00" />
+<meta itemprop="dateModified" content="2019-12-10T23:48:44+08:00" />
+<meta itemprop="wordCount" content="959">
+
+
+
+<meta itemprop="keywords" content="css," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="css in js"/>
+<meta name="twitter:description" content="css in js"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">css in js</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-10 </span>
+        
+          <span class="more-meta"> 约 959 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#styled-componenthttpswwwstyled-componentscom"><a href="https://www.styled-components.com/">styled-component</a></a></li>
+        <li><a href="#emotionhttpsemotionshdocsintroduction"><a href="https://emotion.sh/docs/introduction">emotion</a></a></li>
+        <li><a href="#jsshttpscssinjsorgvv1000"><a href="https://cssinjs.org/?v=v10.0.0">jss</a></a></li>
+        <li><a href="#别的资料">别的资料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>难不成是因为天下大势，分久必合，合久必分？</p>
+<p>传统前端推崇的“关注点分离”原则，推荐将 HTML、CSS、JavaScript 分离，各司其职。但是随着 React“组件化”思想的推进，已经将 HTML 用 JSX 的形式与 JavaScript 文件整合在一起，CSS 也可以通过以下写法同样的放入一个文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Component</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">div</span>
+    <span class="nx">style</span><span class="o">=</span><span class="p">{{</span>
+      <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;white&#34;</span><span class="p">,</span>
+      <span class="nx">fontSize</span><span class="o">:</span> <span class="s2">&#34;12px&#34;</span><span class="p">,</span>
+    <span class="p">}}</span>
+    <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handleClick</span><span class="p">}</span>
+  <span class="o">&gt;</span>
+    <span class="nx">text</span>
+  <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是这样写不支持复杂的嵌套、选择器等特性，使用起来不太方便。这里介绍几个 css-in-js 的库和一些基本用法！</p>
+<h2 id="styled-componenthttpswwwstyled-componentscom"><a href="https://www.styled-components.com/">styled-component</a></h2>
+<blockquote>
+<p>基本用法： <a href="https://codesandbox.io/s/priceless-firefly-qqf33">codeSandbox</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Styled</span> <span class="nx">from</span> <span class="s2">&#34;styled-components&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Button</span> <span class="o">=</span> <span class="nx">Styled</span><span class="p">.</span><span class="nx">a</span><span class="sb">`
+</span><span class="sb">  border-radius: 3px
+</span><span class="sb">  // ...
+</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Button</span><span class="o">&gt;</span><span class="nx">Learn</span> <span class="nx">React</span><span class="o">&lt;</span><span class="err">/Button&gt;;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>模板字符串也可以用 object 代替：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Button</span> <span class="o">=</span> <span class="nx">Styled</span><span class="p">.</span><span class="nx">a</span><span class="p">({</span>
+  <span class="nx">borderRadius</span><span class="o">:</span> <span class="s2">&#34;3px&#34;</span><span class="p">,</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用模板字符串或者传入 object 来生成一个组件，直接使用便可。</p>
+<blockquote>
+<p>全局样式：</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createGlobalStyle</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;styled-components&#34;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">GlobalStyle</span> <span class="o">=</span> <span class="nx">createGlobalStyle</span><span class="sb">`
+</span><span class="sb">  div {
+</span><span class="sb">    margin: 20px
+</span><span class="sb">  }
+</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="k">return</span> <span class="p">(</span>
+  <span class="o">&lt;&gt;</span>
+    <span class="o">&lt;</span><span class="nx">GlobalStyle</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span> <span class="nx">initial</span> <span class="nx">button</span> <span class="o">&lt;</span><span class="err">/h3&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="o">&lt;</span><span class="err">/&gt;</span>
+<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="emotionhttpsemotionshdocsintroduction"><a href="https://emotion.sh/docs/introduction">emotion</a></h2>
+<blockquote>
+<p>基本用法： <a href="https://codesandbox.io/s/emotion-stw5q">codeSandbox</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="cm">/** @jsx jsx */</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">jsx</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;@emotion/core&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">baseBtn</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">borderRadius</span><span class="o">:</span> <span class="s2">&#34;3px&#34;</span><span class="p">,</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">};</span>
+
+<span class="k">return</span> <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">css</span><span class="o">=</span><span class="p">{</span><span class="nx">baseBtn</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Learn</span> <span class="nx">React</span><span class="o">&lt;</span><span class="err">/button&gt;;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>emotion 支持给 css 属性传入 object 格式的样式数据，但是想生效需要遵循以下两种方法其一：</p>
+<ul>
+<li>可以自定义 babelrc 文件的，引入一个 babel preset：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// .babelrc
+</span><span class="c1"></span><span class="p">{</span>
+  <span class="s2">&#34;presets&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;@emotion/babel-preset-css-prop&#34;</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>不可以自定义 babelrc 的，（如使用了<code>create-react-app</code>）可以引入一个注释：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="cm">/** @jsx jsx */</span> <span class="c1">// 对，就是这个
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">jsx</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;@emotion/core&#34;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>两种途径都是一个目的，用 emotion 的<code>jsx</code>方法来解析 jsx 而不是用<code>React.createElement</code>。</p>
+<p>css 属性也可以用模板字符串：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="cm">/** @jsx jsx */</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">jsx</span><span class="p">,</span> <span class="nx">css</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;@emotion/core&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">baseBtnWithTag</span> <span class="o">=</span> <span class="nx">css</span><span class="sb">`
+</span><span class="sb">  border-radius: 3px;
+</span><span class="sb">  // ...
+</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="k">return</span> <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">css</span><span class="o">=</span><span class="p">{</span><span class="nx">baseBtnWithTag</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Learn</span> <span class="nx">React</span><span class="o">&lt;</span><span class="err">/button&gt;;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>还可以用类似 <code>styled-components</code> 的方法（模板字符串或者 object 都可以）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">styled</span> <span class="nx">from</span> <span class="s2">&#34;@emotion/styled&#34;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">Button</span> <span class="o">=</span> <span class="nx">styled</span><span class="p">.</span><span class="nx">a</span><span class="sb">`
+</span><span class="sb">  border-radius: 3px;
+</span><span class="sb">  // ...
+</span><span class="sb">`</span><span class="p">;</span>
+
+<span class="k">return</span> <span class="o">&lt;</span><span class="nx">Button</span><span class="o">&gt;</span><span class="nx">Learn</span> <span class="nx">React</span><span class="o">&lt;</span><span class="err">/Button&gt;;</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>全局样式：</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">jsx</span><span class="p">,</span> <span class="nx">css</span><span class="p">,</span> <span class="nx">Global</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;@emotion/core&#34;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">global</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">div</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">margin</span><span class="o">:</span> <span class="s2">&#34;20px&#34;</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="k">return</span> <span class="p">(</span>
+  <span class="o">&lt;&gt;</span>
+    <span class="o">&lt;</span><span class="nx">Global</span> <span class="nx">styles</span><span class="o">=</span><span class="p">{</span><span class="nx">css</span><span class="p">(</span><span class="nx">global</span><span class="p">)}</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span> <span class="nx">initial</span> <span class="nx">button</span> <span class="o">&lt;</span><span class="err">/h3&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="o">&lt;</span><span class="err">/&gt;</span>
+<span class="p">);</span>
+
+<span class="c1">// 或者是
+</span><span class="c1"></span>
+<span class="k">return</span> <span class="p">(</span>
+  <span class="o">&lt;&gt;</span>
+    <span class="o">&lt;</span><span class="nx">Global</span>
+      <span class="nx">styles</span><span class="o">=</span><span class="p">{</span><span class="nx">css</span><span class="sb">`
+</span><span class="sb">        div {
+</span><span class="sb">          margin: 20px;
+</span><span class="sb">        }
+</span><span class="sb">      `</span><span class="p">}</span>
+    <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span> <span class="nx">initial</span> <span class="nx">button</span> <span class="o">&lt;</span><span class="err">/h3&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="o">&lt;</span><span class="err">/&gt;</span>
+<span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>为什么同样的样式规则，展示出来的却不一样呢！</p>
+</blockquote>
+<p>自我感觉是因为<code>1em</code>是相对根元素的尺寸，用 css 属性注入的样式保留了浏览器给 button 的原生样式，但是生成新 Button 的方法没有保留，所以他们相对的根元素是不一样的，样式就不一样啦！</p>
+<h2 id="jsshttpscssinjsorgvv1000"><a href="https://cssinjs.org/?v=v10.0.0">jss</a></h2>
+<blockquote>
+<p>基本用法：<a href="https://codesandbox.io/s/react-jss-ejljf">codeSandbox</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">jss</span> <span class="nx">from</span> <span class="s2">&#34;jss&#34;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">preset</span> <span class="nx">from</span> <span class="s2">&#34;jss-preset-default&#34;</span><span class="p">;</span>
+
+<span class="nx">jss</span><span class="p">.</span><span class="nx">setup</span><span class="p">(</span><span class="nx">preset</span><span class="p">());</span>
+
+<span class="kr">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">button</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">borderRadius</span><span class="o">:</span> <span class="s2">&#34;3px&#34;</span><span class="p">,</span>
+    <span class="c1">// ...
+</span><span class="c1"></span>  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">classes</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">jss</span><span class="p">.</span><span class="nx">createStyleSheet</span><span class="p">(</span><span class="nx">styles</span><span class="p">).</span><span class="nx">attach</span><span class="p">();</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">classes</span><span class="p">.</span><span class="nx">button</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>全局样式：</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">styles</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&#34;@global&#34;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">div</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">margin</span><span class="o">:</span> <span class="s2">&#34;20px&#34;</span><span class="p">,</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="别的资料">别的资料</h2>
+<ul>
+<li><a href="https://github.com/tuchk4/awesome-css-in-js">awesome css in js</a></li>
+<li><a href="https://gist.github.com/troch/c27c6a8cc47b76755d848c6d1204fdaf">choosing a css in js library</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-12-10
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/css/">css</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/13-lyric-wind/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">是风动</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/11-path/">
+            <span class="next-text nav-default">记录下各种 path</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

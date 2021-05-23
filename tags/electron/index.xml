@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Electron on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/electron/</link>
+    <description>Recent content in Electron on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 04 Feb 2021 15:24:54 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/electron/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Electron Q&amp;A</title>
+      <link>https://luckyoneday.github.io/daily/42-electron-qa/</link>
+      <pubDate>Thu, 04 Feb 2021 15:24:54 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/42-electron-qa/</guid>
+      <description>loadURL 和 loadFile 的区别 loadURL 可以加载线上的资源地址和本地的资源，但是 loadFile 只能加载本地的文件地址。 怎么创建无边框窗口？ 无边框窗口是不带外壳（包括窗口边框、工具</description>
+    </item>
+    
+    <item>
+      <title>Electron 通信</title>
+      <link>https://luckyoneday.github.io/post/5-electron-communication/</link>
+      <pubDate>Thu, 04 Feb 2021 14:52:18 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/5-electron-communication/</guid>
+      <description>Electron 中有两种进程：主进程和渲染进程。 主进程 一个 electron 应用只有一个主进程，主进程指的是 package.json 文件中 main 字段指定的文件。主进程通过 BrowserWindow 实例来创建窗口，例如： 1</description>
+    </item>
+    
+  </channel>
+</rss>

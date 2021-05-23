@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>关于 useLayoutEffect 和 useEffect 的区别 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="一些hooks的用法" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/5-react-hooks/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="关于 useLayoutEffect 和 useEffect 的区别" />
+<meta property="og:description" content="一些hooks的用法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/5-react-hooks/" />
+<meta property="article:published_time" content="2019-12-02T08:04:31+08:00" />
+<meta property="article:modified_time" content="2019-12-02T08:04:31+08:00" />
+<meta itemprop="name" content="关于 useLayoutEffect 和 useEffect 的区别">
+<meta itemprop="description" content="一些hooks的用法">
+<meta itemprop="datePublished" content="2019-12-02T08:04:31+08:00" />
+<meta itemprop="dateModified" content="2019-12-02T08:04:31+08:00" />
+<meta itemprop="wordCount" content="781">
+
+
+
+<meta itemprop="keywords" content="React," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="关于 useLayoutEffect 和 useEffect 的区别"/>
+<meta name="twitter:description" content="一些hooks的用法"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">关于 useLayoutEffect 和 useEffect 的区别</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-12-02 </span>
+        
+          <span class="more-meta"> 约 781 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关于usestate和setstate的区别">关于<code>useState</code>和<code>setState</code>的区别</a>
+          <ul>
+            <li><a href="#首先hooks-是闭包啊">首先，Hooks 是闭包啊</a></li>
+            <li><a href="#其次hooks-内部会进行objectis的比较">其次，hooks 内部会进行<code>Object.is</code>的比较</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>首先看下<a href="https://reactjs.org/docs/hooks-reference.html#uselayouteffect">官网对 useLayoutEffect 的解释</a>。</p>
+<p>作用其实和<code>useEffect</code>差不多，只是<code>useLayoutEffect</code>是在 DOM 变化后同步触发的（与<code>componentDidMount</code>和<code>componentDidUpdate</code>触发时机一致）。可以使用<code>useLayoutEffect</code>在 DOM 变化后同步获取布局。在<code>useLayoutEffect</code>内部的更新会在 DOM 更新完成后立即执行，但是会在浏览器绘制前进行。</p>
+<blockquote>
+<p>使用<code>useEffect</code>可以避免不必要的渲染阻塞。（也是跟<code>componentDidMount</code>和<code>componentDidUpdate</code>区别之一）。</p>
+</blockquote>
+<p>更新过程大致如下：</p>
+<table>
+<thead>
+<tr>
+<th><code>useEffect</code></th>
+<th><code>useLayoutEffect</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发一次渲染</td>
+<td>触发一次渲染</td>
+</tr>
+<tr>
+<td>React 渲染组件（调用 render）</td>
+<td>React 渲染组件（调用 render）</td>
+</tr>
+<tr>
+<td>屏幕更新</td>
+<td>调用<code>useLayoutEffect</code>，React 会等它执行完</td>
+</tr>
+<tr>
+<td>调用<code>useEffect</code></td>
+<td>屏幕更新</td>
+</tr>
+</tbody>
+</table>
+<p>可以看<a href="https://codesandbox.io/s/rough-sound-b1vmd">这个例子</a></p>
+<p>使用<code>useEffect</code>的话在刷新的时候会看到<code>marginLeft</code>生效的闪烁，但是<code>useLayoutEffect</code>就木有。</p>
+<p><img src="../../static-img/useEffect.gif" alt="useEffect"></p>
+<h2 id="关于usestate和setstate的区别">关于<code>useState</code>和<code>setState</code>的区别</h2>
+<h3 id="首先hooks-是闭包啊">首先，Hooks 是闭包啊</h3>
+<p>见<a href="https://codesandbox.io/s/small-field-4vjut">这个例子</a></p>
+<p>我们都知道，<code>setState</code>是异步更新的，但是在异步代码，如<code>setTimeout</code>中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// ...
+</span><span class="c1"></span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">1</span> <span class="p">};</span>
+
+<span class="c1">// ...
+</span><span class="c1"></span><span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">});</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;class&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">count</span><span class="p">);</span>
+<span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>直接打印就是更新完的值了！但是 Hooks 中就不一样了！打印出来的还是上一次值，这是因为 Hooks 是闭包啊！！</p>
+<p><img src="../../static-img/useState.jpg" alt="diff"></p>
+<h3 id="其次hooks-内部会进行objectis的比较">其次，hooks 内部会进行<code>Object.is</code>的比较</h3>
+<p>又是一个<a href="http://codesandbox.io/s/hungry-moon-7e6ex">例子</a>！</p>
+<p>首先要说这不是推荐的写法，因为违反了源数据不可变。</p>
+<p>但是在点击按钮的时候会发现每次点击&quot;class rendered&quot;都会被打印出来，&ldquo;hooks rendered&quot;却没有打印，且页面也没有更新，是因为 hooks 内部进行了<code>Object.is</code>的浅比较啊，认为数据源木有变化，但是通过打印能看出数据已经变化啦。</p>
+<p><img src="../../static-img/object.is.jpg" alt="diff"></p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://daveceddia.com/useeffect-vs-uselayouteffect/">useEffect-vs-useLayoutEffect</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-12-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/react/">React</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/6-ssr-1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">关于服务端渲染</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/4-deploy/">
+            <span class="next-text nav-default">deploy.sh</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://luckyoneday.github.io/sitemap.xml

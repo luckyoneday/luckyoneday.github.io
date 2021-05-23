@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>目录 on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/post/</link>
+    <description>Recent content in 目录 on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 23 Mar 2021 21:30:52 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务端渲染合集</title>
+      <link>https://luckyoneday.github.io/post/6-ssr-data/</link>
+      <pubDate>Tue, 23 Mar 2021 21:30:52 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/6-ssr-data/</guid>
+      <description>&lt;p&gt;数据预取在服务端渲染中是很重要的一环，具体操作就是在服务端发送请求，灌入组件后使首屏页面直出；客户端也使用服务端获取的数据来保持数据同步。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Electron 通信</title>
+      <link>https://luckyoneday.github.io/post/5-electron-communication/</link>
+      <pubDate>Thu, 04 Feb 2021 14:52:18 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/5-electron-communication/</guid>
+      <description>Electron 中有两种进程：主进程和渲染进程。 主进程 一个 electron 应用只有一个主进程，主进程指的是 package.json 文件中 main 字段指定的文件。主进程通过 BrowserWindow 实例来创建窗口，例如： 1</description>
+    </item>
+    
+    <item>
+      <title>Sketch 插件</title>
+      <link>https://luckyoneday.github.io/post/4-sketch-plugin/</link>
+      <pubDate>Mon, 24 Aug 2020 10:47:12 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/4-sketch-plugin/</guid>
+      <description>&lt;p&gt;Sketch 插件可以通过 &lt;a href=&#34;https://developer.sketch.com/plugins/javascript-api&#34;&gt;JS API&lt;/a&gt; 和 &lt;a href=&#34;https://developer.sketch.com/plugins/internal-api&#34;&gt;OC&lt;/a&gt; 来实现，OC 比较深入 Sketch 的内部用法，但是当发布新版 Sketch 时会对 API 有较大的修改，且官网比较推荐使用 JS API，所以本文也就主要介绍 JS API 写插件的方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>input 事件</title>
+      <link>https://luckyoneday.github.io/post/3-input-event-overview/</link>
+      <pubDate>Tue, 14 Jul 2020 20:57:50 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/3-input-event-overview/</guid>
+      <description>&lt;p&gt;背景是业务中的一个文本框应该禁止「输入」 &lt;code&gt;{&lt;/code&gt; 和 &lt;code&gt;}&lt;/code&gt;。但是不能直接对 &lt;code&gt;value&lt;/code&gt; 进行&lt;code&gt;replace&lt;/code&gt;操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>React 怎么区分类组件和函数组件</title>
+      <link>https://luckyoneday.github.io/post/1-translate-tell-class-from-function/</link>
+      <pubDate>Sun, 08 Mar 2020 21:03:31 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/1-translate-tell-class-from-function/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文标题: How Does React Tell a Class from a Function?&lt;/p&gt;
+&lt;p&gt;原文链接: &lt;a href=&#34;https://overreacted.io/how-does-react-tell-a-class-from-a-function/&#34;&gt;https://overreacted.io/how-does-react-tell-a-class-from-a-function/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 transform</title>
+      <link>https://luckyoneday.github.io/post/2-transform/</link>
+      <pubDate>Mon, 06 Jan 2020 13:42:41 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/2-transform/</guid>
+      <description>&lt;p&gt;其实就是&lt;a href=&#34;https://luckyoneday.github.io/daily/18-scale/&#34;&gt;用&lt;code&gt;scale&lt;/code&gt;实现缩放&lt;/a&gt;的时候，想修改他的&lt;code&gt;translateX&lt;/code&gt;和&lt;code&gt;translateY&lt;/code&gt;来做一些拖拽的操作时，发现计算出来的距离都会受到缩放比例的影响，就小小的研究一下是什么鬼哦。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

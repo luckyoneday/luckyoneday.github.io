@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>服务端渲染合集 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="服务端渲染数据预取" /><meta name="keywords" content="SSR" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/post/6-ssr-data/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="服务端渲染合集" />
+<meta property="og:description" content="服务端渲染数据预取" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/post/6-ssr-data/" />
+<meta property="article:published_time" content="2021-03-23T21:30:52+08:00" />
+<meta property="article:modified_time" content="2021-03-23T21:30:52+08:00" />
+<meta itemprop="name" content="服务端渲染合集">
+<meta itemprop="description" content="服务端渲染数据预取">
+<meta itemprop="datePublished" content="2021-03-23T21:30:52+08:00" />
+<meta itemprop="dateModified" content="2021-03-23T21:30:52+08:00" />
+<meta itemprop="wordCount" content="1253">
+
+
+
+<meta itemprop="keywords" content="SSR,Node," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="服务端渲染合集"/>
+<meta name="twitter:description" content="服务端渲染数据预取"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">服务端渲染合集</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-23 </span>
+        
+          <span class="more-meta"> 约 1253 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#具体操作">具体操作</a>
+          <ul>
+            <li><a href="#第一步">第一步</a></li>
+            <li><a href="#第二步">第二步</a></li>
+            <li><a href="#第三步">第三步</a></li>
+            <li><a href="#小-tips">小 tips</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考文章">参考文章</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>数据预取在服务端渲染中是很重要的一环，具体操作就是在服务端发送请求，灌入组件后使首屏页面直出；客户端也使用服务端获取的数据来保持数据同步。</p>
+<p>前面的小笔记指路：</p>
+<ul>
+<li><a href="../../daily/8-ssr-2/">服务端渲染路由同构</a></li>
+<li><a href="../../daily/9-ssr-3/">服务端渲染样式添加</a></li>
+<li><a href="../../daily/10-ssr-4/">服务端渲染热更新</a></li>
+</ul>
+<p>数据预取涉及到服务端渲染的两个概念：「脱水」和「注水」。</p>
+<ul>
+<li><strong>数据注水</strong>：在服务端将预取的数据注入到浏览器，使浏览器端可以访问到。</li>
+<li><strong>数据脱水</strong>：客户端进行渲染前将数据传入对应的组件，来保持 <code>props</code> 的一致。</li>
+</ul>
+<h2 id="具体操作">具体操作</h2>
+<h3 id="第一步">第一步</h3>
+<p>将路由所需的首屏数据对应的异步方法（例如 <code>loadData</code>）挂在组件上，便于服务端获取该路由内容时请求数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// route.js
+</span><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span>
+    <span class="nx">component</span><span class="o">:</span> <span class="nx">Home</span><span class="p">,</span>
+    <span class="nx">exact</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="c1">// 服务端加载 Home 前要执行的方法
+</span><span class="c1"></span>    <span class="nx">loadData</span><span class="o">:</span> <span class="nx">Home</span><span class="p">.</span><span class="nx">loadData</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以使用一个高阶组件将 <code>loadData</code> 挂载到组件上：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">withFetchHOC</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="nx">loadData</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">options</span> <span class="p">};</span>
+    <span class="c1">// ...
+</span><span class="c1"></span>  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// home.jsx
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">HomePage</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">list</span><span class="o">:</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="kr">await</span> <span class="nx">Api</span><span class="p">.</span><span class="nx">getList</span><span class="p">(),</span>
+<span class="p">};</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">WithFetchHoc</span><span class="p">(</span><span class="nx">HomePage</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="第二步">第二步</h3>
+<p>服务端匹配到对应的路由时调用对应路由的 <code>loadData</code> 方法，并组织好数据传递给组件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">matchRoutes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-config&#39;</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;*&#34;</span><span class="p">,</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+
+  <span class="c1">// 匹配路由
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">matchedRoutes</span> <span class="o">=</span> <span class="nx">matchRoutes</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]</span>
+  <span class="kr">const</span> <span class="nx">matchLen</span> <span class="o">=</span> <span class="nx">matchedRoutes</span><span class="p">.</span><span class="nx">length</span>
+
+  <span class="c1">// 如果有嵌套路由，那么最后一项是最深的子路由
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="p">{</span> <span class="nx">route</span><span class="o">:</span> <span class="nx">currRoute</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">match</span> <span class="p">}</span> <span class="o">=</span>
+    <span class="nx">matchLen</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">matchedRoutes</span><span class="p">[</span><span class="nx">matchLen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="p">{}</span>
+
+  <span class="c1">// 获取到 loadData 下挂载的 options，然后调用
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">loadData</span> <span class="o">=</span> <span class="nx">currRoute</span><span class="p">.</span><span class="nx">loadData</span>
+  <span class="kr">const</span> <span class="nx">entries</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">loadData</span><span class="p">)</span>
+  <span class="kr">const</span> <span class="nx">resArr</span> <span class="o">=</span> <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span>
+    <span class="nx">entries</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kr">async</span> <span class="p">([</span><span class="nx">key</span><span class="p">,</span> <span class="nx">fetch</span><span class="p">])</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">singleRes</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+          <span class="nx">status</span><span class="o">:</span> <span class="s2">&#34;done&#34;</span><span class="p">,</span>
+          <span class="nx">data</span><span class="o">:</span> <span class="nx">singleRes</span>
+        <span class="p">}</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+          <span class="nx">status</span><span class="o">:</span> <span class="s2">&#34;pending&#34;</span><span class="p">,</span>
+          <span class="nx">data</span><span class="o">:</span> <span class="p">{}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">})</span>
+  <span class="p">)</span>
+
+  <span class="kr">const</span> <span class="nx">finalData</span> <span class="o">=</span> <span class="nx">entries</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">prev</span><span class="p">[</span><span class="nx">cur</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">resArr</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nx">prev</span>
+  <span class="p">},</span> <span class="p">{})</span>
+
+  <span class="c1">// 注水
+</span><span class="c1"></span>  <span class="nx">script</span> <span class="o">=</span> <span class="sb">`&lt;script&gt;window.__INIT_DATA__=</span><span class="si">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">finalData</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/script&gt;`</span>
+
+  <span class="c1">// 将获取的数据作为 props 传入 App
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">content</span> <span class="o">=</span> <span class="nx">ReactDOMServer</span><span class="p">.</span><span class="nx">renderToString</span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">StaticRouter</span> <span class="nx">context</span><span class="o">=</span><span class="p">{</span><span class="nx">context</span><span class="p">}</span> <span class="nx">location</span><span class="o">=</span><span class="p">{</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">App</span> <span class="nx">staticContext</span><span class="o">=</span><span class="p">{</span><span class="nx">context</span><span class="p">}</span>  <span class="nx">__initData__</span><span class="o">=</span><span class="p">{</span><span class="nx">finalData</span><span class="p">}</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="err">/StaticRouter&gt;</span>
+  <span class="p">)</span>
+
+  <span class="c1">// ...
+</span><span class="c1"></span>  <span class="c1">// 替换页面的 content、script
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="第三步">第三步</h3>
+<p>浏览器端可以通过 <code>window.__INIT_DATA__</code> 获取到同步数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 脱水
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">renderMethod</span> <span class="o">=</span> <span class="p">(</span><span class="nx">module</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">).</span><span class="nx">hot</span> <span class="o">?</span> <span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span> <span class="o">:</span> <span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">hydrate</span>
+<span class="nx">renderMethod</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">BrowserRouter</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">App</span>
+      <span class="nx">staticContext</span><span class="o">=</span><span class="p">{</span><span class="kc">null</span><span class="p">}</span>
+      <span class="nx">__onedayInitData__</span><span class="o">=</span><span class="p">{</span><span class="nb">window</span><span class="p">.</span><span class="nx">__INIT_DATA__</span><span class="p">}</span>
+    <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/BrowserRouter&gt;,</span>
+  <span class="nx">root</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>还可以将服务端请求失败的情况进行兜底，重新请求一次。这些逻辑可以收拢在 <code>withFetchHOC</code> 中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">withFetchHOC</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="nx">loadData</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">options</span> <span class="p">};</span>
+
+    <span class="c1">// 作为初始化数据放到 state 中
+</span><span class="c1"></span>    <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">data</span><span class="o">:</span> <span class="nx">transToInitData</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">__initData__</span><span class="p">)</span> <span class="o">??</span> <span class="p">{}</span> <span class="p">};</span>
+
+    <span class="nx">reFetchData</span> <span class="o">=</span> <span class="kr">async</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">initData</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">__initData__</span> <span class="o">??</span> <span class="p">{};</span>
+      <span class="k">delete</span> <span class="nb">window</span><span class="p">.</span><span class="nx">__INIT_DATA__</span><span class="p">;</span>
+
+      <span class="kr">const</span> <span class="nx">entries</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">resultList</span> <span class="o">=</span> <span class="kr">await</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span>
+          <span class="nx">entries</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kr">async</span> <span class="p">([</span><span class="nx">key</span><span class="p">,</span> <span class="nx">fetch</span><span class="p">])</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// 已经获取到的数据就直接 resolve，否则重新请求
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="nx">initData</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="s2">&#34;done&#34;</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">initData</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">data</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="kr">await</span> <span class="nx">fetch</span><span class="p">();</span>
+            <span class="p">}</span>
+          <span class="p">})</span>
+        <span class="p">);</span>
+
+        <span class="kr">const</span> <span class="nx">entriesObject</span> <span class="o">=</span> <span class="nx">entries</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">prev</span><span class="p">,</span> <span class="nx">cur</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="nx">prev</span><span class="p">[</span><span class="nx">cur</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">resultList</span><span class="p">[</span><span class="nx">idx</span><span class="p">];</span>
+          <span class="k">return</span> <span class="nx">prev</span><span class="p">;</span>
+        <span class="p">},</span> <span class="p">{});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span> <span class="nx">data</span><span class="o">:</span> <span class="nx">entriesObject</span> <span class="p">});</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&#34;csr fetch error&#34;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// 页面挂载时重新获取一次数据
+</span><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">reFetchData</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="p">{</span> <span class="nx">__initData__</span><span class="p">,</span> <span class="p">...</span><span class="nx">otherProps</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">;</span>
+      <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Component</span> <span class="p">{...</span><span class="nx">otherProps</span><span class="p">}</span> <span class="nx">initData</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">data</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="小-tips">小 tips</h3>
+<ul>
+<li>使用了 <code>react-router-config</code> 中的 <code>matchRoutes</code> 方法，可以处理嵌套路由，并且可以匹配到形如 <code>/detail/:hash</code> 的路由，同时 <code>match</code> 可以拿到 <code>{hash: xxxxx}</code> 的内容。</li>
+<li>服务端和客户端可以分别维护一份 <code>context</code> ，作为 <code>options</code> 中 <code>fetch</code> 的参数回传，使 <code>fetch</code> 方法可以获取到 <code>query</code>、<code>hash</code> 等参数，进行接口请求：</li>
+</ul>
+<!-- <br /> -->
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 服务端
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">optContext</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">url</span><span class="o">:</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">originalUrl</span> <span class="o">??</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span>
+  <span class="nx">query</span><span class="o">:</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">query</span> <span class="o">??</span> <span class="p">{},</span>
+  <span class="nx">pathname</span><span class="o">:</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">path</span> <span class="o">??</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+  <span class="nx">hashParams</span><span class="o">:</span> <span class="p">(</span><span class="nx">match</span> <span class="o">&amp;&amp;</span> <span class="nx">match</span><span class="p">.</span><span class="nx">params</span><span class="p">)</span> <span class="o">??</span> <span class="p">{},</span> <span class="c1">// matchRoutes 方法中的 match
+</span><span class="c1"></span><span class="p">};</span>
+
+<span class="c1">// 浏览器端
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">matchedRoutes</span> <span class="o">=</span> <span class="nx">matchRoutes</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">)</span> <span class="o">||</span> <span class="p">[];</span>
+<span class="kr">const</span> <span class="nx">matchLen</span> <span class="o">=</span> <span class="nx">matchedRoutes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="p">{</span> <span class="nx">match</span> <span class="o">=</span> <span class="kc">undefined</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">matchLen</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">matchedRoutes</span><span class="p">[</span><span class="nx">matchLen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="p">{};</span>
+
+<span class="kr">const</span> <span class="nx">optContext</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">url</span><span class="o">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">+</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">,</span>
+  <span class="nx">pathname</span><span class="o">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">,</span>
+  <span class="nx">query</span><span class="o">:</span> <span class="nx">parseSearch</span><span class="p">(),</span>
+  <span class="nx">hashParams</span><span class="o">:</span> <span class="p">(</span><span class="nx">match</span> <span class="o">&amp;&amp;</span> <span class="nx">match</span><span class="p">.</span><span class="nx">params</span><span class="p">)</span> <span class="o">??</span> <span class="p">{},</span>
+<span class="p">};</span>
+
+<span class="c1">// ...
+</span><span class="c1">// await fetch(optContext)
+</span><span class="c1"></span>
+<span class="c1">// 使用
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">detail</span><span class="o">:</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">hashParams</span><span class="p">;</span>
+    <span class="k">return</span> <span class="kr">await</span> <span class="nx">Api</span><span class="p">.</span><span class="nx">getDetail</span><span class="p">({</span> <span class="nx">hash</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">hash</span> <span class="p">});</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考文章">参考文章</h2>
+<ul>
+<li><a href="https://reactrouter.com/web/guides/server-rendering">react-router - server-rendering</a></li>
+<li><a href="https://nirodu.com/n-book/react/react_ssr.html#%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E7%BB%84%E4%BB%B6%E6%B8%B2%E6%9F%93">实现服务器端组件渲染</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-03-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/ssr/">SSR</a>
+          <a href="/tags/node/">Node</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/5-electron-communication/">
+            <span class="next-text nav-default">Electron 通信</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

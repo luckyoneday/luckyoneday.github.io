@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BDD on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/bdd/</link>
+    <description>Recent content in BDD on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 19 Aug 2020 16:46:37 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/bdd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>codeceptjs Hook</title>
+      <link>https://luckyoneday.github.io/daily/35-codeceptjs-hook/</link>
+      <pubDate>Wed, 19 Aug 2020 16:46:37 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/35-codeceptjs-hook/</guid>
+      <description>背景是在接 e2e 的时候先对所有接口进行了 request header 的复写（为了绕过风控），codeceptjs 的 helper 里面可以拿到 puppeteer，就可以使用 puppeteer 的 page 来操</description>
+    </item>
+    
+    <item>
+      <title>介绍 codeceptjs</title>
+      <link>https://luckyoneday.github.io/daily/32-introduce-codecept/</link>
+      <pubDate>Fri, 07 Aug 2020 17:27:18 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/32-introduce-codecept/</guid>
+      <description>为什么选用 codeceptjs BDD 测试： https://codecept.io/bdd/#what-is-behavior-driven-development 可以和 cucumber 结合： https://www.youtube.com/watch?v=mIasShmyw9I 可以选各种测试 helper： https://codecept.io/basics/#architecture 可以测试 mobile： https://codecept.io/mobile/#mobile-testing-with-appium 可以跨浏览器： https://help.crossbrowsertesting.com/selenium-testing/frameworks/codeceptjs/ 还有各种插件： https://codecept.io/plugins/#pauseonfail 方便的定位 loc</description>
+    </item>
+    
+    <item>
+      <title>介绍 cucumber</title>
+      <link>https://luckyoneday.github.io/daily/30-introduce-cucumber/</link>
+      <pubDate>Fri, 10 Jul 2020 17:24:14 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/30-introduce-cucumber/</guid>
+      <description>关于 BDD BDD 是 Behaviour Driven Development / 行为驱动开发，是一种软件开发流程。是通过自然语言定义系统行为，以功能使用者的角度，编写需求场景，且这些行为描述可以直接形成</description>
+    </item>
+    
+  </channel>
+</rss>

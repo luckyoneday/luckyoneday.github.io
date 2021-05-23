@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TypeScript on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/typescript/</link>
+    <description>Recent content in TypeScript on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 15 Jun 2020 20:32:14 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TypeScript索引类型</title>
+      <link>https://luckyoneday.github.io/daily/29-typescript-index-types/</link>
+      <pubDate>Mon, 15 Jun 2020 20:32:14 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/29-typescript-index-types/</guid>
+      <description>一般来说我们可以使用联合类型来代表几种类型，如下： 1 const value: string | number; 字符串字面量类型也是一种联合类型。一个字符串字面量只能被赋值给特定的字符串值。</description>
+    </item>
+    
+    <item>
+      <title>TypeScript泛型</title>
+      <link>https://luckyoneday.github.io/daily/28-typescript-generics/</link>
+      <pubDate>Sun, 14 Jun 2020 21:07:54 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/28-typescript-generics/</guid>
+      <description>可以使用泛型来创建高可用的类、类型、接口和函数。 最经典的来自官方文档的例子： 1 2 3 function identity(argument: number): number { return argument; } 上面的函数返回我们传递给它的参数。 不幸的是</description>
+    </item>
+    
+  </channel>
+</rss>

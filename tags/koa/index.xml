@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Koa on youting&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/koa/</link>
+    <description>Recent content in Koa on youting&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 29 Nov 2019 13:36:19 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/koa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于登录状态</title>
+      <link>https://luckyoneday.github.io/daily/2-koa-session/</link>
+      <pubDate>Fri, 29 Nov 2019 13:36:19 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/2-koa-session/</guid>
+      <description>没有使用 jwt 鉴权，因为 cookie 有大小限制，就总觉得少存一些东西比较好，而且对「退出登录」怎么处理 jwt 没有搞清楚，前端可能是清除 cookie，那后端怎么</description>
+    </item>
+    
+  </channel>
+</rss>

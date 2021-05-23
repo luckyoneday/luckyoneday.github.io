@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>介绍 codeceptjs - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="为什么选用 codeceptjs BDD 测试： https://codecept.io/bdd/#what-is-behavior-driven-development 可以和 cucumber 结合： https://www.youtube.com/watch?v=mIasShmyw9I 可以选各种测试 helper： https://codecept.io/basics/#architecture 可以测试 mobile： https://codecept.io/mobile/#mobile-testing-with-appium 可以跨浏览器： https://help.crossbrowsertesting.com/selenium-testing/frameworks/codeceptjs/ 还有各种插件： https://codecept.io/plugins/#pauseonfail 方便的定位 loc" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/32-introduce-codecept/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="介绍 codeceptjs" />
+<meta property="og:description" content="为什么选用 codeceptjs BDD 测试： https://codecept.io/bdd/#what-is-behavior-driven-development 可以和 cucumber 结合： https://www.youtube.com/watch?v=mIasShmyw9I 可以选各种测试 helper： https://codecept.io/basics/#architecture 可以测试 mobile： https://codecept.io/mobile/#mobile-testing-with-appium 可以跨浏览器： https://help.crossbrowsertesting.com/selenium-testing/frameworks/codeceptjs/ 还有各种插件： https://codecept.io/plugins/#pauseonfail 方便的定位 loc" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/32-introduce-codecept/" />
+<meta property="article:published_time" content="2020-08-07T17:27:18+08:00" />
+<meta property="article:modified_time" content="2020-08-07T17:27:18+08:00" />
+<meta itemprop="name" content="介绍 codeceptjs">
+<meta itemprop="description" content="为什么选用 codeceptjs BDD 测试： https://codecept.io/bdd/#what-is-behavior-driven-development 可以和 cucumber 结合： https://www.youtube.com/watch?v=mIasShmyw9I 可以选各种测试 helper： https://codecept.io/basics/#architecture 可以测试 mobile： https://codecept.io/mobile/#mobile-testing-with-appium 可以跨浏览器： https://help.crossbrowsertesting.com/selenium-testing/frameworks/codeceptjs/ 还有各种插件： https://codecept.io/plugins/#pauseonfail 方便的定位 loc">
+<meta itemprop="datePublished" content="2020-08-07T17:27:18+08:00" />
+<meta itemprop="dateModified" content="2020-08-07T17:27:18+08:00" />
+<meta itemprop="wordCount" content="829">
+
+
+
+<meta itemprop="keywords" content="e2e,BDD," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="介绍 codeceptjs"/>
+<meta name="twitter:description" content="为什么选用 codeceptjs BDD 测试： https://codecept.io/bdd/#what-is-behavior-driven-development 可以和 cucumber 结合： https://www.youtube.com/watch?v=mIasShmyw9I 可以选各种测试 helper： https://codecept.io/basics/#architecture 可以测试 mobile： https://codecept.io/mobile/#mobile-testing-with-appium 可以跨浏览器： https://help.crossbrowsertesting.com/selenium-testing/frameworks/codeceptjs/ 还有各种插件： https://codecept.io/plugins/#pauseonfail 方便的定位 loc"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">介绍 codeceptjs</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-08-07 </span>
+        
+          <span class="more-meta"> 约 829 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#为什么选用-codeceptjshttpscodeceptiobasicsgetting-started">为什么选用 <a href="https://codecept.io/basics/#getting-started">codeceptjs</a></a></li>
+        <li><a href="#怎么写">怎么写</a></li>
+        <li><a href="#几个注意事项">几个注意事项</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <h2 id="为什么选用-codeceptjshttpscodeceptiobasicsgetting-started">为什么选用 <a href="https://codecept.io/basics/#getting-started">codeceptjs</a></h2>
+<ul>
+<li>BDD 测试： <a href="https://codecept.io/bdd/#what-is-behavior-driven-development">https://codecept.io/bdd/#what-is-behavior-driven-development</a></li>
+<li>可以和 cucumber 结合： <a href="https://www.youtube.com/watch?v=mIasShmyw9I">https://www.youtube.com/watch?v=mIasShmyw9I</a></li>
+<li>可以选各种测试 helper： <a href="https://codecept.io/basics/#architecture">https://codecept.io/basics/#architecture</a></li>
+<li>可以测试 mobile： <a href="https://codecept.io/mobile/#mobile-testing-with-appium">https://codecept.io/mobile/#mobile-testing-with-appium</a></li>
+<li>可以跨浏览器： <a href="https://help.crossbrowsertesting.com/selenium-testing/frameworks/codeceptjs/">https://help.crossbrowsertesting.com/selenium-testing/frameworks/codeceptjs/</a></li>
+<li>还有各种插件： <a href="https://codecept.io/plugins/#pauseonfail">https://codecept.io/plugins/#pauseonfail</a></li>
+<li>方便的定位 locator： <a href="https://codecept.io/locators/#locators">https://codecept.io/locators/#locators</a></li>
+</ul>
+<h2 id="怎么写">怎么写</h2>
+<p><a href="/daily/30-introduce-cucumber">上篇</a>里面有提到 cucumber 的步骤定义可以用自己喜欢的任意框架来写。codeceptjs 支持集成 cucumber，并且提供了方便的命令来根据 feature 描述生成 steps definition 文件框架，就可以使用 codeceptjs 的 API 来写测试脚本从而验证 feature 文件的步骤描述。</p>
+<p>codeceptjs 的入口是一个叫做 codecept.conf.js 的文件，里面会有各种配置包括使用的 helpers 是 puppeteer 还是 webDriver，plugin 有哪些等。</p>
+<p>如果要集成 gherkin，则在配置文件中增加这样一项：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">gherkin</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">features</span><span class="o">:</span> <span class="s1">&#39;*.feature&#39;</span><span class="p">,</span>
+  <span class="c1">// 自定义步骤可以不需要手动进入到配置文件中
+</span><span class="c1"></span>  <span class="nx">steps</span><span class="o">:</span> <span class="s1">&#39;./steps_definition/steps.js&#39;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>就会识别出 .feature 结尾的文件然后运行时去匹配 steps 配置项下的文件中的描述，继而运行相应的测试用例。</p>
+<p>codeceptjs 还提供了<code>codeceptjs gherkin:snippets [--path=PATH] [--feature=PATH]</code>命令来根据 feature 文件中的描述生成如下的代码框架：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">Given</span><span class="p">(</span><span class="s2">&#34;在xx页面&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// From &#34;feature/xxx.feature&#34; {&#34;line&#34;:4,&#34;column&#34;:6}
+</span><span class="c1"></span>  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;Not implemented yet&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">When</span><span class="p">(</span><span class="s2">&#34;点击xx按钮&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// From &#34;feature/xxx.feature&#34; {&#34;line&#34;:5,&#34;column&#34;:7}
+</span><span class="c1"></span>  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;Not implemented yet&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">Then</span><span class="p">(</span><span class="s2">&#34;打开xx弹窗&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// From &#34;feature/xxx.feature&#34; {&#34;line&#34;:6,&#34;column&#34;:5}
+</span><span class="c1"></span>  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;Not implemented yet&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后就可以使用 codeceptjs 提供的 API 来具体实现相应的步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">Given</span><span class="p">(</span><span class="s2">&#34;在xx页面&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">I</span><span class="p">.</span><span class="nx">amOnPage</span><span class="p">(</span><span class="s2">&#34;/index&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">When</span><span class="p">(</span><span class="s2">&#34;点击xx按钮&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">I</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="s2">&#34;#button&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">Then</span><span class="p">(</span><span class="s2">&#34;打开xx弹窗&#34;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">I</span><span class="p">.</span><span class="nx">see</span><span class="p">(</span><span class="s2">&#34;xx header&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最后使用 <code>codeceptjs run --features</code> 来运行。</p>
+<h2 id="几个注意事项">几个注意事项</h2>
+<ul>
+<li>codeceptjs 配置 puppeteer 时，会发现启动的 chromium 尺寸在修改 <code>windowSize</code> 后也没有什么变化，此时需要额外的一些配置：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">helpers</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// ...
+</span><span class="c1"></span>      <span class="nx">Puppeteer</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">windowSize</span><span class="o">:</span> <span class="s1">&#39;1280x1000&#39;</span><span class="p">,</span>
+        <span class="nx">chrome</span><span class="o">:</span> <span class="p">{</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;--window-size=1280,1000&#39;</span><span class="p">],</span> <span class="nx">defaultViewport</span><span class="o">:</span> <span class="kc">null</span> <span class="p">}</span>
+        <span class="c1">// ...
+</span><span class="c1"></span>      <span class="p">},</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>当遇到跨域情况时，可以直接在配置文件中写：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">helpers</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// ...
+</span><span class="c1"></span>      <span class="nx">Puppeteer</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">chrome</span><span class="o">:</span> <span class="p">{</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;--disable-web-security&#39;</span><span class="p">]</span> <span class="p">}</span>
+        <span class="c1">// ...
+</span><span class="c1"></span>      <span class="p">},</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>codeceptjs 可以在自定义 helper 里面拿到 Puppeteer 的 <code>page</code> 和 <code>browser</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// config.js
+</span><span class="c1"></span><span class="nx">helpers</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// ...
+</span><span class="c1"></span>      <span class="nx">CustomerHelper</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">require</span><span class="o">:</span> <span class="s2">&#34;path/to/CustomHelper&#34;</span><span class="p">;</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// CustomHelper.js
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">Helper</span> <span class="o">=</span> <span class="nx">codecept_helper</span>
+
+<span class="kr">class</span> <span class="nx">CustomHelper</span> <span class="kr">extends</span> <span class="nx">Helper</span> <span class="p">{</span>
+      <span class="c1">// ...
+</span><span class="c1"></span>      <span class="kr">const</span> <span class="p">{</span> <span class="nx">browser</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">Puppeteer</span>
+      <span class="kr">const</span> <span class="p">{</span> <span class="nx">page</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">Puppeteer</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-08-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/e2e/">e2e</a>
+          <a href="/tags/bdd/">BDD</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/33-lyric-one/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">一</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/31-lyric-start-wind/">
+            <span class="next-text nav-default">起风了</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

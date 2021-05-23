@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Xpath的文本匹配 - youting&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="Xpath的文本匹配" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/25-xpath-text/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Xpath的文本匹配" />
+<meta property="og:description" content="Xpath的文本匹配" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/25-xpath-text/" />
+<meta property="article:published_time" content="2020-06-09T21:22:01+08:00" />
+<meta property="article:modified_time" content="2020-06-09T21:22:01+08:00" />
+<meta itemprop="name" content="Xpath的文本匹配">
+<meta itemprop="description" content="Xpath的文本匹配">
+<meta itemprop="datePublished" content="2020-06-09T21:22:01+08:00" />
+<meta itemprop="dateModified" content="2020-06-09T21:22:01+08:00" />
+<meta itemprop="wordCount" content="1105">
+
+
+
+<meta itemprop="keywords" content="Xpath,e2e," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Xpath的文本匹配"/>
+<meta name="twitter:description" content="Xpath的文本匹配"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youting</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">youting</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Xpath的文本匹配</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-06-09 </span>
+        
+          <span class="more-meta"> 约 1105 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <p>ummmm 确实很久没有更新过小笔记了&hellip;</p>
+<p>最近接触了一些新的东西，比如 sketch 插件比如 e2e 测试，可能接下来会穿插着这两项的小知识点记一下小笔记~</p>
+<p>今天是一篇关于 e2e 测试的一篇翻译：Xpath 中文本匹配方式，来自 <a href="https://stackoverflow.com/questions/3655549/xpath-containstext-some-string-doesnt-work-when-used-with-node-with-more">stackOverflow</a>。</p>
+<p>首先为什么要使用 Xpath 呢，首先是因为我们的项目中有用 css-modules 的，有用 styled-component 的，className 首先不确定，也不想为每一个元素都添加 <code>data-*</code> 属性；其次相对来说文案是比较固定且通俗易懂的，Xpath 中的 <code>text()</code> 为依赖文案的测试提供了便利，并且支持多属性组合、父元素子孙元素搜索，功能比较强大。</p>
+<p>翻译从这里开始：</p>
+<p>现下有一个 XML 结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;Home&gt;</span>
+  <span class="nt">&lt;Addr&gt;</span>
+    <span class="nt">&lt;Street&gt;</span>ABC<span class="nt">&lt;/Street&gt;</span>
+    <span class="nt">&lt;Number&gt;</span>5<span class="nt">&lt;/Number&gt;</span>
+    <span class="nt">&lt;Comment&gt;</span>BLAH BLAH BLAH <span class="nt">&lt;br</span> <span class="nt">/&gt;&lt;br</span> <span class="nt">/&gt;</span>ABC<span class="nt">&lt;/Comment&gt;</span>
+  <span class="nt">&lt;/Addr&gt;</span>
+<span class="nt">&lt;/Home&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>想获取到当前结构中所有包含 ABC 文本的节点，使用 <code>//*[contains(text(), &quot;ABC&quot;)]</code> 只匹配到了 <code>&lt;Street&gt;</code> 但是没有匹配到 <code>&lt;Comment&gt;</code> 。是因为什么呢？</p>
+<p>我们需要了解一下 Xpath 的匹配方式， <code>//*[contains(text(), &quot;ABC&quot;)]</code> 中，大致是以下匹配规则：</p>
+<ol>
+<li><code>*</code> 是一个选择器，会匹配所有的元素 &ndash; 会返回一个节点集（node-set）</li>
+<li><code>[]</code> 是在该节点集中每个节点上运行的条件，若当前节点匹配括号内的条件则匹配，返回布尔值，对第一步的节点集进行过滤操作</li>
+<li><code>text()</code> 是一个选择器，是拿到当前节点的所有文本子节点</li>
+<li><code>contains</code> 是对字符串进行运算的函数，它的两个参数都是字符串，如果参数不是字符串则会调用 <code>string()</code> 方法转换为字符串，所以会把 <code>&lt;Comment&gt;</code> 的文本子节点转换为字符串， <code>string()</code> 方法对文档顺序的<a href="https://www.w3.org/TR/xpath-10/#function-string">第一个节点</a>返回 <code>string-value</code>：
+<ul>
+<li>对于 <a href="https://www.w3.org/TR/xpath-10/#element-nodes">元素节点</a> 通过返回按文档顺序首先出现的节点集中节点的字符串值，可以将节点集转换为字符串。如果节点集为空，则返回一个空字符串。</li>
+<li>对于 <a href="https://www.w3.org/TR/xpath-10/#section-Text-Nodes">文本节点</a> 通过返回文本节点的字符串值将节点转换为字符串。</li>
+</ul>
+</li>
+</ol>
+<p>所以这个时候当前文本节点是第一个文本子节点，即 <code>BLAH BLAH BLAH</code> ，并不包含 <code>ABC</code>，所以没有匹配到 <code>&lt;Comment&gt;</code></p>
+<p>那怎么解决这个问题呢，可以这样写 <code>//*[text()[contains(.,&quot;ABC&quot;)]]</code>:</p>
+<ol>
+<li><code>*</code> 是一个选择器，会匹配所有的元素 &ndash; 会返回一个节点集（node-set）</li>
+<li><code>[]</code> 是在该节点集中每个节点上运行的条件 &ndash; 在此，它对文档中的每个元素进行操作</li>
+<li><code>text()</code> 是一个选择器，是拿到当前节点的所有文本子节点</li>
+<li>内部的<code>[]</code> 是在该节点集中每个节点上运行的条件 &ndash; 这里是文本节点</li>
+<li><code>contains</code> 是对字符串进行运算的函数，这里的 <code>.</code> 指的是对当前的文本节点进行匹配</li>
+</ol>
+<p>此时会对文本节点进行依次匹配，而不仅是第一个文本子节点了，就可以匹配到 <code>&lt;Street&gt;</code> 和 <code>&lt;Comment&gt;</code>。</p>
+<p>so，<code>//*[contains(.，&quot;ABC&quot;)]</code> 匹配包含 <code>ABC</code> 的任何元素（但根节点除外）。对于上面的 XML 文档，它与 <code>&lt;Home&gt;</code>，<code>&lt;Addr&gt;</code>，<code>&lt;Street&gt;</code> 和 <code>&lt;Comment&gt;</code> 元素匹配。同理，<code>//*[contains(.，&quot;BLAH ABC&quot;)]</code> 与 <code>&lt;Home&gt;</code>，<code>&lt;Addr&gt;</code> 和 <code>&lt;Comment&gt;</code> 元素匹配。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-06-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/xpath/">Xpath</a>
+          <a href="/tags/e2e/">e2e</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/26-e2e-test-errors/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">E2E测试中常报的错误汇总</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/24-about-event/">
+            <span class="next-text nav-default">关于监听事件</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>youting</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
