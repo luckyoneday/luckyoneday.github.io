@@ -6,7 +6,16 @@
     <description>Recent content in 面试 on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 23 May 2021 08:24:12 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 May 2021 10:44:43 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>third</title>
+      <link>https://luckyoneday.github.io/interview/action-3-lanhu/</link>
+      <pubDate>Mon, 24 May 2021 10:44:43 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-3-lanhu/</guid>
+      <description>1. 介绍项目 项目难点 sketch 怎么通信 websocket 2. 介绍 React Hooks 3. 介绍封装组件实践 4. 遍历树的方式 例如，怎么做文件遍历</description>
+    </item>
+    
     <item>
       <title>second</title>
       <link>https://luckyoneday.github.io/interview/action-2-yuanfudao/</link>
@@ -58,7 +67,7 @@
       <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action/</guid>
-      <description>first second</description>
+      <description>first second third</description>
     </item>
     
     <item>

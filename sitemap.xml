@@ -17,7 +17,7 @@
   
   <url>
     <loc>https://luckyoneday.github.io/interview/</loc>
-    <lastmod>2021-05-23T08:24:12+08:00</lastmod>
+    <lastmod>2021-05-24T10:44:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -29,28 +29,21 @@
   </url>
   
   <url>
-    <loc>https://luckyoneday.github.io/tags/interview/</loc>
-    <lastmod>2021-05-23T08:24:12+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://luckyoneday.github.io/interview/action-2-yuanfudao/</loc>
-    <lastmod>2021-05-23T08:24:12+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://luckyoneday.github.io/tags/</loc>
-    <lastmod>2021-05-23T08:24:12+08:00</lastmod>
+    <loc>https://luckyoneday.github.io/interview/action-3-lanhu/</loc>
+    <lastmod>2021-05-24T10:44:43+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://luckyoneday.github.io/</loc>
+    <lastmod>2021-05-24T10:44:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://luckyoneday.github.io/interview/action-2-yuanfudao/</loc>
     <lastmod>2021-05-23T08:24:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -79,6 +72,13 @@
   
   <url>
     <loc>https://luckyoneday.github.io/daily/44-github-action/</loc>
+    <lastmod>2021-05-03T16:32:34+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://luckyoneday.github.io/tags/</loc>
     <lastmod>2021-05-03T16:32:34+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
