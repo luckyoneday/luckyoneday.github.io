@@ -6,7 +6,16 @@
     <description>Recent content in 面试 on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 24 May 2021 10:44:43 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 May 2021 22:32:27 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fourth</title>
+      <link>https://luckyoneday.github.io/interview/action-4-haoweilai/</link>
+      <pubDate>Sun, 30 May 2021 22:32:27 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-4-haoweilai/</guid>
+      <description>1. 数据类型、怎么判断 2. 浏览器缓存 3. Connection: Keep-Alive 4. 多路复用 5. HTTPS 安全在哪里 6. git 工作流，怎么回滚 7. 介绍服务端渲染 8. ts 泛型约束 9. ts 怎么表示 Promise 的返回值 10. 看输出</description>
+    </item>
+    
     <item>
       <title>third</title>
       <link>https://luckyoneday.github.io/interview/action-3-lanhu/</link>
@@ -67,7 +76,7 @@
       <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action/</guid>
-      <description>first second third</description>
+      <description>first second third fourth</description>
     </item>
     
     <item>

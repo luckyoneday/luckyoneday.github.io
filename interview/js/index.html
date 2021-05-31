@@ -49,7 +49,7 @@
 <meta itemprop="description" content="JavaScript 面试知识点汇总">
 <meta itemprop="datePublished" content="2021-04-17T11:49:26+08:00" />
 <meta itemprop="dateModified" content="2021-04-17T11:49:26+08:00" />
-<meta itemprop="wordCount" content="2830">
+<meta itemprop="wordCount" content="2833">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-17 </span>
         
-          <span class="more-meta"> 约 2830 字 </span>
+          <span class="more-meta"> 约 2833 字 </span>
           <span class="more-meta"> 预计阅读 6 分钟 </span>
         
       </div>
@@ -170,6 +170,7 @@
             <li><a href="#标记清除">标记清除</a></li>
           </ul>
         </li>
+        <li><a href="#尾递归">尾递归</a></li>
         <li><a href="#继承">继承</a></li>
       </ul>
     </li>
@@ -407,6 +408,7 @@
 <h3 id="标记清除">标记清除</h3>
 <p>现代浏览器采用标记清除的方式：当变量进入执行环境时，这个变量被标记为「进入环境」。当变量离开执行环境时标记为「离开环境」。最后垃圾收集器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间（所谓的环境就是执行环境）。</p>
 <p>某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。全局执行环境只有关闭网页的时候才销毁。</p>
+<h2 id="尾递归">尾递归</h2>
 <h2 id="继承">继承</h2>
 <p>继承的优点：继承可以使子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。</p>
 <div class="admonition info"><p class="admonition-title">原型链继承</p>

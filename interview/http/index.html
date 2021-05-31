@@ -49,7 +49,7 @@
 <meta itemprop="description" content="HTTP、浏览器面试知识点汇总">
 <meta itemprop="datePublished" content="2021-04-17T11:58:56+08:00" />
 <meta itemprop="dateModified" content="2021-04-17T11:58:56+08:00" />
-<meta itemprop="wordCount" content="5102">
+<meta itemprop="wordCount" content="5136">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-17 </span>
         
-          <span class="more-meta"> 约 5102 字 </span>
+          <span class="more-meta"> 约 5136 字 </span>
           <span class="more-meta"> 预计阅读 11 分钟 </span>
         
       </div>
@@ -324,18 +324,25 @@
 <p>在服务器端会创建一个 session 对象，产生一个 sessionID 来标识这个 session 对象，然后将这个 sessionID 放入到 Cookie 中发送到客户端，下一次访问时，sessionID 会发送到服务器，在服务器端进行识别不同的用户。</p>
 <h3 id="安全">安全</h3>
 <div class="admonition info"><p class="admonition-title">CSRF：跨站请求伪造</p>
-<p>过滤请求来源：</p>
+<p>是劫持受信任用户向服务器发送非预期请求的攻击方式。</p>
+<p>防范：</p>
 <ul>
-<li>关键操作只支持 POST 请求</li>
+<li>Get 请求不对数据进行修改</li>
 <li>一些关键步骤设置验证码</li>
 <li>检测 Referrer</li>
 <li>设置 token，在某些请求设置 token，某些操作验证 token，token 有有效期</li>
 </ul>
 </div>
 <div class="admonition info"><p class="admonition-title">XSS：跨站脚本攻击</p>
+<p>攻击者在网站注入恶意脚本对客户端网页进行篡改，从而在用户浏览脚本时对用户浏览器进行控制或获取用户隐私数据。</p>
+<ul>
+<li>反射性：引导用户访问带有恶意脚本的网站。</li>
+<li>存储型：攻击者输入的恶意代码被存储，并在浏览器请求数据时服务器返回恶意脚本并执行。</li>
+</ul>
+<p>防范：</p>
 <ul>
 <li>需要过滤用户输入，对输入进行 escape。</li>
-<li>开启 CSP <code>Content-Security-Policy</code>
+<li>开启内容安全策略 CSP <code>Content-Security-Policy</code>
 <ul>
 <li>只允许加载本站资源 <code>Content-Security-Policy: default-src 'self'</code></li>
 <li>只允许加载 HTTPS 协议图片 <code>Content-Security-Policy: img-src https://\*</code></li>
@@ -348,10 +355,8 @@
 <ul>
 <li>客户端发起请求（ClientHello）支持的协议版本、加密方法、压缩方法</li>
 <li>服务端回应（ServerHello）确认使用的协议版本、加密方法，返回加密公钥和服务器证书</li>
-<li>客户端回应，验证证书是否可信，如果可信，就会生成一段随机数并用公钥加密，随后发送给服务端</li>
-<li>服务端使用自己的私钥将信息解密取出随机数，然后使用这串随机数生成自己的对称主密钥并返回客户端</li>
-<li>客户端发送一个 Finished 消息给服务器端，使用对称密钥加密这次通讯的一个散列值</li>
-<li>服务器端生成自己的 hash 值，然后解密客户端发送来的信息，检查这两个值是否对应。如果对应，就向客户端发送一个 Finished 消息，也使用协商好的对称密钥加密</li>
+<li>客户端回应，验证证书是否可信，如果可信，就会生成一段秘钥并用公钥加密，随后发送给服务端</li>
+<li>服务端使用自己的私钥将信息解密取出秘钥，然后使用这段密钥加密接下来的传输内容</li>
 </ul>
 <p>接下来整个 TLS 会话都使用对称秘钥进行加密，传输应用层（HTTP）内容，即 HTTPS。</p>
 <div class="admonition info"><p class="admonition-title">中间人攻击</p>
