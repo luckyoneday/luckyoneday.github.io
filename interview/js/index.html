@@ -49,7 +49,7 @@
 <meta itemprop="description" content="JavaScript 面试知识点汇总">
 <meta itemprop="datePublished" content="2021-04-17T11:49:26+08:00" />
 <meta itemprop="dateModified" content="2021-04-17T11:49:26+08:00" />
-<meta itemprop="wordCount" content="2833">
+<meta itemprop="wordCount" content="2965">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-17 </span>
         
-          <span class="more-meta"> 约 2833 字 </span>
+          <span class="more-meta"> 约 2965 字 </span>
           <span class="more-meta"> 预计阅读 6 分钟 </span>
         
       </div>
@@ -210,6 +210,9 @@
 <li><code>null</code> 或者 <code>undefined</code> 作为 <code>this</code> 指向的对象传入 <code>call</code>、<code>apply</code> 或者 <code>bind</code> 时，会采用默认指向规则。</li>
 <li>箭头函数没有 <code>this</code>，<code>this</code> 指向定义时的作用域。</li>
 </ul>
+<blockquote>
+<p>链几个示例：<a href="../action-1-banyu/#3%E8%BE%93%E5%87%BA%E4%BB%80%E4%B9%88">example-1</a>、<a href="../action-2-yuanfudao/#4-%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%BE%93%E5%87%BA">example-2</a></p>
+</blockquote>
 <h2 id="newcallapplybindobjectcreate">new、call、apply、bind、Object.create</h2>
 <div class="admonition info"><p class="admonition-title">new</p>
 <p>在 JavaScript 中，构造函数只是一些使用 <code>new</code> 操作符时被调用的普通函数。<code>new</code> 操作符调用时，会执行下面的操作：</p>
@@ -400,6 +403,9 @@
 <li><code>process.nextTick</code></li>
 </ul>
 <p>在当前执行栈为空时，主线程会查看微任务队列是否有事件存在。存在，依次执行微队列中的事件对应的回调，若微任务在执行过程中产生了新的微任务，则继续执行微任务，直到微任务队列为空；如果不存在，那么就从宏任务队列中取出一个事件并把对应的回调加入当前执行栈，执行宏任务，并执行该宏任务产生的微任务。</p>
+<blockquote>
+<p>链几个示例：<a href="../action-1-banyu/#1-%E8%BE%93%E5%87%BA%E4%BB%80%E4%B9%88">example-1</a>、<a href="../action-2-yuanfudao/#5-%E4%BE%9D%E6%AC%A1%E6%94%BE%E5%BC%80-error%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%BE%93%E5%87%BA">example-2</a>、<a href="../action-4-haoweilai/#10-%E7%9C%8B%E8%BE%93%E5%87%BA">example-3</a></p>
+</blockquote>
 <h2 id="垃圾回收">垃圾回收</h2>
 <p>所谓的垃圾回收就是找出那些不再继续使用的变量，然后释放出其所占用的内存。垃圾回收会按照固定的时间间隔周期性地执行这一操作。</p>
 <p>JavaScript 使用的垃圾回收机制自动管理内存 &ndash; 垃圾回收是不可见的，可以大幅简化程序的内存管理代码，降低程序员的负担，减少因长时间运行而带来的内存泄露问题。但是程序员无法掌控内存，无法强迫进行垃圾回收，无法干预内存处理。</p>
@@ -409,6 +415,10 @@
 <p>现代浏览器采用标记清除的方式：当变量进入执行环境时，这个变量被标记为「进入环境」。当变量离开执行环境时标记为「离开环境」。最后垃圾收集器完成内存清除工作，销毁那些带标记的值并回收它们所占用的内存空间（所谓的环境就是执行环境）。</p>
 <p>某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。全局执行环境只有关闭网页的时候才销毁。</p>
 <h2 id="尾递归">尾递归</h2>
+<ul>
+<li><strong>尾调用</strong> ：函数最后一步是调用另一个函数。尾调用优化，当不再用到外层函数的内部变量，才会只保留内层函数的调用帧。</li>
+<li><strong>尾递归</strong> ：函数最后一步操作是调用自身。</li>
+</ul>
 <h2 id="继承">继承</h2>
 <p>继承的优点：继承可以使子类具有父类别的各种属性和方法，而不需要再次编写相同的代码。</p>
 <div class="admonition info"><p class="admonition-title">原型链继承</p>

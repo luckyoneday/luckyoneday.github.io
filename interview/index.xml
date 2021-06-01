@@ -6,14 +6,23 @@
     <description>Recent content in 面试 on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 May 2021 22:32:27 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 May 2021 15:47:45 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fifth</title>
+      <link>https://luckyoneday.github.io/interview/action-5-jingdong/</link>
+      <pubDate>Mon, 31 May 2021 15:47:45 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-5-jingdong/</guid>
+      <description>一面 1. css 多行两栏布局 2. flex 还有哪些属性 3. 跨域 4. 关于 this 的指向问题 箭头函数不会改变指向啊，天。 5. 遍历的方式 6. for...in、for...of 遍历</description>
+    </item>
+    
     <item>
       <title>fourth</title>
       <link>https://luckyoneday.github.io/interview/action-4-haoweilai/</link>
       <pubDate>Sun, 30 May 2021 22:32:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action-4-haoweilai/</guid>
-      <description>1. 数据类型、怎么判断 2. 浏览器缓存 3. Connection: Keep-Alive 4. 多路复用 5. HTTPS 安全在哪里 6. git 工作流，怎么回滚 7. 介绍服务端渲染 8. ts 泛型约束 9. ts 怎么表示 Promise 的返回值 10. 看输出</description>
+      <description>一面 1. 数据类型、怎么判断 2. 浏览器缓存 3. Connection: Keep-Alive 4. 多路复用 5. HTTPS 安全在哪里 6. git 工作流，怎么回滚 7. 介绍服务端渲染 8. ts 泛型约束 9. ts 怎么表示 Promise 的返回值 10. 看</description>
     </item>
     
     <item>
@@ -76,7 +85,7 @@
       <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action/</guid>
-      <description>first second third fourth</description>
+      <description>first second third fourth fifth</description>
     </item>
     
     <item>

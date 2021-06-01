@@ -49,7 +49,7 @@
 <meta itemprop="description" content="CSS面试知识点汇总">
 <meta itemprop="datePublished" content="2021-05-01T13:54:32+08:00" />
 <meta itemprop="dateModified" content="2021-05-01T13:54:32+08:00" />
-<meta itemprop="wordCount" content="2891">
+<meta itemprop="wordCount" content="3106">
 
 
 
@@ -138,8 +138,8 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-01 </span>
         
-          <span class="more-meta"> 约 2891 字 </span>
-          <span class="more-meta"> 预计阅读 6 分钟 </span>
+          <span class="more-meta"> 约 3106 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         
       </div>
     </header>
@@ -156,13 +156,15 @@
         <li><a href="#css-优化">CSS 优化</a></li>
         <li><a href="#bfc">BFC</a></li>
         <li><a href="#一些单位">一些单位</a></li>
+        <li><a href="#css-隐藏元素的方式">css 隐藏元素的方式</a></li>
+        <li><a href="#两栏布局">两栏布局</a></li>
+        <li><a href="#三栏布局">三栏布局</a></li>
+        <li><a href="#居中布局">居中布局</a></li>
         <li><a href="#响应式布局">响应式布局</a>
           <ul>
             <li><a href="#媒体查询">媒体查询</a></li>
           </ul>
         </li>
-        <li><a href="#css-隐藏元素的方式">css 隐藏元素的方式</a></li>
-        <li><a href="#居中布局">居中布局</a></li>
         <li><a href="#css3-新增的特性">CSS3 新增的特性</a>
           <ul>
             <li><a href="#flex">flex</a></li>
@@ -226,6 +228,41 @@
 <li>rem：相对长度单位，相对的是 <code>HTML</code> 根元素 <code>font-size</code> 的值；</li>
 <li>vh、vw：相对于窗口宽高，100vw 代表满宽，100vh 表示满高；</li>
 </ul>
+<h2 id="css-隐藏元素的方式">css 隐藏元素的方式</h2>
+<ul>
+<li><code>opacity: 0</code>：影响布局、响应交互</li>
+<li><code>visibility: hidden</code>：影响布局，不响应交互</li>
+<li><code>display: none</code>：元素不可见</li>
+<li><code>position: absolute; top: -9999px; left: -9999px</code>：不影响布局，响应交互</li>
+</ul>
+<h2 id="两栏布局">两栏布局</h2>
+<ul>
+<li>左边块使用 <code>float</code>，右边块使用 <code>margin</code>，父使用 <code>overflow: hidden</code> 触发 BFC；</li>
+<li>左边块使用 <code>absolute</code>；</li>
+<li>父使用 <code>display: flex</code>，左边块固定宽度，右边使用 <code>flex：1</code>；</li>
+<li>父使用 <code>display: grid; grid-template-columns: 200px auto</code></li>
+</ul>
+<h2 id="三栏布局">三栏布局</h2>
+<ul>
+<li>两边使用 <code>float</code>，中间使用 <code>margin</code>：需要将 <code>main</code> 放在最末；</li>
+<li>两边使用 <code>absolute</code>，中间使用 <code>margin</code>；</li>
+<li>父使用 <code>display: flex; justify-content: space-between</code> ，中间使用 <code>flex: 1</code>，<code>main</code> 需要在中间；</li>
+<li>父使用 <code>display: grid; grid-template-columns: 100px auto 100px; grid-template-areas: 'a b c'</code>，<code>main</code> 可以在中间，通过 <code>grid-areas: b</code> 将 <code>main</code> 定位在中间；</li>
+</ul>
+<h2 id="居中布局">居中布局</h2>
+<p>块状元素：</p>
+<ul>
+<li>利用 <code>position</code> + <code>margin: auto</code>：需要子元素 <code>top/right/bottom/left</code> 设为相同的值，然后使用 <code>margin: auto</code>；</li>
+<li>利用 <code>position</code> + <code>margin: 负值</code>：需要子元素 <code>top: 50%; left: 50%; margin-left: 负一半自身宽度; margin-top: 负一半自身高度</code>，需要知道自身宽高；</li>
+<li>利用 <code>position</code> + <code>transform</code>：需要子元素 <code>top: 50%; left: 50%; transform: translate(-50%, -50%)</code>，不需要知道自身宽高；</li>
+<li>table 布局：父元素使用 <code>display: table-cell;text-align: center;vertical-align: middle</code> ，子元素使用 <code> display: inline-block</code>；</li>
+<li>flex 布局：父元素使用 <code>display: flex;justify-content: center;align-items: center</code>；</li>
+<li>grid 布局：父元素使用 <code>display: grid;align-items: center;justify-content: center</code></li>
+</ul>
+<p>行内元素：</p>
+<ul>
+<li><code>text-align: center</code>; <code>height</code> = <code>line-height</code></li>
+</ul>
 <h2 id="响应式布局">响应式布局</h2>
 <p>响应式网站设计是一种网络页面设计布局，页面的设计与开发应当根据用户行为以及设备环境（系统平台、屏幕尺寸、屏幕定向等）进行相应的响应和调整。</p>
 <p>原理是通过媒体查询检测不同的设备屏幕尺寸并进行处理。</p>
@@ -262,28 +299,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="css-隐藏元素的方式">css 隐藏元素的方式</h2>
-<ul>
-<li><code>opacity: 0</code>：影响布局、响应交互</li>
-<li><code>visibility: hidden</code>：影响布局，不响应交互</li>
-<li><code>display: none</code>：元素不可见</li>
-<li><code>position: absolute; top: -9999px; left: -9999px</code>：不影响布局，响应交互</li>
-</ul>
-<h2 id="居中布局">居中布局</h2>
-<p>块状元素：</p>
-<ul>
-<li>利用 <code>position</code> + <code>margin: auto</code>：需要子元素 <code>top/right/bottom/left</code> 设为相同的值，然后使用 <code>margin: auto</code>；</li>
-<li>利用 <code>position</code> + <code>margin: 负值</code>：需要子元素 <code>top: 50%; left: 50%; margin-left: 负一半自身宽度; margin-top: 负一半自身高度</code>，需要知道自身宽高；</li>
-<li>利用 <code>position</code> + <code>transform</code>：需要子元素 <code>top: 50%; left: 50%; transform: translate(-50%, -50%)</code>，不需要知道自身宽高；</li>
-<li>table 布局：父元素使用 <code>display: table-cell;text-align: center;vertical-align: middle</code> ，子元素使用 <code> display: inline-block</code>；</li>
-<li>flex 布局：父元素使用 <code>display: flex;justify-content: center;align-items: center</code>；</li>
-<li>grid 布局：父元素使用 <code>display: grid;align-items: center;justify-content: center</code></li>
-</ul>
-<p>行内元素：</p>
-<ul>
-<li><code>text-align: center</code>; <code>height</code> = <code>line-height</code></li>
-</ul>
-<h2 id="css3-新增的特性">CSS3 新增的特性</h2>
+</div><h2 id="css3-新增的特性">CSS3 新增的特性</h2>
 <div class="admonition info"><p class="admonition-title">新增选择器</p>
 <ul>
 <li><code>:nth-child(n)</code></li>
@@ -504,6 +520,7 @@
 <ul>
 <li><a href="https://codesandbox.io/s/bfc-vvvlp">BFC</a></li>
 <li><a href="https://codesandbox.io/s/center-d8l0c">居中</a></li>
+<li><a href="https://codesandbox.io/s/23-column-9kgmc">两栏 &amp; 三栏布局</a></li>
 <li><a href="https://codesandbox.io/s/animate-g4u4h">动画</a></li>
 <li><a href="https://codesandbox.io/s/flex-ure85">flex</a></li>
 <li><a href="https://codesandbox.io/s/grid-8fb3v">grid</a></li>
