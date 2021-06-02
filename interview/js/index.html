@@ -49,7 +49,7 @@
 <meta itemprop="description" content="JavaScript 面试知识点汇总">
 <meta itemprop="datePublished" content="2021-04-17T11:49:26+08:00" />
 <meta itemprop="dateModified" content="2021-04-17T11:49:26+08:00" />
-<meta itemprop="wordCount" content="2965">
+<meta itemprop="wordCount" content="3020">
 
 
 
@@ -138,8 +138,8 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-17 </span>
         
-          <span class="more-meta"> 约 2965 字 </span>
-          <span class="more-meta"> 预计阅读 6 分钟 </span>
+          <span class="more-meta"> 约 3020 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         
       </div>
     </header>
@@ -164,6 +164,7 @@
             <li><a href="#微任务">微任务</a></li>
           </ul>
         </li>
+        <li><a href="#内存泄露">内存泄露</a></li>
         <li><a href="#垃圾回收">垃圾回收</a>
           <ul>
             <li><a href="#引用计数">引用计数</a></li>
@@ -406,6 +407,13 @@
 <blockquote>
 <p>链几个示例：<a href="../action-1-banyu/#1-%E8%BE%93%E5%87%BA%E4%BB%80%E4%B9%88">example-1</a>、<a href="../action-2-yuanfudao/#5-%E4%BE%9D%E6%AC%A1%E6%94%BE%E5%BC%80-error%E7%9C%8B%E4%B8%80%E4%B8%8B%E8%BE%93%E5%87%BA">example-2</a>、<a href="../action-4-haoweilai/#10-%E7%9C%8B%E8%BE%93%E5%87%BA">example-3</a></p>
 </blockquote>
+<h2 id="内存泄露">内存泄露</h2>
+<ul>
+<li>全局变量：开启 <code>use strict</code> 或者自己注意变量定义</li>
+<li>定时器：需要清除</li>
+<li>DOM 引用：变量不使用的时候置为 null</li>
+<li>事件绑定：需要解绑</li>
+</ul>
 <h2 id="垃圾回收">垃圾回收</h2>
 <p>所谓的垃圾回收就是找出那些不再继续使用的变量，然后释放出其所占用的内存。垃圾回收会按照固定的时间间隔周期性地执行这一操作。</p>
 <p>JavaScript 使用的垃圾回收机制自动管理内存 &ndash; 垃圾回收是不可见的，可以大幅简化程序的内存管理代码，降低程序员的负担，减少因长时间运行而带来的内存泄露问题。但是程序员无法掌控内存，无法强迫进行垃圾回收，无法干预内存处理。</p>
