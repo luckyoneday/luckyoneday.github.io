@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>TCP - xuyou&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="youting" /><meta name="description" content="TCP" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/45-tcp-resend/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="TCP" />
+<meta property="og:description" content="TCP" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/45-tcp-resend/" />
+<meta property="article:published_time" content="2021-05-31T12:38:36+08:00" />
+<meta property="article:modified_time" content="2021-05-31T12:38:36+08:00" />
+<meta itemprop="name" content="TCP">
+<meta itemprop="description" content="TCP">
+<meta itemprop="datePublished" content="2021-05-31T12:38:36+08:00" />
+<meta itemprop="dateModified" content="2021-05-31T12:38:36+08:00" />
+<meta itemprop="wordCount" content="1109">
+
+
+
+<meta itemprop="keywords" content="JavaScript,React," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TCP"/>
+<meta name="twitter:description" content="TCP"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">xuyou</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">xuyou</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">TCP</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-31 </span>
+        
+          <span class="more-meta"> 约 1109 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tcp-如何保证传输可靠">TCP 如何保证传输可靠</a></li>
+        <li><a href="#tcp-如何使用滑窗">TCP 如何使用滑窗</a></li>
+        <li><a href="#tcp-流量控制">TCP 流量控制</a></li>
+        <li><a href="#tcp-拥塞机制">TCP 拥塞机制</a></li>
+        <li><a href="#参考资料">参考资料</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>TCP 协议是传输层协议，实现的是 <strong>端口到端口</strong> 的通信。</p>
+<h2 id="tcp-如何保证传输可靠">TCP 如何保证传输可靠</h2>
+<p>TCP 头部会存一个带有该发送片段的序号，标识该片段在整个文本流的位置。在接收方接收到正确的、符合次序的片段之后，会向发送方发送 ACK 回复，表示接下来期待接收的序号。这样的过程一旦一端发送异常，就会导致资源不完整，所以需要重传机制。</p>
+<div class="admonition info"><p class="admonition-title">超时重传</p>
+<p>如果发送方在等待一定时间之后，还是没有收到 ACK 回复，发送方会 <strong>重复发送</strong> 那个出现异常的片段，直到收到该片段对应的 ACK 回复(回复号为 L+1 的 ACK)。</p>
+<ul>
+<li>RTT (Round-Trip Time 往返时延，数据从发送方到接收方的往返时间)</li>
+<li>RTO (Retransmission Timeout 超时重传时间)</li>
+</ul>
+<p>超时重传可能存在的问题是超时周期可能较长。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">快速重传</p>
+<p>当收到三个相同的 ACK 报文时，触发重传。</p>
+<p>可能存在的问题是重传一个还是重传之后的所有。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">SACK</p>
+<p>TCP 头部加一个叫 SACK 的字段，将缓存的地图发送给发送方，这样发送方就可以知道哪些数据收到了，哪些数据没收到，知道了这些信息，就可以只重传丢失的数据。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">D-SACK</p>
+<p>使用 SACK 来告诉发送方有哪些数据被重复接收了。</p>
+<ul>
+<li>可以让发送方知道，是发出去的包丢了，还是接收方回应的 ACK 包丢了;</li>
+<li>可以知道是不是发送方的数据包被网络延迟了;</li>
+</ul>
+</div>
+<h2 id="tcp-如何使用滑窗">TCP 如何使用滑窗</h2>
+<p>发送方同时发送多个片段，对于提前到达的乱序片段在缓存中先存放着。之前的片段接收到后，滑窗向后移动。<br>
+接收窗口的大小 <strong>约等于</strong> 发送窗口的大小。</p>
+<h2 id="tcp-流量控制">TCP 流量控制</h2>
+<p>如果一直发送数据，接收方处理不过来，就会触发重传机制，随后造成流量浪费，所以 TCP 会根据流量情况自动改变发送的数据量，即 TCP 流量控制。</p>
+<p>当接收方接收窗口大小降为 0，发送方会隔一段时间进行 <strong>窗口探测</strong>。(发送方向接收方发送包含 1 byte 文本流的 TCP 片段，并等待 ACK 回复，该 ACK 回复包含有 window size).如果探测结果显示窗口依然为 0，发送方会等待更长的时间，然后再次进行窗口探测，直到 TCP 传输恢复。</p>
+<h2 id="tcp-拥塞机制">TCP 拥塞机制</h2>
+<p>如果网络出现拥塞，大量数据包丢失就会触发重传，可能会导致更大的延迟和丢包，所以 TCP 提供了拥塞机制。</p>
+<blockquote>
+<p>TCP 如何检测到拥塞？</p>
+<p>只要发送方认为 TCP 丢失，则认为网络出现了拥塞。</p>
+</blockquote>
+<div class="admonition info"><p class="admonition-title">慢启动</p>
+<ul>
+<li>初始化拥塞窗口 (cwnd) 大小是 1。</li>
+<li>发送方每收到一个 ACK，拥塞窗口 (cwnd) 大小就增加 1。</li>
+<li>慢启动窗口呈指数性增长。</li>
+</ul>
+<p>当 cwnd &lt; ssthresh (慢启动门限) 时，使用慢启动算法。<br>
+当 cwnd &gt;= ssthresh 时，就会使用拥塞避免算法。</p>
+</div>
+<div class="admonition info"><p class="admonition-title">拥塞避免</p>
+<ul>
+<li>每收到一个 ACK 回复，cwnd 大小增加 1/cwnd，呈线性增长。</li>
+<li>当触发了重传，就进入了拥塞发生阶段。</li>
+</ul>
+</div>
+<div class="admonition info"><p class="admonition-title">拥塞发生</p>
+<ul>
+<li>ssthresh 设为 cwnd/2 。</li>
+<li>cwnd 重置为 1 。</li>
+<li>重新进入了慢启动阶段。</li>
+</ul>
+</div>
+<div class="admonition info"><p class="admonition-title">快速恢复</p>
+<p>若重传时还可以收到三个 ACK 回复，TCP 会认为拥塞情况并不严重，会将</p>
+<ul>
+<li>cwnd 设为 cwnd/2</li>
+<li>ssthresh 设为 cwnd</li>
+</ul>
+<p>进入快速恢复阶段。然后将</p>
+<ul>
+<li>cwnd 设为 ssthresh+3</li>
+<li>重传丢失的数据包</li>
+<li>收到新的 ACK 回复之后，可以重新进入之前的拥塞避免阶段</li>
+</ul>
+</div>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaolincoder/ImageHost2/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/TCP-%E5%8F%AF%E9%9D%A0%E7%89%B9%E6%80%A7/31.png" alt="img">
+（图片来源于参考文章）</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://www.cnblogs.com/vamei/archive/2012/12/05/2802811.html">协议森林</a></li>
+<li><a href="https://www.cnblogs.com/xiaolincoding/p/12732052.html">30 张图解： TCP 重传、滑动窗口、流量控制、拥塞控制</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">youting</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-05-31
+        
+    </span>
+  </p>
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          <a href="/tags/react/">React</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/daily/44-github-action/">
+            <span class="next-text nav-default">github action</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

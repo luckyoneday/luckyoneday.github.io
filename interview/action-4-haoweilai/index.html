@@ -49,7 +49,7 @@
 <meta itemprop="description" content="一面 1. 数据类型、怎么判断 2. 浏览器缓存 3. Connection: Keep-Alive 4. 多路复用 5. HTTPS 安全在哪里 6. git 工作流，怎么回滚 7. 介绍服务端渲染 8. ts 泛型约束 9. ts 怎么表示 Promise 的返回值 10. 看">
 <meta itemprop="datePublished" content="2021-05-30T22:32:27+08:00" />
 <meta itemprop="dateModified" content="2021-05-30T22:32:27+08:00" />
-<meta itemprop="wordCount" content="427">
+<meta itemprop="wordCount" content="505">
 
 
 
@@ -138,8 +138,8 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-30 </span>
         
-          <span class="more-meta"> 约 427 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 505 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -176,6 +176,13 @@
             <li><a href="#4-tcpudp-的区别">4. tcp、udp 的区别</a></li>
             <li><a href="#5-数组乱序">5. 数组乱序</a></li>
             <li><a href="#6-编写代码">6. 编写代码</a></li>
+          </ul>
+        </li>
+        <li><a href="#三面">三面</a>
+          <ul>
+            <li><a href="#1-首页加载白屏时间过长有什么解决方法">1. 首页加载白屏时间过长，有什么解决方法</a></li>
+            <li><a href="#2-写一个函数">2. 写一个函数</a></li>
+            <li><a href="#3-内存泄露场景怎么解决">3. 内存泄露场景，怎么解决</a></li>
           </ul>
         </li>
       </ul>
@@ -289,7 +296,25 @@ replace :&#39;\*&#39;
 小刘同学是今年北京高考文科**, 高考英语成绩**第一, 成功被 \*\*录取
 </code></pre></td></tr></table>
 </div>
+</div><h2 id="三面">三面</h2>
+<h3 id="1-首页加载白屏时间过长有什么解决方法">1. 首页加载白屏时间过长，有什么解决方法</h3>
+<h3 id="2-写一个函数">2. 写一个函数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">实现一个add方法, 使计算结果能够满足如下预期:
+add(1)(2)(3)() === 6;
+add(1, 2, 3)(4)() === 10;
+add(1)(2)(3)(4)(5)() === 15;
+</code></pre></td></tr></table>
 </div>
+</div><h3 id="3-内存泄露场景怎么解决">3. 内存泄露场景，怎么解决</h3>
+
     </div>
 
     <div class="post-copyright">
