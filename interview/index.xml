@@ -67,7 +67,7 @@
       <pubDate>Fri, 07 May 2021 17:58:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/resources/</guid>
-      <description>项目相关 codecept codeceptjs basic puppeteer puppeteer-core 不包括 PUPPETEER_* 的环境变量，不下载 Chromium。 electron electron 通信：看自己的博客 webSocket sketch sketch 通信：看自己的博客 drag &amp;amp; drop react-beautiful-dnd drag and drop 设置 draggable = true，</description>
+      <description>项目相关 codecept codeceptjs basic puppeteer puppeteer-core 不包括 PUPPETEER_* 的环境变量，不下载 Chromium。 electron electron 通信 webSocket sketch sketch 通信 drag &amp;amp; drop react-beautiful-dnd drag and drop 设置 draggable = true，dragStart 时设置 ev</description>
     </item>
     
     <item>
