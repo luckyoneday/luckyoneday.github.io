@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Typescript 和 Redux 的面试题">
 <meta itemprop="datePublished" content="2021-05-20T15:07:04+08:00" />
 <meta itemprop="dateModified" content="2021-05-20T15:07:04+08:00" />
-<meta itemprop="wordCount" content="588">
+<meta itemprop="wordCount" content="677">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-05-20 </span>
         
-          <span class="more-meta"> 约 588 字 </span>
+          <span class="more-meta"> 约 677 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -153,8 +153,10 @@
   <ul>
     <li><a href="#typescript">typescript</a>
       <ul>
-        <li><a href="#interface-和-type-的区别">interface 和 type 的区别</a></li>
+        <li><a href="#基础类型">基础类型</a></li>
         <li><a href="#泛型">泛型</a></li>
+        <li><a href="#索引类型">索引类型</a></li>
+        <li><a href="#interface-和-type-的区别">interface 和 type 的区别</a></li>
       </ul>
     </li>
     <li><a href="#redux">Redux</a></li>
@@ -165,6 +167,16 @@
 
     <div class="post-content">
       <h1 id="typescript">typescript</h1>
+<h2 id="基础类型">基础类型</h2>
+<p><code>number</code>、<code>boolean</code>、<code>string</code>、<code>array</code>、<code>tuple</code>、<code>enum</code>、<code>any</code>、<code>void</code>、<code>null</code>、<code>undefined</code>、<code>never</code>、<code>object</code></p>
+<h2 id="泛型">泛型</h2>
+<ul>
+<li><a href="../../daily/28-typescript-generics/">泛型</a></li>
+</ul>
+<h2 id="索引类型">索引类型</h2>
+<ul>
+<li><a href="../../daily/29-typescript-index-types/">索引类型</a></li>
+</ul>
 <h2 id="interface-和-type-的区别">interface 和 type 的区别</h2>
 <div class="admonition info"><p class="admonition-title">1.都可以用来描述对象或函数的类型，但语法不同</p>
 <div class="highlight"><div class="chroma">
@@ -337,14 +349,14 @@
 <span class="p">};</span>
 
 <span class="cm">/**
-</span><span class="cm">报错 
-</span><span class="cm">接口中的计算属性名称必须引用必须引用类型为文本类型或 &#34;unique symbol&#34; 的表达式。
-</span><span class="cm">计算属性名的类型必须为 &#34;string&#34;、&#34;number&#34;、&#34;symbol&#34; 或 &#34;any&#34;。
-</span><span class="cm">“Status”仅表示类型，但在此处却作为值使用。
+</span><span class="cm">  报错 
+</span><span class="cm">  接口中的计算属性名称必须引用必须引用类型为文本类型或 &#34;unique symbol&#34; 的表达式。
+</span><span class="cm">  计算属性名的类型必须为 &#34;string&#34;、&#34;number&#34;、&#34;symbol&#34; 或 &#34;any&#34;。
+</span><span class="cm">  “Status”仅表示类型，但在此处却作为值使用。
 </span><span class="cm">**/</span>
-<span class="c1">//interface StatusMap2 {
-</span><span class="c1">//  [key in Status]: string
-</span><span class="c1">//}
+<span class="c1">// interface StatusMap2 {
+</span><span class="c1">//   [key in Status]: string
+</span><span class="c1">// }
 </span></code></pre></td></tr></table>
 </div>
 </div></div>
@@ -382,10 +394,6 @@
 </code></pre></td></tr></table>
 </div>
 </div></div>
-<h2 id="泛型">泛型</h2>
-<ul>
-<li><a href="../../daily/28-typescript-generics/">泛型</a></li>
-</ul>
 <h1 id="redux">Redux</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

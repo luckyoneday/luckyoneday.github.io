@@ -49,7 +49,7 @@
       <pubDate>Thu, 20 May 2021 15:07:04 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/ts-redux/</guid>
-      <description>typescript interface 和 type 的区别 1.都可以用来描述对象或函数的类型，但语法不同 1 2 3 4 5 interface SetPoint { (x: number, y: number): void; } type SetPoint = (x: number, y: number) =&amp;gt; void; 2.type 类型别名还可以用于其他类型 1 2 3</description>
+      <description>typescript 基础类型 number、boolean、string、array、tuple、enum、any、void、null、undefined、ne</description>
     </item>
     
     <item>
@@ -59,6 +59,15 @@
       
       <guid>https://luckyoneday.github.io/interview/action-1-banyu/</guid>
       <description>一面 1. 输出什么 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 console.log(&amp;#34;1&amp;#34;); async function async1() { console.log(&amp;#34;2&amp;#34;); await console.log(&amp;#34;3&amp;#34;); console.log(&amp;#34;4&amp;#34;); } setTimeout(function () { console.log(&amp;#34;5&amp;#34;); }, 0); async1(); new Promise(function (resolve) { console.log(&amp;#34;6&amp;#34;); resolve(); }).then(function () { console.log(&amp;#34;7&amp;#34;); }); console.log(&amp;#34;8&amp;#34;); 2. 输出什么 1 2 3 4 5 6 7 8</description>
+    </item>
+    
+    <item>
+      <title>资源汇总</title>
+      <link>https://luckyoneday.github.io/interview/resources/</link>
+      <pubDate>Fri, 07 May 2021 17:58:27 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/resources/</guid>
+      <description>项目相关 codecept codeceptjs basic puppeteer puppeteer-core 不包括 PUPPETEER_* 的环境变量，不下载 Chromium。 electron electron 通信：看自己的博客 webSocket sketch sketch 通信：看自己的博客 drag &amp;amp; drop react-beautiful-dnd drag and drop 设置 draggable = true，</description>
     </item>
     
     <item>
@@ -85,7 +94,7 @@
       <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action/</guid>
-      <description>first second third fourth fifth</description>
+      <description>first second third fourth fifth 参考资源汇总</description>
     </item>
     
     <item>
