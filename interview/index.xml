@@ -6,14 +6,41 @@
     <description>Recent content in 面试 on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 11 Jun 2021 16:02:59 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Jun 2021 21:07:33 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ninth</title>
+      <link>https://luckyoneday.github.io/interview/action-9/</link>
+      <pubDate>Thu, 17 Jun 2021 21:07:33 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-9/</guid>
+      <description>这一场面试是目前为止最久的。 1. 首先是项目 封装了哪些自己觉得好用的组件 拖拽和缩放怎么实现、拖拽边界值怎么处理 canvas 画图遇到过什么问题 服务端渲染怎么</description>
+    </item>
+    
+    <item>
+      <title>eighth</title>
+      <link>https://luckyoneday.github.io/interview/action-8-bilibili/</link>
+      <pubDate>Wed, 16 Jun 2021 17:29:57 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-8-bilibili/</guid>
+      <description>一面 1. websocket 怎么重连 2. websocket 长链接和 短链接 前一个请求数据还没有返回，下一个请求就发出了这种情况怎么解决 3. 虚拟列表 4. 大文件上传、分片上传 顺便说一下怎么</description>
+    </item>
+    
+    <item>
+      <title>得物</title>
+      <link>https://luckyoneday.github.io/interview/action-7-dewu/</link>
+      <pubDate>Wed, 16 Jun 2021 11:45:05 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-7-dewu/</guid>
+      <description>一面 1. 原型链 2. 怎么比较两个对象是否相等 函数怎么比较是否相等 3. ES6 的语法 4. Set WeakSet WeakSet 何时会被清除 5. CSS 吸顶 6. CSS 复合层 7. React 常用的方法 8. useMemo 和 useCallback 的区别 8. 会不</description>
+    </item>
+    
     <item>
       <title>sixth</title>
       <link>https://luckyoneday.github.io/interview/action-6-eleme/</link>
       <pubDate>Fri, 11 Jun 2021 16:02:59 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action-6-eleme/</guid>
-      <description>1. 层次遍历 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 const data = [ { name: &amp;#34;a&amp;#34;, children: [ { name: &amp;#34;b&amp;#34;, children: [{ name: &amp;#34;e&amp;#34; }] }, { name: &amp;#34;c&amp;#34;, children: [{ name: &amp;#34;f&amp;#34; }] }, { name: &amp;#34;d&amp;#34;, children: [{ name: &amp;#34;g&amp;#34; }] }, ], }, { name: &amp;#34;a2&amp;#34;, children: [ { name:</description>
+      <description>一面 1. 层次遍历 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 const data = [ { name: &amp;#34;a&amp;#34;, children: [ { name: &amp;#34;b&amp;#34;, children: [{ name: &amp;#34;e&amp;#34; }] }, { name: &amp;#34;c&amp;#34;, children: [{ name: &amp;#34;f&amp;#34; }] }, { name: &amp;#34;d&amp;#34;, children: [{ name: &amp;#34;g&amp;#34; }] }, ], }, { name: &amp;#34;a2&amp;#34;, children: [</description>
     </item>
     
     <item>
@@ -71,6 +98,15 @@
     </item>
     
     <item>
+      <title>资源汇总</title>
+      <link>https://luckyoneday.github.io/interview/resources/</link>
+      <pubDate>Fri, 07 May 2021 17:58:27 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/resources/</guid>
+      <description>项目相关 codecept codeceptjs basic puppeteer puppeteer-core 不包括 PUPPETEER_* 的环境变量，不下载 Chromium。 electron electron 通信 webSocket sketch sketch 通信 drag &amp;amp; drop react-beautiful-dnd drag and drop 设置 draggable = true，dragStart 时设置 ev</description>
+    </item>
+    
+    <item>
       <title>CSS面试知识点汇总</title>
       <link>https://luckyoneday.github.io/interview/css/</link>
       <pubDate>Sat, 01 May 2021 13:54:32 +0800</pubDate>
@@ -94,7 +130,7 @@
       <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action/</guid>
-      <description>first second third fourth fifth sixth</description>
+      <description>first second third fourth fifth sixth seventh eighth ninth</description>
     </item>
     
     <item>

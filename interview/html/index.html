@@ -49,7 +49,7 @@
 <meta itemprop="description" content="HTML面试知识点汇总">
 <meta itemprop="datePublished" content="2021-04-17T12:09:18+08:00" />
 <meta itemprop="dateModified" content="2021-04-17T12:09:18+08:00" />
-<meta itemprop="wordCount" content="2128">
+<meta itemprop="wordCount" content="2358">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-17 </span>
         
-          <span class="more-meta"> 约 2128 字 </span>
+          <span class="more-meta"> 约 2358 字 </span>
           <span class="more-meta"> 预计阅读 5 分钟 </span>
         
       </div>
@@ -169,6 +169,7 @@
             <li><a href="#如何减少">如何减少</a></li>
           </ul>
         </li>
+        <li><a href="#浏览器的多架构进程">浏览器的多架构进程</a></li>
         <li><a href="#参考资料">参考资料</a></li>
       </ul>
     </li>
@@ -258,6 +259,23 @@
 <li>动画尽量使用 <code>position: fixed/absolute</code> ，尽可能使元素脱离文档流，从而减少对其他元素的影响；</li>
 <li>触发 CSS3 硬件加速，可以使用 <code>transform</code>、<code>opacity</code>、<code>filters</code>，这些效果不会引起回流重绘；</li>
 <li>避免使用 <code>table</code> 布局，<code>table</code> 中每个元素的大小以及内容的改动，都会导致整个 <code>table</code> 的重新计算；</li>
+</ul>
+<h2 id="浏览器的多架构进程">浏览器的多架构进程</h2>
+<p>默认新开一个 tab 页面就新建一个进程，所以单个 tab 页面崩溃不会影响到整个浏览器；同样，第三方插件崩溃也不会影响到整个浏览器。</p>
+<p>浏览器进程包括：</p>
+<ul>
+<li>主进程 browser process</li>
+<li>第三方插件进程 plugin process</li>
+<li>GPU 进程 GPU process</li>
+<li>渲染进程 renderer process</li>
+</ul>
+<p>而浏览器的渲染进程是多线程的，包括多个主要线程：</p>
+<ul>
+<li>GUI 渲染线程：负责渲染浏览器界面，解析 HTML、CSS、构建 DOM 树和 render 树、重绘或回流等；该线程与 JS 引擎线程是互斥的；</li>
+<li>JS 引擎线程：负责处理 JavaScript 脚本，运行代码；</li>
+<li>事件触发线程：用来控制事件循环；</li>
+<li>定时触发器线程</li>
+<li>异步 http 请求线程</li>
 </ul>
 <h2 id="参考资料">参考资料</h2>
 <ul>
