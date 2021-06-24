@@ -6,14 +6,41 @@
     <description>Recent content in 面试 on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 17 Jun 2021 21:07:33 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Jun 2021 23:22:17 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>twelfth</title>
+      <link>https://luckyoneday.github.io/interview/action-12-toutiao/</link>
+      <pubDate>Tue, 22 Jun 2021 23:22:17 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-12-toutiao/</guid>
+      <description>一面 1. CSS: rem、em、px、vh、vw 区别 2. CSS: 盒模型 3. CSS: 怎么居中一个元素 4. CSS: 常用的函数有哪些 5. 事件机制 react 事件机制 6. 浏览器缓存 7. 跨域 简单请求和</description>
+    </item>
+    
+    <item>
+      <title>eleventh</title>
+      <link>https://luckyoneday.github.io/interview/action-11-qiniuyun/</link>
+      <pubDate>Tue, 22 Jun 2021 11:12:06 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-11-qiniuyun/</guid>
+      <description>每次面试都是一次进步 1. 项目介绍 sketch 插件怎么开发 e2e 测试流程 2. Promise 怎么实现并发请求 如果有一个请求 pending 了，怎么解决 3. 前端路由怎么使用 后端为什么不会收到请</description>
+    </item>
+    
+    <item>
+      <title>tenth</title>
+      <link>https://luckyoneday.github.io/interview/action-10-dingdong/</link>
+      <pubDate>Fri, 18 Jun 2021 15:00:47 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/interview/action-10-dingdong/</guid>
+      <description>一面 1. js 深拷贝 浅拷贝 循环引用怎么解决 2. 跨域 跨域是服务端没有返回数据吗 3. 节流和防抖的区别 4. react diff 算法 5. 数组、链表的区别 哪个效率高 6. 排序算法 快排遇</description>
+    </item>
+    
     <item>
       <title>ninth</title>
-      <link>https://luckyoneday.github.io/interview/action-9/</link>
+      <link>https://luckyoneday.github.io/interview/action-9-21kunpeng/</link>
       <pubDate>Thu, 17 Jun 2021 21:07:33 +0800</pubDate>
       
-      <guid>https://luckyoneday.github.io/interview/action-9/</guid>
-      <description>这一场面试是目前为止最久的。 1. 首先是项目 封装了哪些自己觉得好用的组件 拖拽和缩放怎么实现、拖拽边界值怎么处理 canvas 画图遇到过什么问题 服务端渲染怎么</description>
+      <guid>https://luckyoneday.github.io/interview/action-9-21kunpeng/</guid>
+      <description>一面 这一场面试是目前为止最久的。 1. 首先是项目 封装了哪些自己觉得好用的组件 拖拽和缩放怎么实现、拖拽边界值怎么处理 canvas 画图遇到过什么问题 服务端渲染</description>
     </item>
     
     <item>
@@ -103,7 +130,7 @@
       <pubDate>Fri, 07 May 2021 17:58:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/resources/</guid>
-      <description>项目相关 codecept codeceptjs basic puppeteer puppeteer-core 不包括 PUPPETEER_* 的环境变量，不下载 Chromium。 electron electron 通信 webSocket sketch sketch 通信 drag &amp;amp; drop react-beautiful-dnd drag and drop 设置 draggable = true，dragStart 时设置 ev</description>
+      <description>项目相关 codecept codeceptjs basic puppeteer puppeteer-core 不包括 PUPPETEER_* 的环境变量，不下载 Chromium。 electron electron 通信 sketch sketch 通信 drag &amp;amp; drop react-beautiful-dnd drag and drop 设置 draggable = true，dragStart 时设置 eve</description>
     </item>
     
     <item>
@@ -130,7 +157,7 @@
       <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action/</guid>
-      <description>first second third fourth fifth sixth seventh eighth ninth</description>
+      <description>banyu yuanfudao lanhu-nothing haoweilai jingdong eleme dewu bilibili 21kunpeng dingdong qiniuyun toutiao</description>
     </item>
     
     <item>

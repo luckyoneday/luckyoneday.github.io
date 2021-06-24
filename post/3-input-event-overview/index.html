@@ -49,7 +49,7 @@
 <meta itemprop="description" content="关于中文输入的input">
 <meta itemprop="datePublished" content="2020-07-14T20:57:50+08:00" />
 <meta itemprop="dateModified" content="2020-07-14T20:57:50+08:00" />
-<meta itemprop="wordCount" content="1458">
+<meta itemprop="wordCount" content="1452">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2020-07-14 </span>
         
-          <span class="more-meta"> 约 1458 字 </span>
+          <span class="more-meta"> 约 1452 字 </span>
           <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
@@ -332,7 +332,7 @@
 <span class="p">};</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>为了让这个事件起作用，（<code>compositionend</code> 事件在 <code>change）</code> 之后)，那就需要在 <code>onChange</code> 的时候判断不是复合输入才替换字符串，那怎么识别是不是符合输入呢！其实在 <code>onchange</code> 、<code>onkeydown</code>、<code>onkeyup</code> 等事件判断是否是 composition event 的依据除了 <code>keyCode === 229</code> ，还有个 <code>isComposing</code> 属性，也可以感知到是否是 composition event，即：</p>
+</div><p>为了让这个事件起作用，（<code>compositionend</code> 事件在 <code>change</code> 之后)，那就需要在 <code>onChange</code> 的时候判断不是复合输入才替换字符串，那怎么识别是不是符合输入呢！其实在 <code>onchange</code> 、<code>onkeydown</code>、<code>onkeyup</code> 等事件判断是否是 composition event 的依据除了 <code>keyCode === 229</code> ，还有个 <code>isComposing</code> 属性，也可以感知到是否是 composition event，即：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
