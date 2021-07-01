@@ -49,7 +49,7 @@
 <meta itemprop="description" content="JavaScript 面试知识点汇总">
 <meta itemprop="datePublished" content="2021-04-17T11:49:26+08:00" />
 <meta itemprop="dateModified" content="2021-04-17T11:49:26+08:00" />
-<meta itemprop="wordCount" content="3026">
+<meta itemprop="wordCount" content="3470">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-17 </span>
         
-          <span class="more-meta"> 约 3026 字 </span>
+          <span class="more-meta"> 约 3470 字 </span>
           <span class="more-meta"> 预计阅读 7 分钟 </span>
         
       </div>
@@ -173,6 +173,12 @@
         </li>
         <li><a href="#尾递归">尾递归</a></li>
         <li><a href="#继承">继承</a></li>
+        <li><a href="#异常">异常</a>
+          <ul>
+            <li><a href="#错误类型">错误类型</a></li>
+            <li><a href="#如何捕获">如何捕获</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
   </ul>
@@ -675,6 +681,35 @@
 </code></pre></td></tr></table>
 </div>
 </div></div>
+<h2 id="异常">异常</h2>
+<h3 id="错误类型">错误类型</h3>
+<p>ECMA-262 中定义了下列 7 种错误类型</p>
+<ul>
+<li><code>Error</code>：错误的基类，其他错误都继承自该类型</li>
+<li><code>EvalError</code>：Eval 函数执行异常</li>
+<li><code>RangeError</code>：数组越界</li>
+<li><code>ReferenceError</code>：尝试引用一个未被定义的变量时，将会抛出此异常</li>
+<li><code>SyntaxError</code>：语法解析不合理例如有中文符号，<code>Uncaught SyntaxError: Invalid or unexpected token</code></li>
+<li><code>TypeError</code>：类型错误，<code>TypeError: Cannot read property 'name' of undefined</code></li>
+<li><code>URIError</code>：以一种错误的方式使用全局 URI 处理函数而产生的错误</li>
+</ul>
+<h3 id="如何捕获">如何捕获</h3>
+<ul>
+<li><code>window.onerror</code> 无法捕获静态资源异常。</li>
+<li><code>addEventListener(&quot;error&quot;)</code> 当资源（如 img 或 script）加载失败，加载资源的元素会触发一个 <code>error</code> 事件，并执行该元素上的 <code>onerror()</code> 处理函数。这些 <code>error</code> 事件不会向上冒泡到 <code>window</code>，但可以在捕获阶段被捕获。因此如果要全局监听资源加载错误，需要在 <strong>捕获阶段</strong> 捕获事件。</li>
+<li><code>addEventListener('unhandledrejection')</code> 可以用来捕获未 <code>catch</code> 的 <code>promise</code> 的错误。</li>
+<li>在跨域脚本上配置 <code>crossorigin=&quot;anonymous&quot;</code> 捕获跨域脚本错误。</li>
+<li>封装 <code>fetch</code>、 axios 使用 <code>interceptors</code> 拦截返回等。</li>
+<li>React 使用 <code>ErrorBoundary</code> 带 <code>componentDidCatch</code> 生命周期，但是无法捕获下列异常
+<ul>
+<li>事件处理器</li>
+<li>异步代码</li>
+<li>服务端的渲染代码</li>
+<li>在 error boundaries 区域内的错误</li>
+</ul>
+</li>
+<li><code>try {} catch {}</code></li>
+</ul>
 
     </div>
 

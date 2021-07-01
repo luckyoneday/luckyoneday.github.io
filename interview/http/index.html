@@ -49,7 +49,7 @@
 <meta itemprop="description" content="HTTP、浏览器面试知识点汇总">
 <meta itemprop="datePublished" content="2021-04-17T11:58:56+08:00" />
 <meta itemprop="dateModified" content="2021-04-17T11:58:56+08:00" />
-<meta itemprop="wordCount" content="5101">
+<meta itemprop="wordCount" content="5156">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2021-04-17 </span>
         
-          <span class="more-meta"> 约 5101 字 </span>
+          <span class="more-meta"> 约 5156 字 </span>
           <span class="more-meta"> 预计阅读 11 分钟 </span>
         
       </div>
@@ -262,12 +262,12 @@
 <h3 id="状态码">状态码</h3>
 <ul>
 <li><code>200 OK</code> 客户端请求成功</li>
-<li><code>301 Moved Permanently</code> 请求永久重定向</li>
-<li><code>302 Moved Temporarily</code> 请求临时重定向</li>
+<li><code>301 Moved Permanently</code> 请求永久重定向、会将请求转移到新位置、POST 变为 GET</li>
+<li><code>302 Moved Temporarily</code> 请求临时重定向、请求还用原来的位置、POST 变为 GET</li>
 <li><code>304 Not Modified</code> 文件未修改，可以直接使用缓存的文件</li>
 <li><code>400 Bad Request</code> 由于客户端请求有语法错误，不能被服务器所理解</li>
-<li><code>401 Unauthorized</code> 请求未经授权。这个状态代码必须和 WWW-Authenticate 报头域一起使用</li>
-<li><code>403 Forbidden</code> 服务器收到请求，但是拒绝提供服务。服务器通常会在响应正文中给出不提供服务的原因</li>
+<li><code>401 Unauthorized</code> 请求未经授权。这个状态代码必须和 WWW-Authenticate 报头域一起使用、例如未登录</li>
+<li><code>403 Forbidden</code> 服务器收到请求，但是拒绝提供服务。服务器通常会在响应正文中给出不提供服务的原因、例如已经登录但没有权限</li>
 <li><code>404 Not Found</code> 请求的资源不存在，例如，输入了错误的 URL</li>
 <li><code>500 Internal Server Error</code> 服务器发生不可预期的错误，导致无法完成客户端的请求</li>
 <li><code>503 Service Unavailable</code> 服务器当前不能够处理客户端的请求，在一段时间之后，服务器可能会恢复正常</li>

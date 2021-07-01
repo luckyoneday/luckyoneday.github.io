@@ -49,7 +49,7 @@
 <meta itemprop="description" content="字节面试">
 <meta itemprop="datePublished" content="2021-06-22T23:22:17+08:00" />
 <meta itemprop="dateModified" content="2021-06-22T23:22:17+08:00" />
-<meta itemprop="wordCount" content="370">
+<meta itemprop="wordCount" content="818">
 
 
 
@@ -138,8 +138,8 @@
       <div class="post-meta">
         <span class="post-time"> 2021-06-22 </span>
         
-          <span class="more-meta"> 约 370 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+          <span class="more-meta"> 约 818 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
     </header>
@@ -179,6 +179,16 @@
             <li><a href="#5-hooks-里面-setstate-和-usestate-的区别">5. Hooks 里面 setState 和 useState 的区别</a></li>
             <li><a href="#6-看输出">6. 看输出</a></li>
             <li><a href="#7-编程题">7. 编程题</a></li>
+          </ul>
+        </li>
+        <li><a href="#三面">三面</a>
+          <ul>
+            <li><a href="#1-以下-promise-输出什么">1. 以下 Promise 输出什么</a></li>
+            <li><a href="#2-webpack-loader-有哪些用法">2. webpack loader 有哪些用法</a></li>
+            <li><a href="#3-react-fiber-何时中断更新">3. react fiber 何时中断更新</a></li>
+            <li><a href="#4-react-新特性">4. react 新特性</a></li>
+            <li><a href="#5-滚动加载实现方式">5. 滚动加载实现方式</a></li>
+            <li><a href="#6-一个比较简单的编程题">6. 一个比较简单的编程题</a></li>
           </ul>
         </li>
       </ul>
@@ -313,7 +323,59 @@
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">已知数组 a = [1, [2, [3, [4, null]]]]，实现数组 b = [4, [3, [2, [1, null]]]]，考虑 n 级嵌套的情况。
 </code></pre></td></tr></table>
 </div>
+</div><h2 id="三面">三面</h2>
+<p>三面面试官会要求把所有的事情都说的很清楚。并且会追问，<code>还有呢，还有呢</code>。问的技术点列一下：</p>
+<h3 id="1-以下-promise-输出什么">1. 以下 Promise 输出什么</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">reject</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span>
+    <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+    <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+  <span class="p">);</span>
+</code></pre></td></tr></table>
 </div>
+</div><p>我说是 <code>2 3</code> 之后他问了很多次你确认吗，又问为什么输出 <code>2 3</code>，我说 <code>catch</code> 完 <code>catch</code> 的这个 <code>promise</code> 就变为 <code>resolve</code> 了，他说你确定是你说的这个原因吗&hellip;那不然呢还能是我蒙的吗。</p>
+<h3 id="2-webpack-loader-有哪些用法">2. webpack loader 有哪些用法</h3>
+<h3 id="3-react-fiber-何时中断更新">3. react fiber 何时中断更新</h3>
+<ul>
+<li>一开始我说有高优先级任务插入的时候会中断，他说这些都是文档上能看到的东西，具体呢</li>
+<li>怎么做到中断和插入高优任务</li>
+</ul>
+<h3 id="4-react-新特性">4. react 新特性</h3>
+<ul>
+<li>以及相应的原理</li>
+</ul>
+<h3 id="5-滚动加载实现方式">5. 滚动加载实现方式</h3>
+<ul>
+<li>我说了计算当前列表滚动距离到底部的位置差，他问还有呢，我说针对可以定高的列表 item 可以通过 index 来算，他说这个不行，不能定高</li>
+<li>然后我就不知道了</li>
+</ul>
+<h3 id="6-一个比较简单的编程题">6. 一个比较简单的编程题</h3>
+<p>一个字符串和数字的序列怎么倒序提取所有的数字。</p>
+<p>一开始说用正则，但是确实不会用正则提取，就写了个循环。</p>
+<p>面试官就说，你不是说用正则吗，我就实话说了不会提取。</p>
+<blockquote>
+<p>这次面试把不善于表达发挥到了极致，在连环追问下面会很紧张，很多东西都想不起来，=。=。</p>
+</blockquote>
+
     </div>
 
     <div class="post-copyright">
