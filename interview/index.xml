@@ -22,7 +22,7 @@
       <pubDate>Fri, 25 Jun 2021 14:04:00 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action-13-meituan/</guid>
-      <description>1. 问项目 sketch 插件如何开发 测试项目中是什么角色 2. 讲一下 js 中的 this 看输出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 var test = { a: 40, init: () =&amp;gt; { console.log(this.a); function go() { console.log(this.a); } go.prototype.a = 50; return go; }, }; var</description>
+      <description>一面 1. 问项目 sketch 插件如何开发 测试项目中是什么角色 2. 讲一下 js 中的 this 看输出 1 2 3 4 5 6 7 8 9 10 11 12 13 14 var test = { a: 40, init: () =&amp;gt; { console.log(this.a); function go() { console.log(this.a); } go.prototype.a = 50; return go; },</description>
     </item>
     
     <item>
@@ -175,7 +175,7 @@
       <pubDate>Sat, 17 Apr 2021 13:11:27 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/interview/action/</guid>
-      <description>banyu yuanfudao lanhu-nothing haoweilai jingdong eleme dewu bilibili 21kunpeng dingdong qiniuyun toutiao meituan baidu</description>
+      <description>伴鱼 猿辅导 好未来 京东 饿了么 得物 bilibili 叮咚买菜 七牛云 字节 美团 百度</description>
     </item>
     
     <item>
