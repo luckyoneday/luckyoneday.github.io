@@ -49,7 +49,7 @@
 <meta itemprop="description" content="how does react tell a class from a function 翻译">
 <meta itemprop="datePublished" content="2020-03-08T21:03:31+08:00" />
 <meta itemprop="dateModified" content="2020-03-08T21:03:31+08:00" />
-<meta itemprop="wordCount" content="7013">
+<meta itemprop="wordCount" content="6995">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2020-03-08 </span>
         
-          <span class="more-meta"> 约 7013 字 </span>
+          <span class="more-meta"> 约 6995 字 </span>
           <span class="more-meta"> 预计阅读 14 分钟 </span>
         
       </div>
@@ -282,7 +282,7 @@
 </div>
 </div><p>两种情况中，React 的目的都是得到要渲染的节点（上例中是<code>&lt;p&gt;Hello&lt;/p&gt;</code>）。但是更具体的步骤取决于<code>Greeting</code>是怎么定义的。</p>
 <p><strong>所以 React 是怎么知道定义的组件是 class 还是 function 呢？</strong></p>
-<p>和<a href="https://overreacted.io/why-do-we-write-super-props/">上一篇博客</a>一样，**我们并不需要了解这个知识点一样可以用 React 进行开发。**这篇文章更多的是在讲关于 JavaScript 的知识点而不是 React。</p>
+<p>和<a href="https://overreacted.io/why-do-we-write-super-props/">上一篇博客</a>一样，<strong>我们并不需要了解这个知识点一样可以用 React 进行开发</strong>。这篇文章更多的是在讲关于 JavaScript 的知识点而不是 React。</p>
 <p>（这篇文章适合对 React 内部如何工作好奇的人阅读。你是这样的人吗？那让我们一起来深入学习呀~~）</p>
 <p><strong>这是一个很长的旅途，让我们系好安全带~这篇文章没有多少关于 React 的信息，但是我们会深入一些概念比如<code>new</code>，<code>this</code>，<code>class</code>，箭头函数，<code>prototype</code>，<code>__proto__</code>，<code>instanceof</code>，以及他们在 JavaScript 中如何一起生效。幸运的是，我们在使用 React 的时候不需要知道这么多。</strong></p>
 <p>（如果只是想知道答案，可以直接到文章末尾。）</p>
@@ -401,7 +401,7 @@
 </div>
 </div><p>语言和 API 设计中<em>捕获开发者的意图</em>是非常重要的。</p>
 <p>如果我们写了一个函数，JavaScript 不能猜出这个函数是会像<code>alert()</code>一样被调用，还是类似于<code>new Person()</code>的构造函数被调用。忘记使用<code>new</code>调用<code>Person</code>这样的函数会导致很奇怪的行为。</p>
-<p>**使用 class 语法大致就是在对 JavaScript 说：“这不仅仅是个函数&ndash;这是一个类并且它拥有构造函数。”**如果我们在调用的时候忘记使用<code>new</code>操作符，JavaScript 会报错哒：</p>
+<p><strong>使用 class 语法大致就是在对 JavaScript 说：“这不仅仅是个函数&ndash;这是一个类并且它拥有构造函数。”</strong> 如果我们在调用的时候忘记使用<code>new</code>操作符，JavaScript 会报错哒：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -562,7 +562,7 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>所以**箭头函数没有自己的<code>this</code>。**这意味着它作为构造函数是完全无用的。</p>
+</div><p>所以 <strong>箭头函数没有自己的<code>this</code></strong>。这意味着它作为构造函数是完全无用的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -577,7 +577,7 @@
 <span class="p">};</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>**JavScript 不允许使用<code>new</code>来调用箭头函数。**如果我们这样做了，就了一个错误，所以我们需要避免这样做。这和 JavaScript 不允许没有<code>new</code>调用类组件是一样的。</p>
+</div><p><strong>JavScript 不允许使用<code>new</code>来调用箭头函数</strong>。如果我们这样做了，就了一个错误，所以我们需要避免这样做。这和 JavaScript 不允许没有<code>new</code>调用类组件是一样的。</p>
 <p>这是一个很好的规定但是它会把我们的计划打乱了。React 不能用<code>new</code>来调用每个函数因为在箭头函数中会报错的。我们可以尝试通过缺少<code>prototype</code>来检测箭头函数，而不是直接使用<code>new</code>来调用：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -976,9 +976,9 @@
 <p><code>isReactComponent</code>的检查直到今天还<a href="https://github.com/facebook/react/blob/769b1f270e1251d9dbdce0fcbd9e92e502d059b8/packages/react-reconciler/src/ReactFiber.js#L297-L300">在 React 中</a>使用。</p>
 <p>如果不是继承自<code>React.Component</code>，React 不会在原型中找到<code>isReactComponent</code>属性，也就不会将组件视为一个类组件。现在我们知道了为什么关于<code>不能像调用函数一样调用类</code>的<a href="https://stackoverflow.com/questions/38481857/getting-cannot-call-a-class-as-a-function-in-my-react-project/42680526#42680526">最推荐的回答</a>是需要继承<code>React.Component</code>。最后，当存在<code>prototype.render</code>但是没有<code>prototype.isReactComponent</code>属性时会<a href="https://github.com/facebook/react/pull/11168">触发一个 warning</a>。</p>
 <hr>
-<p>你可能会觉得这篇文章是假的吧！<strong>最后的解决方案其实是很简单的，但是我花费了巨大的篇幅来解释为什么 React 最终使用了这种解决方案，以及备选方案都有哪些。</strong></p>
+<p>你可能会觉得这篇文章是假的吧！<strong>最后的解决方案其实是很简单的，但是我花费了巨大的篇幅来解释为什么 React 最终使用了这种解决方案，以及备选方案都有哪些</strong>。</p>
 <p>在我的开发过程中，很多库的 API 通常就是这种情况，一个 API 想要易于使用，通常需要考虑语言语义（甚至对于某些语言来说，要涵盖未来的发展方向），运行性能，有没有编译步骤，生态建设和打包的解决方案，早期 warning 和很多别的方面。最后的结果可能不是最优雅的，但是它一定是最实用的。</p>
-<p>**如果最后的 API 是成功的，使用者是不会思考实现过程的。**相反他们可以更多的专注于开发自己的应用。</p>
+<p><strong>如果最后的 API 是成功的，使用者是不会思考实现过程的</strong>。相反他们可以更多的专注于开发自己的应用。</p>
 <p>但是如果你是很好奇的，了解是如何起作用的也是很好的。</p>
     </div>
 
