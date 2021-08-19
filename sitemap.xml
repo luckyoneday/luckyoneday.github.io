@@ -10,7 +10,7 @@
   
   <url>
     <loc>https://luckyoneday.github.io/daily/</loc>
-    <lastmod>2021-08-04T20:57:35+08:00</lastmod>
+    <lastmod>2021-08-11T20:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -29,14 +29,35 @@
   </url>
   
   <url>
-    <loc>https://luckyoneday.github.io/tags/javascript/</loc>
-    <lastmod>2021-08-04T20:57:35+08:00</lastmod>
+    <loc>https://luckyoneday.github.io/tags/</loc>
+    <lastmod>2021-08-11T20:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://luckyoneday.github.io/tags/</loc>
+    <loc>https://luckyoneday.github.io/tags/typescript/</loc>
+    <lastmod>2021-08-11T20:41:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://luckyoneday.github.io/daily/48-typescript-tips/</loc>
+    <lastmod>2021-08-11T20:41:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://luckyoneday.github.io/</loc>
+    <lastmod>2021-08-11T20:41:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://luckyoneday.github.io/tags/javascript/</loc>
     <lastmod>2021-08-04T20:57:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -51,13 +72,6 @@
   
   <url>
     <loc>https://luckyoneday.github.io/daily/47-about-taro/</loc>
-    <lastmod>2021-08-04T20:57:35+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://luckyoneday.github.io/</loc>
     <lastmod>2021-08-04T20:57:35+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -451,13 +465,6 @@
   <url>
     <loc>https://luckyoneday.github.io/daily/30-introduce-cucumber/</loc>
     <lastmod>2020-07-10T17:24:14+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://luckyoneday.github.io/tags/typescript/</loc>
-    <lastmod>2020-06-15T20:32:14+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
