@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Git 操作的一些命令">
 <meta itemprop="datePublished" content="2020-08-30T20:49:58+08:00" />
 <meta itemprop="dateModified" content="2020-08-30T20:49:58+08:00" />
-<meta itemprop="wordCount" content="116">
+<meta itemprop="wordCount" content="293">
 
 
 
@@ -138,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2020-08-30 </span>
         
-          <span class="more-meta"> 约 116 字 </span>
+          <span class="more-meta"> 约 293 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -155,6 +155,13 @@
       <ul>
         <li><a href="#下载大项目时超时">下载大项目时超时</a></li>
         <li><a href="#解决冲突无法-commit">解决冲突无法 commit</a></li>
+        <li><a href="#git-rebase">git rebase</a>
+          <ul>
+            <li><a href="#合并所在分支的多个-commit">合并所在分支的多个 commit</a></li>
+            <li><a href="#合并别的分支">合并别的分支</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考资料">参考资料</a></li>
       </ul>
     </li>
   </ul>
@@ -216,7 +223,49 @@ $ git fetch --unshallow
 <pre class="chroma"><code class="language-bash" data-lang="bash">git commit -i xxx.js
 </code></pre></td></tr></table>
 </div>
-</div><p><a href="https://stackoverflow.com/questions/5827944/git-error-on-commit-after-merge-fatal-cannot-do-a-partial-commit-during-a-mer">参考链接</a></p>
+</div><h2 id="git-rebase">git rebase</h2>
+<h3 id="合并所在分支的多个-commit">合并所在分支的多个 commit</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 合并之前的三条提交</span>
+git rebase -i HEAD~3
+
+<span class="c1"># 或者</span>
+git rebase -i 三条提交的前一个commitId
+</code></pre></td></tr></table>
+</div>
+</div><p>执行完上述命令后会出现一个交互性的 vim 窗口，通过提示将多次的 commit 信息保留为只剩一个（进行 <code>squash</code>），操作完后按 esc 随后输入 <code>:wq</code> 即可保存并退出。然后运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git add .
+git rebase --continue
+</code></pre></td></tr></table>
+</div>
+</div><p>如果想放弃这次 rebase 可以执行：<code>git rebase --abort</code>。</p>
+<h3 id="合并别的分支">合并别的分支</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git rebase 目标分支
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/5827944/git-error-on-commit-after-merge-fatal-cannot-do-a-partial-commit-during-a-mer">参考链接</a></li>
+</ul>
 
     </div>
 
