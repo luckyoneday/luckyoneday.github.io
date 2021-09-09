@@ -49,7 +49,7 @@
 <meta itemprop="description" content="Taro--新手上路">
 <meta itemprop="datePublished" content="2021-08-04T20:57:35+08:00" />
 <meta itemprop="dateModified" content="2021-08-04T20:57:35+08:00" />
-<meta itemprop="wordCount" content="858">
+<meta itemprop="wordCount" content="1280">
 
 
 
@@ -138,8 +138,8 @@
       <div class="post-meta">
         <span class="post-time"> 2021-08-04 </span>
         
-          <span class="more-meta"> 约 858 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+          <span class="more-meta"> 约 1280 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
         
       </div>
     </header>
@@ -212,7 +212,18 @@
 <h3 id="切换更新">切换更新</h3>
 <p>当点击 tabBar 的某个 item 时，需要有相应的跳转操作，还需要通知 tabBar 更新选中态。tabBar 是每个页面都会挂载，所以需要在页面 <code>didShow</code> 的时候去更新当前选中态，小程序官方推荐使用 <a href="https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html"> <code>getTabBar</code> 获取组件实例，并调用 <code>setData</code> 更新选中态</a>，但这是原生小程序的写法。 Taro 有这样一个 <a href="https://github.com/NervJS/taro/issues/7302">issue</a>，意思是可以在 <code>wx.onAppRoute</code> 的时候拿路由去更新选中态，但是我自己试有闪动，所以使用了 <code>eventCenter</code> 的方法来通知更新。</p>
 <h2 id="小程序登录">小程序登录</h2>
+<p>图 copy from 官网</p>
 <p><img src="https://res.wx.qq.com/wxdoc/dist/assets/img/api-login.2fcc9f35.jpg" alt="登录流程"></p>
+<p>微信官方提供了两种标识：</p>
+<ul>
+<li><code>OpenId</code> 是一个用户对于一个小程序/公众号的标识，开发者可以通过这个标识识别用户</li>
+<li><code>UnionId</code> 是一个用户对于同主体微信小程序/公众号/APP 的标识，开发者需要在微信开放平台下绑定相同账号的主体。开发者可以通过 <code>UnionId</code>，实现多个小程序、公众号、甚至 APP 之间的数据互通。</li>
+</ul>
+<p>微信官方鼓励开发者在不骚扰用户的情况下合理获得 <code>unionId</code>，而仅在必要时才向用户弹窗申请使用昵称头像，从而衍生出 <strong>静默登录</strong> 和 <strong>用户登录</strong> 两种概念。</p>
+<ul>
+<li><code>wx.login</code> 是静默、不必授权的。</li>
+<li><code>wx.getUserInfo</code> 获取数据时，新版本是 <code>wx.getUserProfile</code> 接口。如果用户已授权会返回用户信息；未授权会弹出授权弹窗，同意授权会返回用户信息，拒绝授权会调用失败。</li>
+</ul>
 <h2 id="taro-自定义导航栏">Taro 自定义导航栏</h2>
 <ul>
 <li>写自定义导航组件的时候，需要将组件结构一分为二：状态栏 + 标题栏</li>
@@ -224,9 +235,11 @@
 <h2 id="and-last">and last</h2>
 <ul>
 <li><strong>都是引用本地的图片，为什么有的不展示？</strong> <code>&lt;Text&gt;</code> 组件中不能放置组件，只能放置字符串。意味着如果 <code>&lt;Image&gt;</code> 组件放在 <code>&lt;Text&gt;</code> 组件内部，是显示不出来的。</li>
-<li>tabBar 底部让出安全距离： <code>padding-bottom: constant(safe-area-inset-bottom); padding-bottom: env(safe-area-inset-bottom)</code></li>
+<li><strong>tabBar 底部让出安全距离：</strong> <code>padding-bottom: constant(safe-area-inset-bottom); padding-bottom: env(safe-area-inset-bottom)</code>。</li>
+<li>小程序底部有 <code>position: fixed</code> 元素时，页面需要让出位置，设置 <code>padding-bottom</code> 时在 pc 端小程序打开会失效，设置 <code>margin-bottom</code> 时 IOS 端小程序会失效，可以在外层底部加一个 <code>1px</code> 的块。</li>
 <li>小程序使用 <code>background-image</code> 设置背景图需要使用网络地址，或者将图片转为 base64；想使用本地图片地址的话可以使用 <code>Image</code> 组件并将 <code>z-index</code> 置为 -1。</li>
 <li>若是企业微信小程序模式下看不到自定义 tabBar，需要将调试基础库版本调到 2.8.3 或以上~</li>
+<li>如果 <code>package.json</code> 中没有的包在 <code>package-lock.json</code> 中有，（别的包的 deps ），引用的话在 pc 端企业微信打开 maybe 会白屏，记得安装~</li>
 </ul>
 <h2 id="参考">参考</h2>
 <ul>
