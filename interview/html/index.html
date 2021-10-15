@@ -309,7 +309,25 @@
     </footer>
   </article>
         </div>
-        
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2021-04-17 12:09:18 \u002b0800 \u002b0800',
+        title: 'HTML面试知识点汇总',
+        link: decodeURI(location.href),
+        desc: '浏览器解析渲染机制 浏览器内核指的是浏览器运行的最核心的程序，分为两个部分，一个是渲染引擎，另一个是 JS 引擎。 解析 HTML，生成 DOM 树； 解析 CSS',
+        owner: 'luckyoneday',
+        repo: 'luckyoneday.github.io',
+        oauth: {
+          client_id: 'e4834619e7a306a7137b',
+          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
 
   
 

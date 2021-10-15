@@ -441,7 +441,25 @@
     </footer>
   </article>
         </div>
-        
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2021-02-04 14:52:18 \u002b0800 \u002b0800',
+        title: 'Electron 通信',
+        link: decodeURI(location.href),
+        desc: 'Electron 中有两种进程：主进程和渲染进程。 主进程 一个 electron 应用只有一个主进程，主进程指的是 package.json 文件中 main 字段指定的文件。主进程通过 BrowserWindow 实例来创建窗口，例如： 1',
+        owner: 'luckyoneday',
+        repo: 'luckyoneday.github.io',
+        oauth: {
+          client_id: 'e4834619e7a306a7137b',
+          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
 
   
 

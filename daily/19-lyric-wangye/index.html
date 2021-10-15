@@ -208,7 +208,25 @@
     </footer>
   </article>
         </div>
-        
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2019-12-21 15:23:45 \u002b0800 \u002b0800',
+        title: '丹歌惊鸿',
+        link: decodeURI(location.href),
+        desc: '算不得北京城里的爷 山里偷得 半日的闲 搁这儿遛弯儿的人别扰着 您都请便 半不邋遢 小道名也 胸无大志 爱咧咧 少来打听那有的没的 翻你个底儿掉掀朝天 顺天下势 理',
+        owner: 'luckyoneday',
+        repo: 'luckyoneday.github.io',
+        oauth: {
+          client_id: 'e4834619e7a306a7137b',
+          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
 
   
 

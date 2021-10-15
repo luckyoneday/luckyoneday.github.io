@@ -230,7 +230,25 @@
     </footer>
   </article>
         </div>
-        
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2021-06-22 11:12:06 \u002b0800 \u002b0800',
+        title: 'eleventh',
+        link: decodeURI(location.href),
+        desc: '每次面试都是一次进步 一面 1. 项目介绍 sketch 插件怎么开发 e2e 测试流程 2. Promise 怎么实现并发请求 如果有一个请求 pending 了，怎么解决 3. 前端路由怎么使用 后端为什么不会收',
+        owner: 'luckyoneday',
+        repo: 'luckyoneday.github.io',
+        oauth: {
+          client_id: 'e4834619e7a306a7137b',
+          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
 
   
 

@@ -209,7 +209,25 @@
     </footer>
   </article>
         </div>
-        
+        <div id="comments-gitment"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitment = new Gitment({
+        id: '2021-04-17 12:09:26 \u002b0800 \u002b0800',
+        title: '前端性能相关',
+        link: decodeURI(location.href),
+        desc: '回流和重绘 css 优化 减少 http 请求、使用 http2 使用服务端渲染 静态资源使用 CDN 打包方向 tree shaking 和 minify 性能指标方向: fcp 和 fp 首先是一些性能指标： TTFB(Time To First Byte): 返回第一个字节',
+        owner: 'luckyoneday',
+        repo: 'luckyoneday.github.io',
+        oauth: {
+          client_id: 'e4834619e7a306a7137b',
+          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
+        }
+      });
+      gitment.render('comments-gitment');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
 
   
 
