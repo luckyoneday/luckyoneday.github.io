@@ -531,25 +531,23 @@ Access-Control-Allow-Credentials: true // 值为 true，表示允许浏览器发
     </footer>
   </article>
         </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      var gitment = new Gitment({
+      var gitalk = new Gitalk({
         id: '2021-04-17 11:58:56 \u002b0800 \u002b0800',
         title: 'HTTP、浏览器面试知识点汇总',
-        link: decodeURI(location.href),
-        desc: 'TCP\/IP 协议 计算机之间的通信要遵循不同的协议，来实现互相之间的通信。 应用层：DNS 协议、HTTP、FTP、WebSocket 等。 传输层：TCP、U',
-        owner: 'luckyoneday',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
         repo: 'luckyoneday.github.io',
-        oauth: {
-          client_id: 'e4834619e7a306a7137b',
-          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
-        }
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
       });
-      gitment.render('comments-gitment');
+      gitalk.render('gitalk-container');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
   
 

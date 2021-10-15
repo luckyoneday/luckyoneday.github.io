@@ -408,25 +408,23 @@
     </footer>
   </article>
         </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      var gitment = new Gitment({
+      var gitalk = new Gitalk({
         id: '2020-07-14 20:57:50 \u002b0800 \u002b0800',
         title: 'input 事件',
-        link: decodeURI(location.href),
-        desc: '\u003cp\u003e背景是业务中的一个文本框应该禁止「输入」 \u003ccode\u003e{\u003c\/code\u003e 和 \u003ccode\u003e}\u003c\/code\u003e。但是不能直接对 \u003ccode\u003evalue\u003c\/code\u003e 进行\u003ccode\u003ereplace\u003c\/code\u003e操作。\u003c\/p\u003e',
-        owner: 'luckyoneday',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
         repo: 'luckyoneday.github.io',
-        oauth: {
-          client_id: 'e4834619e7a306a7137b',
-          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
-        }
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
       });
-      gitment.render('comments-gitment');
+      gitalk.render('gitalk-container');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
   
 

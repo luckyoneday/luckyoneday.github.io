@@ -272,25 +272,23 @@ Protocol error <span class="o">(</span>Runtime.callFunctionOn<span class="o">)</
     </footer>
   </article>
         </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      var gitment = new Gitment({
+      var gitalk = new Gitalk({
         id: '2020-06-10 10:47:22 \u002b0800 \u002b0800',
         title: 'E2E测试中常报的错误汇总',
-        link: decodeURI(location.href),
-        desc: '希望可以做成一个汇总贴，保持更新啊~ 超时 1 Timeout - Async callback was not invoked within the 20000ms timeout specified by jest.setTimeout.Timeout 这个原因是超时啦！比如在等倒计时或者是等验证码的时候，超出了 timeout 时间就会',
-        owner: 'luckyoneday',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
         repo: 'luckyoneday.github.io',
-        oauth: {
-          client_id: 'e4834619e7a306a7137b',
-          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
-        }
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
       });
-      gitment.render('comments-gitment');
+      gitalk.render('gitalk-container');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
   
 

@@ -346,25 +346,23 @@
     </footer>
   </article>
         </div>
-        <div id="comments-gitment"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.min.js" crossorigin="anonymous"></script>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-      var gitment = new Gitment({
+      var gitalk = new Gitalk({
         id: '2021-05-23 08:24:12 \u002b0800 \u002b0800',
         title: 'second',
-        link: decodeURI(location.href),
-        desc: '1. 介绍项目 讲一下项目难点，以及怎么解决。 项目问的比较多，包括 webview 通信、优化和手势缩放。 2. setState 是同步还是异步 3. 讲一下 React Hooks 4. 看一下输出 1 2 3 4 5 6 7',
-        owner: 'luckyoneday',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
         repo: 'luckyoneday.github.io',
-        oauth: {
-          client_id: 'e4834619e7a306a7137b',
-          client_secret: '4ce5264ded699551e50b9bf1303f882004e9008c'
-        }
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
       });
-      gitment.render('comments-gitment');
+      gitalk.render('gitalk-container');
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
   
 
