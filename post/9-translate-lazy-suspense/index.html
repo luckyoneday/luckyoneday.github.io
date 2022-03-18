@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>React 18 中的 Suspense SSR 架构 - xuyou&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xuyou" /><meta name="description" content="是一篇翻译 -- React 18 中的 Suspense SSR 架构" /><meta name="keywords" content="SSR" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/post/9-translate-lazy-suspense/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="React 18 中的 Suspense SSR 架构" />
+<meta property="og:description" content="是一篇翻译 -- React 18 中的 Suspense SSR 架构" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/post/9-translate-lazy-suspense/" />
+<meta property="article:published_time" content="2022-03-16T20:54:44+08:00" />
+<meta property="article:modified_time" content="2022-03-16T20:54:44+08:00" />
+<meta itemprop="name" content="React 18 中的 Suspense SSR 架构">
+<meta itemprop="description" content="是一篇翻译 -- React 18 中的 Suspense SSR 架构">
+<meta itemprop="datePublished" content="2022-03-16T20:54:44+08:00" />
+<meta itemprop="dateModified" content="2022-03-16T20:54:44+08:00" />
+<meta itemprop="wordCount" content="1449">
+
+
+
+<meta itemprop="keywords" content="SSR,React," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React 18 中的 Suspense SSR 架构"/>
+<meta name="twitter:description" content="是一篇翻译 -- React 18 中的 Suspense SSR 架构"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">xuyou</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">xuyou</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">React 18 中的 Suspense SSR 架构</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-03-16 </span>
+        
+          <span class="more-meta"> 约 1449 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#太长不看版">太长不看版</a></li>
+        <li><a href="#什么是-ssr">什么是 SSR</a></li>
+        <li><a href="#当前的-ssr-存在哪些问题">当前的 SSR 存在哪些问题</a>
+          <ul>
+            <li><a href="#需要在展示页面之前获取所有数据">需要在展示页面之前获取所有数据</a></li>
+            <li><a href="#注水需要等待资源加载完成">注水需要等待资源加载完成</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <blockquote>
+<p>原文标题: New Suspense SSR Architecture in React 18</p>
+<p>原文链接: <a href="https://github.com/reactwg/react-18/discussions/37">https://github.com/reactwg/react-18/discussions/37</a></p>
+</blockquote>
+<p>React 18 将包括对服务端渲染（SSR）性能的架构改进。最重要的新的 API 是 <code>renderToPipeableStream</code>。可以在<a href="https://github.com/reactwg/react-18/discussions/22">这里</a>看到相关的 API 介绍。主要涉及到的之前的 API 是 <code>&lt;Suspense&gt;</code>。本篇是对新架构设计以及它解决的问题的介绍。</p>
+<h2 id="太长不看版">太长不看版</h2>
+<p>服务端渲染（SSR）即在服务端用 React 组件生成 HTML，并且将 HTML 直接返回给用户。SSR 允许用户在 JavaScript 资源加载和执行之前看到页面内容。</p>
+<p>SSR 通常有以下几步：</p>
+<ol>
+<li>在服务端，获取 app 所需要的数据；</li>
+<li>在服务端，生成 HTML 并返回；</li>
+<li>在客户端，加载应用所需 JavaScript 代码；</li>
+<li>在客户端，把服务端生成的 HTML 与 JavaScript 逻辑结合（即 “hydration”）。</li>
+</ol>
+<p>重点在于 <strong>每一步需要在上一步完成之后才可以开始</strong>。所以当某些部分比剩余部分逻辑慢的时候，就会影响整个应用加载的效率。</p>
+<p>React 18 允许我们使用 <code>&lt;Suspense&gt;</code> <strong>将应用分成独立的单元</strong> ，这些单元可以单独完成这些步骤而且不会影响到应用的其他部分。因此用户可以快速看到应用的内容并且与之交互。即逻辑最慢的部分不会“拖慢”速度快的部分。这里有个<a href="https://codesandbox.io/s/kind-sammet-j56ro?file=/src/App.js">demo</a>。</p>
+<h2 id="什么是-ssr">什么是 SSR</h2>
+<p>当用户访问我们的应用时，作为开发者当然希望尽快呈现出可交互的页面：</p>
+<p><img src="../../static-img/9-translate-suspense/1.png" alt="full page"></p>
+<p>使用绿色代表可交互的页面，即 JavaScript 事件处理程序也都添加结束。</p>
+<p>这个页面在 JavaScript 代码加载结束之前，页面是不能响应用户交互的。这些代码包括 React 和业务代码。所以大多数时间都是在等待代码下载。</p>
+<p>如果不使用 SSR，在 JavaScript 代码加载的时候用户只能看到一个空白页面：</p>
+<p><img src="../../static-img/9-translate-suspense/2.png" alt="blank page"></p>
+<p>因为空白页面交互不友好所以推荐使用 SSR。但是 SSR 也存在一个问题：无法马上可交互，除非是内置链接或者表单处理项。然而，SSR 可以让用户在 JavaScript 加载的时候看到页面：</p>
+<p><img src="../../static-img/9-translate-suspense/3.png" alt="non-interactive page"></p>
+<p>这里使用灰色代替无法交互的部分。这段时间 JavaScript 代码还没有加载完，所以点击按钮并不会有任何响应。但对于内容繁重的网站 SSR 非常有用，因为它可以让网络连接较差的用户在加载 JavaScript 的同时开始阅读或查看内容。</p>
+<p>当 React 和应用代码加载结束后，React 会将事件处理程序添加到 HTML 上，React 会在内存中渲染组件树，但不会为它生成 DOM 节点，而是将所有逻辑附加到现有的 HTML 中。</p>
+<p><strong>渲染组件并且添加事件的过程被称为“hydration”</strong>。因为这个过程像是在用交互性和事件处理程序的“水”注入到“干燥”的 HTML 中。在注水之后，我们的页面就会响应事件和状态更新，就像下图：</p>
+<p><img src="../../static-img/9-translate-suspense/1.png" alt="full page"></p>
+<p>SSR 不会使应用程序更快地可交互，它只是尽快展示出应用无法交互的版本，所以用户可以在 JS 代码加载的时候看到静态页面。这个技巧对于网络连接不佳的用户来说体验有很大的不同，并提高了整体的感知性能。由于更容易索引和更快的速度，它还可以帮助我们进行搜索引擎排名。</p>
+<blockquote>
+<p>提示：不要混淆 SSR 和 Server Components。Server Components 是一个实验中的特性，大概率不会成为初始化 React 18 中的一部分，可以在<a href="https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html">这里</a>看到更多关于 Server Components 的内容。 Server Components 是 SSR 的补充，将成为推荐的数据获取方法的一部分，但这篇文章不涉及到相关知识。</p>
+</blockquote>
+<h2 id="当前的-ssr-存在哪些问题">当前的 SSR 存在哪些问题</h2>
+<h3 id="需要在展示页面之前获取所有数据">需要在展示页面之前获取所有数据</h3>
+<p>目前我们了解到 SSR 的一个问题是不允许组件“等待数据”。在渲染页面之前，需要先获取到所有的数据。例如我们想渲染一篇有评论的博文，评论数据自然是很重要的，所以我们想要在服务端的 HTML 返回中就包括评论组件。但是如果数据库或 API 层较慢，我们就需要从中做选择。可以选择服务端生成的 HTML 中不包括评论组件，那用户就只能在 js 资源加载后看到评论信息。或者就选择服务端生成的 HTML 中包括评论组件，页面的导航栏、侧边栏就都需要等到评论数据返回才能渲染。</p>
+<h3 id="注水需要等待资源加载完成">注水需要等待资源加载完成</h3>
+<p>JavaScript 代码加载结束后，React 会开始给 HTML 绑定事件来使页面可交互。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xuyou</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-03-16
+    </span>
+  </p>
+  
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/ssr/">SSR</a>
+          <a href="/tags/react/">React</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/6-ssr-data/">
+            <span class="next-text nav-default">服务端渲染合集</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2022-03-16 20:54:44 \u002b0800 \u002b0800',
+        title: 'React 18 中的 Suspense SSR 架构',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
+        repo: 'luckyoneday.github.io',
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

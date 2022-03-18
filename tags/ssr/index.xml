@@ -6,7 +6,19 @@
     <description>Recent content in SSR on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 23 Mar 2021 21:30:52 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/ssr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Mar 2022 20:54:44 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/ssr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React 18 中的 Suspense SSR 架构</title>
+      <link>https://luckyoneday.github.io/post/9-translate-lazy-suspense/</link>
+      <pubDate>Wed, 16 Mar 2022 20:54:44 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/9-translate-lazy-suspense/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文标题: New Suspense SSR Architecture in React 18&lt;/p&gt;
+&lt;p&gt;原文链接: &lt;a href=&#34;https://github.com/reactwg/react-18/discussions/37&#34;&gt;https://github.com/reactwg/react-18/discussions/37&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
     <item>
       <title>服务端渲染合集</title>
       <link>https://luckyoneday.github.io/post/6-ssr-data/</link>
