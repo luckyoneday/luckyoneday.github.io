@@ -49,7 +49,7 @@
 <meta itemprop="description" content="是一篇翻译 -- React 18 中的 Suspense SSR 架构">
 <meta itemprop="datePublished" content="2022-03-16T20:54:44+08:00" />
 <meta itemprop="dateModified" content="2022-03-16T20:54:44+08:00" />
-<meta itemprop="wordCount" content="1449">
+<meta itemprop="wordCount" content="3077">
 
 
 
@@ -138,8 +138,8 @@
       <div class="post-meta">
         <span class="post-time"> 2022-03-16 </span>
         
-          <span class="more-meta"> 约 1449 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+          <span class="more-meta"> 约 3077 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
         
       </div>
     </header>
@@ -159,6 +159,13 @@
           <ul>
             <li><a href="#需要在展示页面之前获取所有数据">需要在展示页面之前获取所有数据</a></li>
             <li><a href="#注水需要等待资源加载完成">注水需要等待资源加载完成</a></li>
+            <li><a href="#需要在注水结束后才可以进行交互">需要在注水结束后才可以进行交互</a></li>
+            <li><a href="#如何解决这些问题">如何解决这些问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#react-18流式-html-和选择性补水">React 18：流式 HTML 和选择性补水</a>
+          <ul>
+            <li><a href="#获取数据之前流式渲染-html">获取数据之前流式渲染 HTML</a></li>
           </ul>
         </li>
       </ul>
@@ -206,7 +213,178 @@
 <h3 id="需要在展示页面之前获取所有数据">需要在展示页面之前获取所有数据</h3>
 <p>目前我们了解到 SSR 的一个问题是不允许组件“等待数据”。在渲染页面之前，需要先获取到所有的数据。例如我们想渲染一篇有评论的博文，评论数据自然是很重要的，所以我们想要在服务端的 HTML 返回中就包括评论组件。但是如果数据库或 API 层较慢，我们就需要从中做选择。可以选择服务端生成的 HTML 中不包括评论组件，那用户就只能在 js 资源加载后看到评论信息。或者就选择服务端生成的 HTML 中包括评论组件，页面的导航栏、侧边栏就都需要等到评论数据返回才能渲染。</p>
 <h3 id="注水需要等待资源加载完成">注水需要等待资源加载完成</h3>
-<p>JavaScript 代码加载结束后，React 会开始给 HTML 绑定事件来使页面可交互。</p>
+<p>JavaScript 代码加载结束后，React 会开始给 HTML 绑定事件来使页面可交互。React 将在渲染组件时“遍历”服务器生成的 HTML，并将事件处理程序添加上去。为了使事件正确绑定到元素上，浏览器中组件生成的树必须与服务器生成的树匹配。造成的结果就是 <strong>必须等待所有 JavaScript 加载结束，才能开始为其中任何一个组件添加事件绑定</strong>。</p>
+<p>假设评论组件有非常复杂的交互逻辑，并且需要事件来加载相应的 JavaScript 代码。我们就又面临了两个选择：将评论内容在服务器生成 HTML，以便尽早向用户展示。但是因为只能一次性完成注水，所以在加载评论组件的代码之前，不能开始为导航栏、侧边栏和帖子内容添加交互响应。另一个选择就是可以做代码分割来进行分开加载，那就需要将评论内容从服务端渲染的 HTML 中移除。否则 React 将不知道如何处理这块 HTML 并在注水期间将其删除。</p>
+<h3 id="需要在注水结束后才可以进行交互">需要在注水结束后才可以进行交互</h3>
+<p>这是注水过程本身的问题。因为 React 注水是一次性的，意味着一旦开始绑定事件，就不会中断。因此，<strong>必须等待所有组件都被注水，然后才能与其中的任何一个部分进行交互</strong>。</p>
+<p>继续我们的评论组件，假设它具有繁重的渲染逻辑，可能在我们的电脑上渲染速度很快，但是在某些低端设备上并不便宜，甚至可能会锁定屏幕几秒钟。当然理想情况下，我们根本不会在客户端上有这样的逻辑，但是对于某些重事件和交互的逻辑，这种情况也是有可能发生的。因此，一旦水合开始，用户就无法与导航栏、侧边栏或帖子内容进行交互，直到整个树被注水结束。对于用户期望的导航操作而言，这种体验是非常差的，因为 React 正在注水，会无法响应跳出页面的操作。</p>
+<h3 id="如何解决这些问题">如何解决这些问题</h3>
+<p>这些问题之间有一个共同点。它们迫使我们在提前做某事（但会因为阻碍所有工作而影响用户体验）或延迟做某事（会因为浪费时间而影响用户体验）之间做出选择。</p>
+<p>这是因为有一个“瀑布”：服务端获取数据 -&gt; 服务端生成 HTML -&gt; 加载代码（客户端）-&gt; 注水（客户端）。在应用程序的前一个阶段完成之前，下一个阶段都不能开始。这就是它效率低下的原因。我们的解决方案是将工作分开，以便我们 <strong>可以为屏幕的一部分而不是整个应用程序执行每个阶段</strong>。</p>
+<p>这并不是什么独特的想法：例如 <a href="https://tech.ebayinc.com/engineering/async-fragments-rediscovering-progressive-html-rendering-with-marko/">Marko</a> 是一个以这种思路实现的 JavaScript 框架。挑战在于如何使这样的模式与 React 编程模型结合起来。React 一开始引入 <code>&lt;Suspense&gt;</code> 组件的作用是在客户端支持懒加载。但目标是其实是将其与服务器渲染集成并解决目前的已知问题。</p>
+<p>让我们学习一下如何在 React 18 中使用 <code>&lt;Suspense&gt;</code> 来解决这些问题。</p>
+<h2 id="react-18流式-html-和选择性补水">React 18：流式 HTML 和选择性补水</h2>
+<p>Suspense 解锁了 React 18 中的两个主要 SSR 功能：</p>
+<ul>
+<li>服务端<strong>流式 HTML</strong>：可以使用新的 <code>renderToPipeableStream</code> API 替换 <code>renderToString</code> 来开启这个特性，像<a href="https://github.com/reactwg/react-18/discussions/22">这里</a>描述的一样。</li>
+<li>客户端<strong>选择性补水</strong>：可以使用 <a href="https://github.com/reactwg/react-18/discussions/5"><code>createRoot</code></a> 并且将需要选择性注水的内容用 <code>&lt;Suspense&gt;</code> 包起来。</li>
+</ul>
+<p>要了解这些功能的作用以及它们如何解决上述问题，让我们回到我们的示例。</p>
+<h3 id="获取数据之前流式渲染-html">获取数据之前流式渲染 HTML</h3>
+<p>当下的 SSR，渲染 HTML 和注水是 “要么全部要么全不”。首先渲染所有的 HTML：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span><span class="nx">NavBar</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/&#34;</span><span class="p">&gt;</span><span class="nx">Home</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">aside</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">Sidebar</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/profile&#34;</span><span class="p">&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">aside</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">Post</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="nx">world</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">Comments</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">First</span> <span class="nx">comment</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">Second</span> <span class="nx">comment</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>客户端最终会获取这样的页面：</p>
+<p><img src="../../static-img/9-translate-suspense/3.png" alt="non-interactive page"></p>
+<p>然后等加载完所有代码后会给应用注水：</p>
+<p><img src="../../static-img/9-translate-suspense/1.png" alt="full page"></p>
+<p>但是 React 18 给了我们新的可能性。我们可以把应用的一部分包在 <code>&lt;Suspense&gt;</code> 中。</p>
+<p>例如，我们可以包裹注释块并告诉 React 在组件准备好之前，应该显示 <code>&lt;Spinner /&gt;</code> 组件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">Layout</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">NavBar</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">Sidebar</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">RightPane</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Post</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Suspense</span> <span class="na">fallback</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Spinner</span> <span class="p">/&gt;}&gt;</span>
+      <span class="p">&lt;</span><span class="nt">Comments</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">Suspense</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">RightPane</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">Layout</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过把 <code>&lt;Comments&gt;</code> 包裹到 <code>&lt;Suspense&gt;</code> 中，我们告诉 React <strong>不需要等待评论即为页面的其余部分流式传输 HTML</strong>。并且浏览器会在这个位置显示一个占位符（一个旋转图）作为替代。</p>
+<p><img src="../../static-img/9-translate-suspense/4.png" alt="spin page"></p>
+<p>并且现在的 HTML 结构中是看不到评论组件的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span><span class="nx">NavBar</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/&#34;</span><span class="p">&gt;</span><span class="nx">Home</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">aside</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">Sidebar</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;/profile&#34;</span><span class="p">&gt;</span><span class="nx">Profile</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">aside</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">Post</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="nx">world</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">section</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;comments-spinner&#34;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">Spinner</span> <span class="o">--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;400&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;spinner.gif&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;Loading...&#34;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>故事到现在并没有结束。当服务器的评论数据准备好后，React <strong>会将额外的 HTML 发送到同一个流中，以及一个最小的内联 <code>&lt;script&gt;</code> 标记以将该 HTML 放在“正确的位置”</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">hidden</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;comments&#34;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!--</span> <span class="nx">Comments</span> <span class="o">--&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">First</span> <span class="nx">comment</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">Second</span> <span class="nx">comment</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="c1">// This implementation is slightly simplified
+</span><span class="c1"></span>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;sections-spinner&#39;</span><span class="p">).</span><span class="nx">replaceChildren</span><span class="p">(</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">)</span>
+  <span class="p">);</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>结果，即使在 React 本身加载到客户端之前，迟到的评论 HTML 也会正常加载:</p>
+<p><img src="../../static-img/9-translate-suspense/3.png" alt="non-interactive page"></p>
+<p>这就解决了我们的第一个问题。现在我们不需要在展示任何元素前获取所有的 HTML。如果初始页面</p>
     </div>
 
     <div class="post-copyright">
