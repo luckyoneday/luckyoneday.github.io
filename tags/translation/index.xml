@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Translation on xuyou&#39;s blog</title>
+    <link>https://luckyoneday.github.io/tags/translation/</link>
+    <description>Recent content in Translation on xuyou&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 06 May 2022 09:08:30 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/translation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在使用 `memo()` 之前</title>
+      <link>https://luckyoneday.github.io/daily/51-translation-react-optimize/</link>
+      <pubDate>Fri, 06 May 2022 09:08:30 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/51-translation-react-optimize/</guid>
+      <description>标题：Before You memo() 原文链接：https://overreacted.io/before-you-memo/ 关于 React 性能优化的文章很多啦。通</description>
+    </item>
+    
+  </channel>
+</rss>
