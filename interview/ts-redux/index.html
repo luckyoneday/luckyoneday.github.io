@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Typescript 和 Redux - xuyou&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xuyou" /><meta name="description" content="Typescript 和 Redux 的面试题" /><meta name="keywords" content="interview" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/interview/ts-redux/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Typescript 和 Redux" />
+<meta property="og:description" content="Typescript 和 Redux 的面试题" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/interview/ts-redux/" />
+<meta property="article:published_time" content="2021-05-20T15:07:04+08:00" />
+<meta property="article:modified_time" content="2021-05-20T15:07:04+08:00" />
+<meta itemprop="name" content="Typescript 和 Redux">
+<meta itemprop="description" content="Typescript 和 Redux 的面试题">
+<meta itemprop="datePublished" content="2021-05-20T15:07:04+08:00" />
+<meta itemprop="dateModified" content="2021-05-20T15:07:04+08:00" />
+<meta itemprop="wordCount" content="677">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Typescript 和 Redux"/>
+<meta name="twitter:description" content="Typescript 和 Redux 的面试题"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">xuyou</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/interview/">
+        <li class="mobile-menu-item">面试题</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">xuyou</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/interview/">面试题</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Typescript 和 Redux</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-05-20 </span>
+        
+          <span class="more-meta"> 约 677 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#typescript">typescript</a>
+      <ul>
+        <li><a href="#基础类型">基础类型</a></li>
+        <li><a href="#泛型">泛型</a></li>
+        <li><a href="#索引类型">索引类型</a></li>
+        <li><a href="#interface-和-type-的区别">interface 和 type 的区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#redux">Redux</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <h1 id="typescript">typescript</h1>
+<h2 id="基础类型">基础类型</h2>
+<p><code>number</code>、<code>boolean</code>、<code>string</code>、<code>array</code>、<code>tuple</code>、<code>enum</code>、<code>any</code>、<code>void</code>、<code>null</code>、<code>undefined</code>、<code>never</code>、<code>object</code></p>
+<h2 id="泛型">泛型</h2>
+<ul>
+<li><a href="../../daily/28-typescript-generics/">泛型</a></li>
+</ul>
+<h2 id="索引类型">索引类型</h2>
+<ul>
+<li><a href="../../daily/29-typescript-index-types/">索引类型</a></li>
+</ul>
+<h2 id="interface-和-type-的区别">interface 和 type 的区别</h2>
+<div class="admonition info"><p class="admonition-title">1.都可以用来描述对象或函数的类型，但语法不同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">interface</span> <span class="nx">SetPoint</span> <span class="p">{</span>
+  <span class="p">(</span><span class="nx">x</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">y</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">type</span> <span class="nx">SetPoint</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span>: <span class="kt">number</span><span class="p">,</span> <span class="nx">y</span>: <span class="kt">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">2.type 类型别名还可以用于其他类型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="c1">//number
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">MyNumber</span> <span class="o">=</span> <span class="kt">number</span><span class="p">;</span>
+
+<span class="c1">//dom
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">);</span>
+<span class="kr">type</span> <span class="nx">MyDiv</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">div</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">3.extends 语法不同</p>
+<ul>
+<li>interface extends interface
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">interface</span> <span class="nx">PointX</span> <span class="p">{</span>
+  <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">interface</span> <span class="nx">Point</span> <span class="kr">extends</span> <span class="nx">PointX</span> <span class="p">{</span>
+  <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>interface extends type
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">type</span> <span class="nx">PointX</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span>: <span class="kt">number</span> <span class="p">};</span>
+<span class="kr">interface</span> <span class="nx">Point</span> <span class="kr">extends</span> <span class="nx">PointX</span> <span class="p">{</span>
+  <span class="nx">y</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>type extends type
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">type</span> <span class="nx">PointX</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span>: <span class="kt">number</span> <span class="p">};</span>
+<span class="kr">type</span> <span class="nx">PointY</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">y</span>: <span class="kt">number</span> <span class="p">};</span>
+<span class="kr">type</span> <span class="nx">Point</span> <span class="o">=</span> <span class="nx">PointX</span> <span class="o">&amp;</span> <span class="nx">PointY</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>type extends interface
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">type</span> <span class="nx">PointX</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span>: <span class="kt">number</span> <span class="p">};</span>
+<span class="kr">interface</span> <span class="nx">PointY</span> <span class="p">{</span>
+  <span class="nx">x</span>: <span class="kt">number</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">type</span> <span class="nx">Point</span> <span class="o">=</span> <span class="nx">PointX</span> <span class="o">&amp;</span> <span class="nx">PointY</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</div>
+<div class="admonition info"><p class="admonition-title">4.interface 可以定义多次，并会合并多次，但 type 不可以</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+  <span class="nx">password</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//此时User -&gt; {name: string; password: string}
+</span></code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">5.type 能使用 in 关键字生成映射类型，但 interface 不行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">type</span> <span class="nx">Status</span> <span class="o">=</span> <span class="mi">200</span> <span class="o">|</span> <span class="mi">500</span><span class="p">;</span>
+
+<span class="kr">type</span> <span class="nx">StatusMap</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Status</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">test</span>: <span class="kt">StatusMap</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">200</span><span class="o">:</span> <span class="s2">&#34;ok&#34;</span><span class="p">,</span>
+  <span class="mi">500</span><span class="o">:</span> <span class="s2">&#34;server error&#34;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="cm">/**
+</span><span class="cm">  报错 
+</span><span class="cm">  接口中的计算属性名称必须引用必须引用类型为文本类型或 &#34;unique symbol&#34; 的表达式。
+</span><span class="cm">  计算属性名的类型必须为 &#34;string&#34;、&#34;number&#34;、&#34;symbol&#34; 或 &#34;any&#34;。
+</span><span class="cm">  “Status”仅表示类型，但在此处却作为值使用。
+</span><span class="cm">**/</span>
+<span class="c1">// interface StatusMap2 {
+</span><span class="c1">//   [key in Status]: string
+</span><span class="c1">// }
+</span></code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">6.默认导出方式不同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">export</span> <span class="k">default</span> <span class="kr">interface</span> <span class="nx">Person</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//会报错
+</span><span class="c1">// export default type Person = {
+</span><span class="c1">//   name: string
+</span><span class="c1">// }
+</span><span class="c1"></span>
+<span class="kr">type</span> <span class="nx">Person1</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Person1</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<h1 id="redux">Redux</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">reducer</span><span class="p">);</span>
+<span class="c1">// store 有三个方法： getState、subscribe、dispatch
+</span><span class="c1">// 发布订阅机制 -- subscribe 订阅一个事件，dispatch 派发。
+</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xuyou</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-05-20
+    </span>
+  </p>
+  
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2021-05-20 15:07:04 \u002b0800 \u002b0800',
+        title: 'Typescript 和 Redux',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
+        repo: 'luckyoneday.github.io',
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
