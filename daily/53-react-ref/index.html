@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>React Ref - xuyou&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xuyou" /><meta name="description" content="新文档里的 React Refs" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/53-react-ref/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="React Ref" />
+<meta property="og:description" content="新文档里的 React Refs" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/53-react-ref/" />
+<meta property="article:published_time" content="2022-08-07T19:57:18+08:00" />
+<meta property="article:modified_time" content="2022-08-07T19:57:18+08:00" />
+<meta itemprop="name" content="React Ref">
+<meta itemprop="description" content="新文档里的 React Refs">
+<meta itemprop="datePublished" content="2022-08-07T19:57:18+08:00" />
+<meta itemprop="dateModified" content="2022-08-07T19:57:18+08:00" />
+<meta itemprop="wordCount" content="859">
+
+
+
+<meta itemprop="keywords" content="JavaScript,React," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React Ref"/>
+<meta name="twitter:description" content="新文档里的 React Refs"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">xuyou</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/interview/">
+        <li class="mobile-menu-item">面试题</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">xuyou</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/interview/">面试题</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">React Ref</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-08-07 </span>
+        
+          <span class="more-meta"> 约 859 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <h3 id="怎么用-ref-callback-获取一个列表的-dom-节点">怎么用 ref callback 获取一个列表的 DOM 节点</h3>
+<p>当我们需要获取一个列表的 DOM 节点，但不知道列表长度时，像下面这样写 ref 显然是不行的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+  <span class="p">{</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Doesn&#39;t work!
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">ref</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nt">li</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">ref</span><span class="p">}</span> <span class="p">/&gt;;</span>
+  <span class="p">})}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样写违反了 <strong>Hooks 必须在组件顶部被调用</strong> 的规则，<code>useRef</code> 不能在条件语句和循环中被调用。<code>map()</code> 自然也不可以。</p>
+<p>一种方法是获取到父节点，然后使用操作 DOM 的方法例如 <code>querySelectorAll</code> 来获取到列表节点，但这样很不稳定，因为会受到子节点个数或 DOM 结构变化的影响。</p>
+<p>另一种解决方案就是给 ref 传递一个函数，即 ref callback。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">getMap</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">itemsRef</span><span class="p">.</span><span class="nx">current</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 初始化
+</span><span class="c1"></span>    <span class="nx">itemsRef</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">itemsRef</span><span class="p">.</span><span class="nx">current</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+   <span class="p">{</span><span class="nx">catList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">cat</span> <span class="p">=&gt;</span> 
+      <span class="p">(&lt;</span><span class="nt">li</span> 
+        <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">cat</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span>
+        <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">node</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="kr">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">getMap</span><span class="p">();</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 节点添加到 map 中
+</span><span class="c1"></span>            <span class="nx">map</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">cat</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">node</span><span class="p">);</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// 不存在就移除
+</span><span class="c1"></span>            <span class="nx">map</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">cat</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">}}</span>
+      <span class="p">&gt;{</span><span class="nx">cat</span><span class="p">.</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">li</span><span class="p">&gt;)</span>
+    <span class="p">)}</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样 ref 中存储的是一个 <code>&lt;Id, Node&gt;</code> 的 <code>Map</code> 映射。这样就可以通过 id 的 <code>Map</code> 映射来获取到相应节点~</p>
+<h3 id="获取另一个组件的-dom-节点">获取另一个组件的 DOM 节点</h3>
+<p>当我们为一个原生节点设置 ref 时，React 会将节点挂在 <code>current</code> 属性上。但是当我们想在封装好的组件中使用 <code>ref</code>，就会遇到这样的报错：</p>
+<p><img src="../../static-img/53-react-ref/ref-error.png" alt="error-1"></p>
+<p>这是因为 React 不允许组件获取另一个组件的 DOM，因为这样的做法会让我们的代码更难以预测与维护。</p>
+<p>但是 React 也提供了相应的 <code>forwardRef</code> 允许我们获取到 DOM：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">const</span> <span class="nx">MyInput</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">((</span><span class="nx">props</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">input</span> <span class="p">{</span><span class="na">...props</span><span class="p">}</span> <span class="na">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">ref</span><span class="p">}</span> <span class="p">/&gt;;</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的 ref 转发会暴露整个 DOM 节点出去，这样外层就可以修改 DOM，例如它的样式。为了防止非预期的 DOM 操作，React 还提供了一个 <code>useImperativeHandle</code> Hook，用于暴露特定的 ref 操作方法，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">MyInput</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">((</span><span class="nx">props</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">realInputRef</span> <span class="o">=</span> <span class="nx">useRef</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="nx">useImperativeHandle</span><span class="p">(</span><span class="nx">ref</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">({</span>
+    <span class="c1">// 只暴露 focus 方法出去
+</span><span class="c1"></span>    <span class="nx">focus</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">realInputRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+    <span class="p">},</span>
+  <span class="p">}));</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">input</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">realInputRef</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样尽管 <code>realInputRef</code> 挂载了内部 DOM 元素，但是暴露出去的 <code>ref</code> 通过 <code>useImperativeHandle</code> 限制了操作 DOM 的方法，有效的增加了外部代码的可预期性。</p>
+<h3 id="为什么要限制操作-dom">为什么要限制操作 DOM</h3>
+<p>如果只是页面滚动或 focus，其实并不会有任何问题，但是文档中提供了一个例子，当同时使用 React state 和移除 DOM 的原生 API 时，就会产生如下的报错：</p>
+<p><img src="../../static-img/53-react-ref/ref-error-2.png" alt="error-2"></p>
+<p>将原生的 DOM 操作和 React 控制的部分分开，也可以避免这样的问题~~但是自然是推荐限制 ref 使用来规范我们的代码。</p>
+<blockquote>
+<p>官网最后还有一个 <a href="https://beta.reactjs.org/learn/manipulating-the-dom-with-refs#when-react-attaches-the-refs">使用 flushSync 同步更新 state 的例子</a>，也是在表达 React state 和 DOM 操作存在的不符合预期的地方，值得注意一下。</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xuyou</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-08-07
+    </span>
+  </p>
+  
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          <a href="/tags/react/">React</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/daily/51-translation-react-optimize/">
+            <span class="next-text nav-default">在使用 `memo()` 之前</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2022-08-07 19:57:18 \u002b0800 \u002b0800',
+        title: 'React Ref',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
+        repo: 'luckyoneday.github.io',
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
