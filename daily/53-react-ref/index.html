@@ -49,7 +49,7 @@
 <meta itemprop="description" content="新文档里的 React Refs">
 <meta itemprop="datePublished" content="2022-08-07T19:57:18+08:00" />
 <meta itemprop="dateModified" content="2022-08-07T19:57:18+08:00" />
-<meta itemprop="wordCount" content="859">
+<meta itemprop="wordCount" content="861">
 
 
 
@@ -142,7 +142,7 @@
       <div class="post-meta">
         <span class="post-time"> 2022-08-07 </span>
         
-          <span class="more-meta"> 约 859 字 </span>
+          <span class="more-meta"> 约 861 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -173,7 +173,7 @@
 <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>这样写违反了 <strong>Hooks 必须在组件顶部被调用</strong> 的规则，<code>useRef</code> 不能在条件语句和循环中被调用。<code>map()</code> 自然也不可以。</p>
+</div><p>因为违反了 <strong>Hooks 必须在组件顶部被调用</strong> 的规则，<code>useRef</code> 不能在条件语句和循环中被调用。<code>map()</code> 里自然也不可以。</p>
 <p>一种方法是获取到父节点，然后使用操作 DOM 的方法例如 <code>querySelectorAll</code> 来获取到列表节点，但这样很不稳定，因为会受到子节点个数或 DOM 结构变化的影响。</p>
 <p>另一种解决方案就是给 ref 传递一个函数，即 ref callback。</p>
 <div class="highlight"><div class="chroma">
@@ -236,9 +236,9 @@
 <span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>这样 ref 中存储的是一个 <code>&lt;Id, Node&gt;</code> 的 <code>Map</code> 映射。这样就可以通过 id 的 <code>Map</code> 映射来获取到相应节点~</p>
+</div><p>这样 ref 中存储的是一个 <code>&lt;Id, Node&gt;</code> 的 <code>Map</code> 映射。就可以通过 id 的 <code>Map</code> 映射来获取到相应节点~</p>
 <h3 id="获取另一个组件的-dom-节点">获取另一个组件的 DOM 节点</h3>
-<p>当我们为一个原生节点设置 ref 时，React 会将节点挂在 <code>current</code> 属性上。但是当我们想在封装好的组件中使用 <code>ref</code>，就会遇到这样的报错：</p>
+<p>当我们为一个原生节点设置 ref 时，React 会将节点挂在 <code>current</code> 属性上。但是当我们想在封装好的组件中使用 ref，就会遇到这样的报错：</p>
 <p><img src="../../static-img/53-react-ref/ref-error.png" alt="error-1"></p>
 <p>这是因为 React 不允许组件获取另一个组件的 DOM，因为这样的做法会让我们的代码更难以预测与维护。</p>
 <p>但是 React 也提供了相应的 <code>forwardRef</code> 允许我们获取到 DOM：</p>
@@ -281,7 +281,7 @@
 <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>这样尽管 <code>realInputRef</code> 挂载了内部 DOM 元素，但是暴露出去的 <code>ref</code> 通过 <code>useImperativeHandle</code> 限制了操作 DOM 的方法，有效的增加了外部代码的可预期性。</p>
+</div><p>尽管 <code>realInputRef</code> 挂载了内部 DOM 元素，但是暴露出去的 <code>ref</code> 通过 <code>useImperativeHandle</code> 限制了操作 DOM 的方法，有效的增加了外部代码的可预期性。</p>
 <h3 id="为什么要限制操作-dom">为什么要限制操作 DOM</h3>
 <p>如果只是页面滚动或 focus，其实并不会有任何问题，但是文档中提供了一个例子，当同时使用 React state 和移除 DOM 的原生 API 时，就会产生如下的报错：</p>
 <p><img src="../../static-img/53-react-ref/ref-error-2.png" alt="error-2"></p>
@@ -289,6 +289,11 @@
 <blockquote>
 <p>官网最后还有一个 <a href="https://beta.reactjs.org/learn/manipulating-the-dom-with-refs#when-react-attaches-the-refs">使用 flushSync 同步更新 state 的例子</a>，也是在表达 React state 和 DOM 操作存在的不符合预期的地方，值得注意一下。</p>
 </blockquote>
+<h3 id="参考资料">参考资料</h3>
+<ul>
+<li><a href="https://beta.reactjs.org/learn/referencing-values-with-refs">referencing-values-with-refs</a></li>
+<li><a href="https://beta.reactjs.org/learn/manipulating-the-dom-with-refs">manipulating-the-dom-with-refs</a></li>
+</ul>
 
     </div>
 
@@ -316,8 +321,8 @@
           </div>
       <nav class="post-nav">
         
-        <a class="next" href="/daily/51-translation-react-optimize/">
-            <span class="next-text nav-default">在使用 `memo()` 之前</span>
+        <a class="next" href="/daily/52-react-effect/">
+            <span class="next-text nav-default">React Effect</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>

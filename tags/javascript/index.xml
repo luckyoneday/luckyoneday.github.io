@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>React Effect</title>
+      <link>https://luckyoneday.github.io/daily/52-react-effect/</link>
+      <pubDate>Wed, 13 Jul 2022 11:40:17 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/52-react-effect/</guid>
+      <description>什么时候用 Effect 在 React 组件中有两种逻辑： 渲染代码（Rendering code）：使用 props 和 state 计算出一段 JSX。渲染代码需要是纯函数，不能有额外的操作</description>
+    </item>
+    
+    <item>
       <title>Taro--新手上路</title>
       <link>https://luckyoneday.github.io/daily/47-about-taro/</link>
       <pubDate>Wed, 04 Aug 2021 20:57:35 +0800</pubDate>

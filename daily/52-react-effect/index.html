@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>React Effect - xuyou&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xuyou" /><meta name="description" content="新文档里的 React Effects" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/52-react-effect/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="React Effect" />
+<meta property="og:description" content="新文档里的 React Effects" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/52-react-effect/" />
+<meta property="article:published_time" content="2022-07-13T11:40:17+08:00" />
+<meta property="article:modified_time" content="2022-07-13T11:40:17+08:00" />
+<meta itemprop="name" content="React Effect">
+<meta itemprop="description" content="新文档里的 React Effects">
+<meta itemprop="datePublished" content="2022-07-13T11:40:17+08:00" />
+<meta itemprop="dateModified" content="2022-07-13T11:40:17+08:00" />
+<meta itemprop="wordCount" content="1755">
+
+
+
+<meta itemprop="keywords" content="JavaScript,React," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="React Effect"/>
+<meta name="twitter:description" content="新文档里的 React Effects"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">xuyou</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/interview/">
+        <li class="mobile-menu-item">面试题</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">xuyou</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/interview/">面试题</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">React Effect</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-07-13 </span>
+        
+          <span class="more-meta"> 约 1755 字 </span>
+          <span class="more-meta"> 预计阅读 4 分钟 </span>
+        
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <h2 id="什么时候用-effect">什么时候用 Effect</h2>
+<p>在 React 组件中有两种逻辑：</p>
+<ul>
+<li>渲染代码（Rendering code）：使用 <code>props</code> 和 <code>state</code> 计算出一段 JSX。渲染代码需要是纯函数，不能有额外的操作。</li>
+<li>事件处理（Event handlers）：组件内部包含的函数，用于响应用户操作，可以包含副作用。</li>
+</ul>
+<p>但是并不是所有逻辑都可以在 Event handlers 中解决，比如一个聊天室，接受消息的逻辑并没有用户交互触发，这个时候就需要 effect。所以 <strong>Effect 用于处理由渲染本身而不是由特定事件引起的副作用。</strong></p>
+<h2 id="可能不需要用-effect">可能不需要用 Effect</h2>
+<p>以下是一些 Effect 的替代场景。</p>
+<h3 id="1通过-props-和-state-更新视图">1、通过 props 和 state 更新视图</h3>
+<p>可以在渲染代码中计算并使用，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">// ...
+</span><span class="c1"></span><span class="kr">const</span> <span class="p">[</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">setFirstName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;Taylor&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="p">[</span><span class="nx">lastName</span><span class="p">,</span> <span class="nx">setLastName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;Swift&#39;</span><span class="p">);</span>
+
+<span class="c1">// 🔴 避免额外的state 参数
+</span><span class="c1"></span><span class="kr">const</span> <span class="p">[</span><span class="nx">fullName</span><span class="p">,</span> <span class="nx">setFullName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setFullName</span><span class="p">(</span><span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">lastName</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">]);</span>
+
+<span class="c1">// ✅ 直接使用计算的变量
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">fullName</span> <span class="o">=</span> <span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">lastName</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果是比较复杂的计算获得的变量，可以使用 memo 来进行优化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="c1">// ✅ 如果 getFilteredTodos() 计算量不大
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">visibleTodos</span> <span class="o">=</span> <span class="nx">getFilteredTodos</span><span class="p">(</span><span class="nx">todos</span><span class="p">,</span> <span class="nx">filter</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">visibleTodos</span> <span class="o">=</span> <span class="nx">useMemo</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="c1">// ✅ 如果计算量较大，仅 todos 和 filter 变化了才会重新计算
+</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">getFilteredTodos</span><span class="p">(</span><span class="nx">todos</span><span class="p">,</span> <span class="nx">filter</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">todos</span><span class="p">,</span> <span class="nx">filter</span><span class="p">]);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2props-变化时重置-state">2、props 变化时重置 state</h3>
+<p>例如 <code>userId</code> 变化时清空 <code>comment</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Profile</span><span class="p">({</span> <span class="nx">userId</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">comment</span><span class="p">,</span> <span class="nx">setComment</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+  <span class="c1">// 🔴 避免在 effect 里面重置监听 props 变化重置 state
+</span><span class="c1"></span>  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setComment</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">userId</span><span class="p">]);</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以通过父组件传递不同的 key prop 来实现 state 重置的效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">ProfilePage</span><span class="p">({</span> <span class="nx">userId</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">Profile</span>
+      <span class="na">userId</span><span class="o">=</span><span class="p">{</span><span class="nx">userId</span><span class="p">}</span> 
+      <span class="na">key</span><span class="o">=</span><span class="p">{</span><span class="nx">userId</span><span class="p">}</span>
+    <span class="p">/&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Profile</span><span class="p">({</span> <span class="nx">userId</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// ✅ 父组件会对子组件进行重新挂载
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="p">[</span><span class="nx">comment</span><span class="p">,</span> <span class="nx">setComment</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="3props-变化时修改部分-state">3、props 变化时修改部分 state</h3>
+<p>这种场景也很常见，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">List</span><span class="p">({</span> <span class="nx">items</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">isReverse</span><span class="p">,</span> <span class="nx">setIsReverse</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">selection</span><span class="p">,</span> <span class="nx">setSelection</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+  <span class="c1">// 🔴 items 变化时不需要使用 effect 来取消选中，会触发重新渲染
+</span><span class="c1"></span>  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setSelection</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">items</span><span class="p">]);</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是我们完全可以在渲染代码中实现这部分逻辑：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">List</span><span class="p">({</span> <span class="nx">items</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">isReverse</span><span class="p">,</span> <span class="nx">setIsReverse</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">selection</span><span class="p">,</span> <span class="nx">setSelection</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+  <span class="c1">// Better: 通过判断上一次的 props 和这一次不一样
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="p">[</span><span class="nx">prevItems</span><span class="p">,</span> <span class="nx">setPrevItems</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">items</span> <span class="o">!==</span> <span class="nx">prevItems</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setPrevItems</span><span class="p">(</span><span class="nx">items</span><span class="p">);</span>
+    <span class="nx">setSelection</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当在渲染期间更新组件时，React 会丢弃之前的 JSX 并立即重新渲染。为了避免非常缓慢的级联重试（cascading retries），React 只允许在渲染期间更新<strong>相同</strong>组件的状态。如果想在渲染期间更新另一个组件的状态，则会抛出错误。像 <code>items !== prevItems</code> 这样的条件判断可以有效地避免循环。这样设置 state 是 OK 的，但其他副作用（如更改 DOM 或设置定时器）应保留在事件处理程序或 Effect 中，以保证我们的组件的可预测性。</p>
+<p>自然还是有更好的方法来解决这个场景，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">List</span><span class="p">({</span> <span class="nx">items</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">isReverse</span><span class="p">,</span> <span class="nx">setIsReverse</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">selectedId</span><span class="p">,</span> <span class="nx">setSelectedId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="c1">// ✅ 在渲染期间计算选中态
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">selection</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">selectedId</span><span class="p">)</span> <span class="o">??</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4初始化-app">4、初始化 APP</h3>
+<p>一些逻辑只需要运行一次，例如初始化一个程序，我们可能会这样写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// 🔴 这里的逻辑只应该运行一次
+</span><span class="c1"></span>  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">loadDataFromLocalStorage</span><span class="p">();</span>
+    <span class="nx">checkAuthToken</span><span class="p">();</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是在开发模式下这段逻辑会跑两次，对于某些程序来说可能会有问题，所以推荐下面的解决方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">let</span> <span class="nx">didInit</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">didInit</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">didInit</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="c1">// ✅ 保证只会运行一次
+</span><span class="c1"></span>      <span class="nx">loadDataFromLocalStorage</span><span class="p">();</span>
+      <span class="nx">checkAuthToken</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者像下面这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nb">window</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span> 
+   <span class="c1">// ✅ 仅会运行一次
+</span><span class="c1"></span>  <span class="nx">checkAuthToken</span><span class="p">();</span>
+  <span class="nx">loadDataFromLocalStorage</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5解决竞态问题">5、解决竞态问题</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">SearchResults</span><span class="p">({</span> <span class="nx">query</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">results</span><span class="p">,</span> <span class="nx">setResults</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">([]);</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">page</span><span class="p">,</span> <span class="nx">setPage</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// 🔴 下面的逻辑没有 cleanup function
+</span><span class="c1"></span>    <span class="nx">fetchResults</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">page</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">setResults</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">query</span><span class="p">,</span> <span class="nx">page</span><span class="p">]);</span>
+
+  <span class="kd">function</span> <span class="nx">handleNextPageClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setPage</span><span class="p">(</span><span class="nx">page</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这段代码为什么没有放到事件处理函数中呢，因为依赖的字段并不一定是来自用户交互（输入、点击），比如 <code>query</code> 参数来自于页面 url，就不能在事件处理函数中进行响应了。</p>
+<p>想象一个场景，<code>query</code> 参数迅速地从 <code>1</code> 变成了 <code>11</code>，然而响应却不一定会按照顺序，如果后面的请求先返回了结果，页面显示就会有问题，即竞态问题（<a href="https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect">race condition</a>）。</p>
+<p>怎么解决这个问题呢，可以看下面的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-jsx" data-lang="jsx"><span class="kd">function</span> <span class="nx">SearchResults</span><span class="p">({</span> <span class="nx">query</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">results</span><span class="p">,</span> <span class="nx">setResults</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">([]);</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">page</span><span class="p">,</span> <span class="nx">setPage</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> 
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">ignore</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nx">fetchResults</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">page</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">json</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ignore</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ✅ 保证返回的数据是当前页面所需的数据
+</span><span class="c1"></span>        <span class="nx">setResults</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">ignore</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">};</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">query</span><span class="p">,</span> <span class="nx">page</span><span class="p">]);</span>
+
+  <span class="kd">function</span> <span class="nx">handleNextPageClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setPage</span><span class="p">(</span><span class="nx">page</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>竞态问题并不是数据请求现存的唯一问题，还有比如怎么缓存返回数据（以便用户可以单击返回并立即查看上一页内容而不是白屏）、如何在服务器上获取数据（以便初始服务器呈现的 HTML 包含内容而不是白屏）、如何避免瀑布问题（需要获取数据的子组件就不需要等待每个父组件完成数据获取）。这些问题并不是 React 特有的，而是所有 UI 库的通病，所以可以使用一些推荐的数据请求方案来规避这些问题。</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://beta.reactjs.org/learn/you-might-not-need-an-effect">you-might-not-need-an-effect</a></li>
+<li><a href="https://segmentfault.com/a/1190000042059978?utm_source=sf-backlinks">官方答：在React18中请求数据的正确姿势（其他框架也适用）</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xuyou</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-07-13
+    </span>
+  </p>
+  
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          <a href="/tags/react/">React</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/53-react-ref/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">React Ref</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/51-translation-react-optimize/">
+            <span class="next-text nav-default">在使用 `memo()` 之前</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2022-07-13 11:40:17 \u002b0800 \u002b0800',
+        title: 'React Effect',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
+        repo: 'luckyoneday.github.io',
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

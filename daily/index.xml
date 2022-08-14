@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>React Effect</title>
+      <link>https://luckyoneday.github.io/daily/52-react-effect/</link>
+      <pubDate>Wed, 13 Jul 2022 11:40:17 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/52-react-effect/</guid>
+      <description>什么时候用 Effect 在 React 组件中有两种逻辑： 渲染代码（Rendering code）：使用 props 和 state 计算出一段 JSX。渲染代码需要是纯函数，不能有额外的操作</description>
+    </item>
+    
+    <item>
       <title>在使用 `memo()` 之前</title>
       <link>https://luckyoneday.github.io/daily/51-translation-react-optimize/</link>
       <pubDate>Fri, 06 May 2022 09:08:30 +0800</pubDate>
