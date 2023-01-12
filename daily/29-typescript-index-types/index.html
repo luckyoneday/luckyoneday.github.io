@@ -49,7 +49,7 @@
 <meta itemprop="description" content="TypeScript索引类型">
 <meta itemprop="datePublished" content="2020-06-15T20:32:14+08:00" />
 <meta itemprop="dateModified" content="2020-06-15T20:32:14+08:00" />
-<meta itemprop="wordCount" content="983">
+<meta itemprop="wordCount" content="776">
 
 
 
@@ -89,8 +89,6 @@
         <li class="mobile-menu-item">标签</li>
       </a><a href="/daily/">
         <li class="mobile-menu-item">小笔记</li>
-      </a><a href="/interview/">
-        <li class="mobile-menu-item">面试题</li>
       </a><a href="/about/">
         <li class="mobile-menu-item">关于我</li>
       </a>
@@ -122,8 +120,6 @@
       </li><li class="menu-item">
         <a class="menu-item-link" href="/daily/">小笔记</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="/interview/">面试题</a>
-      </li><li class="menu-item">
         <a class="menu-item-link" href="/about/">关于我</a>
       </li>
   </ul>
@@ -142,7 +138,7 @@
       <div class="post-meta">
         <span class="post-time"> 2020-06-15 </span>
         
-          <span class="more-meta"> 约 983 字 </span>
+          <span class="more-meta"> 约 776 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
         
       </div>
@@ -159,7 +155,6 @@
       <ul>
         <li><a href="#获取对象属性">获取对象属性</a></li>
         <li><a href="#对象生成-map">对象生成 Map</a></li>
-        <li><a href="#映射类型">映射类型</a></li>
       </ul>
     </li>
   </ul>
@@ -317,45 +312,7 @@
 <span class="nx">settingsMap</span><span class="p">.</span><span class="kr">get</span><span class="p">(</span><span class="s2">&#34;role&#34;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">();</span> <span class="c1">// &#39;admin&#39;
 </span></code></pre></td></tr></table>
 </div>
-</div><h2 id="映射类型">映射类型</h2>
-<p>映射类型( <code>Mapped types</code> )允许我们从现有类型中额外创建新的类型。一个常见的使用场景是将一个对象的所有属性变为<em>只读 (read-only)</em>。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Readonly</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="kr">readonly</span> <span class="p">[</span><span class="nx">K</span> <span class="k">in</span> <span class="k">keyof</span> <span class="nx">T</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">K</span><span class="p">];</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><code>Readonly</code> 类型的作用是将传入的属性变为只读。例如 TypeScript 中是这样定义 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"><code>Object.freeze</code></a>的：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">interface</span> <span class="nx">ObjectConstructor</span> <span class="p">{</span>
-  <span class="cm">/**
-</span><span class="cm">   * 防止修改现有的属性和值
-</span><span class="cm">   * 也防止新增属性
-</span><span class="cm">   * @param o 需要被锁的对象
-</span><span class="cm">   */</span>
-  <span class="nx">freeze</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;(</span><span class="nx">o</span>: <span class="kt">T</span><span class="p">)</span><span class="o">:</span> <span class="nx">Readonly</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>如我们所见，<code>Object.freeze</code> 函数返回使用 Readonly 修饰符映射的对象。</p>
-<p>还有一些很多用处的别的内置修饰符，比如 <code>Pick</code> 、 <code>Partial</code>：</p>
+</div><p>还有一些很多用处的内置修饰符，比如 <code>Pick</code> 、 <code>Partial</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -489,7 +446,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
   </span>
 </div>
 
