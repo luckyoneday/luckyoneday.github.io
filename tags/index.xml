@@ -6,7 +6,16 @@
     <description>Recent content in Tags on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 09 Nov 2022 12:36:44 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Jan 2023 07:37:00 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>lyric</title>
+      <link>https://luckyoneday.github.io/tags/lyric/</link>
+      <pubDate>Mon, 23 Jan 2023 07:37:00 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/tags/lyric/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>TypeScript</title>
       <link>https://luckyoneday.github.io/tags/typescript/</link>
@@ -85,15 +94,6 @@
       <pubDate>Tue, 23 Mar 2021 21:30:52 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/tags/node/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lyric</title>
-      <link>https://luckyoneday.github.io/tags/lyric/</link>
-      <pubDate>Fri, 05 Mar 2021 12:17:43 +0800</pubDate>
-      
-      <guid>https://luckyoneday.github.io/tags/lyric/</guid>
       <description></description>
     </item>
     
