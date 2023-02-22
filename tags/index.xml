@@ -6,7 +6,34 @@
     <description>Recent content in Tags on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 23 Jan 2023 07:37:00 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Feb 2023 16:28:00 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScript</title>
+      <link>https://luckyoneday.github.io/tags/javascript/</link>
+      <pubDate>Sun, 19 Feb 2023 16:28:00 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>https://luckyoneday.github.io/tags/react/</link>
+      <pubDate>Sun, 19 Feb 2023 16:28:00 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redux</title>
+      <link>https://luckyoneday.github.io/tags/redux/</link>
+      <pubDate>Sun, 19 Feb 2023 16:28:00 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/tags/redux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>lyric</title>
       <link>https://luckyoneday.github.io/tags/lyric/</link>
@@ -22,24 +49,6 @@
       <pubDate>Wed, 09 Nov 2022 12:36:44 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/tags/typescript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>https://luckyoneday.github.io/tags/javascript/</link>
-      <pubDate>Sun, 07 Aug 2022 19:57:18 +0800</pubDate>
-      
-      <guid>https://luckyoneday.github.io/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>React</title>
-      <link>https://luckyoneday.github.io/tags/react/</link>
-      <pubDate>Sun, 07 Aug 2022 19:57:18 +0800</pubDate>
-      
-      <guid>https://luckyoneday.github.io/tags/react/</guid>
       <description></description>
     </item>
     

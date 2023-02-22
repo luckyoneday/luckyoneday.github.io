@@ -6,7 +6,16 @@
     <description>Recent content in 目录 on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 16 Mar 2022 20:54:44 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Feb 2023 16:28:00 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redux 异步</title>
+      <link>https://luckyoneday.github.io/post/10-redux-async/</link>
+      <pubDate>Sun, 19 Feb 2023 16:28:00 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/post/10-redux-async/</guid>
+      <description>&lt;p&gt;首先可见&lt;a href=&#34;https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux?noredirect=1&amp;amp;lq=1&#34;&gt;这个问答&lt;/a&gt;，即 Redux 明明可以处理异步场景，为什么还需要中间件呢？&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>React 18 中的 Suspense SSR 架构</title>
       <link>https://luckyoneday.github.io/post/9-translate-lazy-suspense/</link>
@@ -34,7 +43,7 @@
       <pubDate>Thu, 04 Feb 2021 14:52:18 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/post/5-electron-communication/</guid>
-      <description>Electron 中有两种进程：主进程和渲染进程。 主进程 一个 electron 应用只有一个主进程，主进程指的是 package.json 文件中 main 字段指定的文件。主进程通过 BrowserWindow 实例来创建窗口，例如： 1</description>
+      <description>&lt;p&gt;Electron 中有两种进程：主进程和渲染进程。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -22,7 +22,7 @@
       <pubDate>Thu, 04 Feb 2021 14:52:18 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/post/5-electron-communication/</guid>
-      <description>Electron 中有两种进程：主进程和渲染进程。 主进程 一个 electron 应用只有一个主进程，主进程指的是 package.json 文件中 main 字段指定的文件。主进程通过 BrowserWindow 实例来创建窗口，例如： 1</description>
+      <description>&lt;p&gt;Electron 中有两种进程：主进程和渲染进程。&lt;/p&gt;</description>
     </item>
     
   </channel>

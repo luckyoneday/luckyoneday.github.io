@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Redux 异步 - xuyou&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xuyou" /><meta name="description" content="Redux 异步" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/post/10-redux-async/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Redux 异步" />
+<meta property="og:description" content="Redux 异步" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/post/10-redux-async/" />
+<meta property="article:published_time" content="2023-02-19T16:28:00+08:00" />
+<meta property="article:modified_time" content="2023-02-19T16:28:00+08:00" />
+<meta itemprop="name" content="Redux 异步">
+<meta itemprop="description" content="Redux 异步">
+<meta itemprop="datePublished" content="2023-02-19T16:28:00+08:00" />
+<meta itemprop="dateModified" content="2023-02-19T16:28:00+08:00" />
+<meta itemprop="wordCount" content="3205">
+
+
+
+<meta itemprop="keywords" content="JavaScript,Redux,React," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Redux 异步"/>
+<meta name="twitter:description" content="Redux 异步"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">xuyou</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">xuyou</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Redux 异步</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-02-19 </span>
+        
+          <span class="more-meta"> 约 3205 字 </span>
+          <span class="more-meta"> 预计阅读 7 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div
+    class="post-toc-content"
+  >
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#直接处理异步场景">直接处理异步场景</a></li>
+        <li><a href="#提取出-action-creator">提取出 action creator</a></li>
+        <li><a href="#thunk-中间件">thunk 中间件</a></li>
+        <li><a href="#thunk-中获取-state">Thunk 中获取 State</a></li>
+        <li><a href="#下一步">下一步</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    <div class="post-content">
+      <p>首先可见<a href="https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux?noredirect=1&amp;lq=1">这个问答</a>，即 Redux 明明可以处理异步场景，为什么还需要中间件呢？</p>
+<p>然后来自 <a href="https://stackoverflow.com/users/458193/dan-abramov">Dan Abramov</a> 的回答，<strong>直接处理异步场景其实并没有任何问题</strong> ，只是说在大型应用的开发中，对于我们需要复用 action 的场景，这种方式可能会不方便。在<a href="https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559">这个回答</a>中举了个🌰来解释不方便在哪里。</p>
+<p>正文从此开始：</p>
+<h2 id="直接处理异步场景">直接处理异步场景</h2>
+<p>比如我们直接使用 redux 来处理异步场景：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;SHOW_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;You logged in.&#39;</span> <span class="p">})</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;HIDE_NOTIFICATION&#39;</span> <span class="p">})</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在调用了 <code>connect()</code> 后的组件中则像下面这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;SHOW_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;You logged in.&#39;</span> <span class="p">})</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;HIDE_NOTIFICATION&#39;</span> <span class="p">})</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>区别就在于在组件中获得的 <code>dispatch</code> 是从 props 注入的。</p>
+<p>如果不想在不同的组件中复制粘贴相同的 action，我们通常会将他们抽离出来作为一个方法作为 action creator，而不是 dispatch 一个对象：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// actions.js
+</span><span class="c1"></span><span class="kr">export</span> <span class="kd">function</span> <span class="nx">showNotification</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;SHOW_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">text</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">hideNotification</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;HIDE_NOTIFICATION&#39;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// component.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">showNotification</span><span class="p">,</span> <span class="nx">hideNotification</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../actions&#39;</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotification</span><span class="p">(</span><span class="s1">&#39;You just logged in.&#39;</span><span class="p">))</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">hideNotification</span><span class="p">())</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者如果我们之前已经使用 <code>connect()</code> 绑定过这两个方法了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">showNotification</span><span class="p">(</span><span class="s1">&#39;You just logged in.&#39;</span><span class="p">)</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">hideNotification</span><span class="p">()</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>目前我们还没有用过任何中间件或者其他高级技巧，我们也实现了异步处理。</p>
+<h2 id="提取出-action-creator">提取出 action creator</h2>
+<p>上述🌰可以很好的处理简单场景，但是我们也会发现一些小问题：</p>
+<ul>
+<li>当我们想在任何地方展示通知栏的时候都需要复制这一段代码；</li>
+<li>通知栏并没有带唯一 ID，所以当我们快速多次触发展示通知栏时会出现竞态条件：当前一个 timeout 结束的时候会派发 <code>HIDE_NOTIFICATION</code>，会错误地隐藏第二个通知栏。</li>
+</ul>
+<p>为了解决上述问题，我们通常会抽离出一个方法处理 timeout 和 action 的逻辑。这个方法大概会像下面这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// actions.js
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;SHOW_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">text</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;HIDE_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">id</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">nextNotificationId</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="nx">dispatch</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 维护一个 nextNotificationId 让 reducer 可以忽略非当前 ID 的 HIDE_NOTIFICATION 的 action
+</span><span class="c1"></span>  <span class="c1">// 或者我们也可以存储一个 timerId 便于调用 clearTimeout()
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">nextNotificationId</span><span class="o">++</span>
+  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">))</span>
+
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+  <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>现在组件内部就可以调用 <code>showNotificationWithTimeout</code> 来解决复制代码和竞态的问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// component.js
+</span><span class="c1"></span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">,</span> <span class="s1">&#39;You just logged in.&#39;</span><span class="p">)</span>
+
+<span class="c1">// otherComponent.js
+</span><span class="c1"></span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">,</span> <span class="s1">&#39;You just logged out.&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>会注意到第一个参数是 <code>this.props.dispatch</code>，通常我们的组件是可以获取到 <code>dispatch</code> 的，但是这里需要的是一个外部方法来处理 <code>dispatch</code>，就需要作为参数传入。</p>
+<p>如果我们的 <code>store</code> 是一个单例，那就可以直接引入并调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// store.js
+</span><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">reducer</span><span class="p">)</span>
+
+<span class="c1">// actions.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="nx">store</span> <span class="nx">from</span> <span class="s1">&#39;./store&#39;</span> <span class="c1">// ##
+</span><span class="c1"></span>
+<span class="c1">// ...
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">nextNotificationId</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">nextNotificationId</span><span class="o">++</span>
+  <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">))</span> <span class="c1">// ##
+</span><span class="c1"></span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+  <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// component.js
+</span><span class="c1"></span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="s1">&#39;You just logged in.&#39;</span><span class="p">)</span>
+
+<span class="c1">// otherComponent.js
+</span><span class="c1"></span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="s1">&#39;You just logged out.&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样处理看起来简单多了，但是 <strong>并不推荐</strong> ，最重要的原因是这样会限制 <code>store</code> 必须为一个单例，这样会令<a href="https://redux.js.org/usage/server-rendering">服务端渲染</a>比较难实现，因为在服务端每一个请求需要拥有自己的 <code>store</code>，这样才可以让不同的用户拥有不同的预获取数据。</p>
+<p>单例的 <code>store</code> 也会加大单元测试的难度，测试 action 的时候很难 mock store，因为会引用具体的真实的 <code>store</code>。我们甚至不能从外部重置 <code>store</code> 状态。</p>
+<p>所以官方不鼓励模块内导出一个单例的 <code>store</code>，除非我们可以确认 app 不会做服务端渲染：</p>
+<p>所以回到之前的版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// actions.js
+</span><span class="c1"></span>
+<span class="c1">// ...
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">nextNotificationId</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="nx">dispatch</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">nextNotificationId</span><span class="o">++</span>
+  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">))</span>
+
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+  <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// component.js
+</span><span class="c1"></span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">,</span> <span class="s1">&#39;You just logged in.&#39;</span><span class="p">)</span>
+
+<span class="c1">// otherComponent.js
+</span><span class="c1"></span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">,</span> <span class="s1">&#39;You just logged out.&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个版本当前解决了复制代码和竞态的问题。</p>
+<h2 id="thunk-中间件">thunk 中间件</h2>
+<p>对于简单的应用，这个方法可以满足需求，并不需要使用中间件。</p>
+<p>在一些大型应用中，我们就会发现不方便的地方。</p>
+<p>首先，我们需要在使用这个方法的地方传入 dispatch，这让我们<a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0">分隔容器组件和展示组件</a>变得很困难，因为任何触发异步 action 的组件都必须接收 dispatch 作为参数，这样才能继续往下传。也不能把这个方法绑定到 <code>connect()</code> 上，因为 <code>showNotificationWithTimeout()</code> 并没有返回 Redux action 。所以它不是一个真正的 action creator。</p>
+<p>此外，区分哪个方法是同步的 action creator 例如 <code>showNotification()</code> 还是异步的 action 帮助方法例如 <code>showNotificationWithTimeout()</code> 也是很麻烦的，需要小心区分并且对他们进行不同的处理。</p>
+<p>这就是为什么我们需要找到一个合适的方法 <strong>给辅助函数提供 dispatch 参数，并且帮助 Redux 区分出哪些是与同步 action 完全不同的异步 action creator</strong>。</p>
+<p>接下来我们来看一下 Redux Thunk 是怎么解决这个问题的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span>
+<span class="kr">import</span> <span class="nx">thunk</span> <span class="nx">from</span> <span class="s1">&#39;redux-thunk&#39;</span>
+
+<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span>
+  <span class="nx">reducer</span><span class="p">,</span>
+  <span class="nx">applyMiddleware</span><span class="p">(</span><span class="nx">thunk</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1">// 可以识别普通的 对象格式的 action
+</span><span class="c1"></span><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;INCREMENT&#39;</span> <span class="p">})</span>
+
+<span class="c1">// 使用 thunk 中间件，也可以识别函数类型的 action
+</span><span class="c1"></span><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ... 可以触发多次
+</span><span class="c1"></span>  <span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;INCREMENT&#39;</span> <span class="p">})</span>
+  <span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;INCREMENT&#39;</span> <span class="p">})</span>
+  <span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;INCREMENT&#39;</span> <span class="p">})</span>
+
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// ... 甚至是异步
+</span><span class="c1"></span>    <span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;DECREMENT&#39;</span> <span class="p">})</span>
+  <span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当开启中间件了之后，<strong>如果我们派发了一个函数</strong>，Redux thunk 中间件会将 <code>dispatch</code> 作为参数传给这个函数。中间件会处理这样的函数 action 所以不需要担心我们的 reducer 会收到奇怪的函数参数。</p>
+<p>目前好像看起来并不是非常有用的功能，但是他让我们可以像定义一个普通的 action creator 那样去定义<code>showNotificationWithTimeout()</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// actions.js
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;SHOW_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">text</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;HIDE_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">id</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">nextNotificationId</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// ##
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">nextNotificationId</span><span class="o">++</span>
+    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">))</span>
+
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">dispatch</span><span class="p">(</span><span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+    <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>需要注意的是这里的方法和上一节的 <code>showNotificationWithTimeout()</code> 其实是很像的，区别在于他返回了一个函数，并且函数的第一个参数是 <code>dispatch</code>。</p>
+<p>在组件中怎么使用呢？如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// component.js
+</span><span class="c1"></span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="s1">&#39;You just logged in.&#39;</span><span class="p">)(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里调用了异步的 action creator 来得到他返回的函数，并将 dispatch 参数传入。</p>
+<p>这里看起来似乎比之前的方法更尴尬，为什么要这样做呢？</p>
+<p><strong>当启用 Redux Thunk 中间件后，任何时候我们想要派发一个方法而不是一个纯 action 对象，中间件会直接传递 <code>dispatch</code> 作为第一个参数。</strong></p>
+<p>所以我们可以像这样使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// component.js
+</span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="s1">&#39;You just logged in.&#39;</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最后，对于组件来说，dispatch 一个异步的 action 看起来和 dispatch 一个普通的同步 action 看起来并没有啥区别。这是个好现象，因为组件就不应该关心那些动作到底是同步的还是异步的，我们已经将它抽象出来了。</p>
+<p>现在 Redux 已经可以区分这些特殊的 action creator，就可以在任何可以使用普通的 action creator 的地方使用他们了。比如，我们可以直接在 connect() 中使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// actions.js
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;SHOW_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">text</span> <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;HIDE_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">id</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">nextNotificationId</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">nextNotificationId</span><span class="o">++</span>
+    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">))</span>
+
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">dispatch</span><span class="p">(</span><span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+    <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// component.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
+
+<span class="c1">// ...
+</span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="s1">&#39;You just logged in.&#39;</span><span class="p">)</span>
+
+<span class="c1">// ...
+</span><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="nx">connect</span><span class="p">(</span>
+  <span class="nx">mapStateToProps</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">showNotificationWithTimeout</span> <span class="p">}</span>
+<span class="p">)(</span><span class="nx">MyComponent</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="thunk-中获取-state">Thunk 中获取 State</h2>
+<p>通常我们的 reducer 中也会包含修改 state 的业务逻辑，然而 Redux 只会在 action 被派发时才会更新 state，那就会面临一个问题，即当我们在副作用（例如远程调用一个 API）中条件触发异步 action creator 的话应该怎么处理？</p>
+<p>如果不使用 thunk 中间件，我们可以在组件中这样写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// component.js
+</span><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">areNotificationsEnabled</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">,</span> <span class="s1">&#39;You just logged in.&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是我们提取 action creator 的目的就是为了将这些重复的逻辑集中处理。幸运的是，Redux Thunk 提供了一个读取当前 store state 的方法。那就是除了传入 dispatch 参数外，他还会传入 getState 作为第二个参数，这样 thunk 就可以读取 store 的当前状态了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">nextNotificationId</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">showNotificationWithTimeout</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">dispatch</span><span class="p">,</span> <span class="nx">getState</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 这里可以提前退出
+</span><span class="c1"></span>    <span class="c1">// Redux 不关心这里的返回值，没返回值也没关系
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">getState</span><span class="p">().</span><span class="nx">areNotificationsEnabled</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="kr">const</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">nextNotificationId</span><span class="o">++</span>
+    <span class="nx">dispatch</span><span class="p">(</span><span class="nx">showNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">text</span><span class="p">))</span>
+
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="nx">dispatch</span><span class="p">(</span><span class="nx">hideNotification</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
+    <span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是不要滥用这种方法！当有缓存数据可用时，它有利于避免 API 调用，但是最好不要在这种方法的基础上构建业务逻辑。如果我们只是用 getState 来做条件判断是否要 dispatch action，可以考虑将这些逻辑放到 reducer 里面去。</p>
+<h2 id="下一步">下一步</h2>
+<p>现在我们已经对 thunk 的工作原理有了一个基本的概念，可以点击<a href="https://redux.js.org/introduction/examples#async">这里</a>看看更多的🌰。</p>
+<p>我们会发现很多例子里 thunk 中间件都返回了 Promise，这个不是必须的，但是用起来却很方便。Redux 并不关心 thunk 返回了什么值，但是他会将这个值通过外层的 dispatch() 透传出来。所以我们可以在 thunk 中返回一个 Promise 并且等他完成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">dispatch</span><span class="p">(</span><span class="nx">someThunkReturningPromise</span><span class="p">()).</span><span class="nx">then</span><span class="p">(...)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以将一个复杂的 thunk action creator 拆分成几个更小的 thunk action creator。这是因为 thunk 提供的 dispatch 也可以接收 thunk，所以你可以一直嵌套的 dispatch thunk。而且结合 Promise 的话可以更好的控制异步流程。</p>
+<p>在一些更复杂的应用中，我们可能会发现异步控制流程很难通过 thunk 表示。比如，重试失败的请求，使用 token 进行重新授权认证，或者在一步一步的引导流程中，使用这种方式可能会很繁琐，而且容易出错。如果你有这些需求，你可以考虑下一些更高级的异步流程控制库，比如 <a href="https://github.com/yelouafi/redux-saga">Redux Saga</a> 或者 <a href="https://github.com/raisemarketplace/redux-loop">Redux Loop</a>。可以评估下，看哪个更适合业务需求。</p>
+<p>最后，如果我们并没有真实的需求，不要使用任何库(包括 thunk)。我们的实现都是要看需求的，也许这个简单的方案就能满足：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;SHOW_NOTIFICATION&#39;</span><span class="p">,</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;You logged in.&#39;</span> <span class="p">})</span>
+<span class="nx">setTimeout</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;HIDE_NOTIFICATION&#39;</span> <span class="p">})</span>
+<span class="p">},</span> <span class="mi">5000</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xuyou</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-02-19
+    </span>
+  </p>
+  
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          <a href="/tags/redux/">Redux</a>
+          <a href="/tags/react/">React</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/9-translate-lazy-suspense/">
+            <span class="next-text nav-default">React 18 中的 Suspense SSR 架构</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2023-02-19 16:28:00 \u002b0800 \u002b0800',
+        title: 'Redux 异步',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
+        repo: 'luckyoneday.github.io',
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
