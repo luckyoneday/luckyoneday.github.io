@@ -50,7 +50,7 @@
   </url>
   
   <url>
-    <loc>https://luckyoneday.github.io/post/10-redux-async/</loc>
+    <loc>https://luckyoneday.github.io/post/11-redux-async/</loc>
     <lastmod>2023-02-19T16:28:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -106,8 +106,15 @@
   </url>
   
   <url>
-    <loc>https://luckyoneday.github.io/daily/52-react-effect/</loc>
+    <loc>https://luckyoneday.github.io/post/10-react-effect/</loc>
     <lastmod>2022-07-13T11:40:17+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://luckyoneday.github.io/daily/52-redux-source/</loc>
+    <lastmod>2022-06-23T13:52:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

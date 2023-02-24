@@ -35,12 +35,12 @@
     </item>
     
     <item>
-      <title>React Effect</title>
-      <link>https://luckyoneday.github.io/daily/52-react-effect/</link>
-      <pubDate>Wed, 13 Jul 2022 11:40:17 +0800</pubDate>
+      <title>Redux 源码</title>
+      <link>https://luckyoneday.github.io/daily/52-redux-source/</link>
+      <pubDate>Thu, 23 Jun 2022 13:52:54 +0800</pubDate>
       
-      <guid>https://luckyoneday.github.io/daily/52-react-effect/</guid>
-      <description>什么时候用 Effect 在 React 组件中有两种逻辑： 渲染代码（Rendering code）：使用 props 和 state 计算出一段 JSX。渲染代码需要是纯函数，不能有额外的操作</description>
+      <guid>https://luckyoneday.github.io/daily/52-redux-source/</guid>
+      <description>先来看一个基本的 redux 使用： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 const initState = { count: 0 }; function reducer(state, action) { switch (action.type) { case &amp;#34;INCREMENT&amp;#34;: return { ...state, count: state.count + 1 }; case &amp;#34;DECREMENT&amp;#34;: return { ...state, count:</description>
     </item>
     
     <item>
