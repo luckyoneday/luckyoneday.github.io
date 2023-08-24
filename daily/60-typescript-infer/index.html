@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Typescript 条件类型和 infer - xuyou&#39;s blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xuyou" /><meta name="description" content="Typescript 条件类型和 infer 推断" /><meta name="keywords" content="daily" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.80.0 with theme even" />
+
+
+<link rel="canonical" href="https://luckyoneday.github.io/daily/60-typescript-infer/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.d1bd9f81869ae63bddbc319f6ae30b499dc847b2b385544cf9c4f6f97045941b.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Typescript 条件类型和 infer" />
+<meta property="og:description" content="Typescript 条件类型和 infer 推断" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://luckyoneday.github.io/daily/60-typescript-infer/" />
+<meta property="article:published_time" content="2023-07-12T15:12:20+08:00" />
+<meta property="article:modified_time" content="2023-07-12T15:12:20+08:00" />
+<meta itemprop="name" content="Typescript 条件类型和 infer">
+<meta itemprop="description" content="Typescript 条件类型和 infer 推断">
+<meta itemprop="datePublished" content="2023-07-12T15:12:20+08:00" />
+<meta itemprop="dateModified" content="2023-07-12T15:12:20+08:00" />
+<meta itemprop="wordCount" content="639">
+
+
+
+<meta itemprop="keywords" content="Typescript," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Typescript 条件类型和 infer"/>
+<meta name="twitter:description" content="Typescript 条件类型和 infer 推断"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">xuyou</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">目录</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/daily/">
+        <li class="mobile-menu-item">小笔记</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于我</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">xuyou</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">目录</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/daily/">小笔记</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于我</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Typescript 条件类型和 infer</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-07-12 </span>
+        
+          <span class="more-meta"> 约 639 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      <blockquote>
+<p>推荐一个学习 typescript 的网站： <a href="https://www.typescript-training.com/">https://www.typescript-training.com/</a></p>
+</blockquote>
+<blockquote>
+<p>再推荐一个 <a href="https://github.com/type-challenges/type-challenges">ts-challenges</a></p>
+</blockquote>
+<h2 id="条件类型">条件类型</h2>
+<p>举个🌰：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Diff</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">,</span> <span class="na">U</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="nx">U</span> <span class="o">?</span> <span class="kt">never</span> <span class="o">:</span> <span class="nx">T</span><span class="p">;</span> <span class="c1">// 移除 T 中可以赋值给 U 的类型
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">Filter</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">,</span> <span class="na">U</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="nx">U</span> <span class="o">?</span> <span class="nx">T</span> : <span class="kt">never</span><span class="p">;</span> <span class="c1">// 移除 T 中不可以赋值给 U 的类型
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">NonNullable</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">Diff</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">,</span> <span class="na">null</span> <span class="err">|</span> <span class="na">undefined</span><span class="p">&gt;;</span> <span class="c1">// 移除 T 中为 null 或 undefined 的类型
+</span><span class="c1"></span>
+<span class="kr">type</span> <span class="nx">T30</span> <span class="o">=</span> <span class="nx">Diff</span><span class="o">&lt;</span><span class="s2">&#34;a&#34;</span> <span class="o">|</span> <span class="s2">&#34;b&#34;</span> <span class="o">|</span> <span class="s2">&#34;c&#34;</span> <span class="o">|</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span> <span class="o">|</span> <span class="s2">&#34;c&#34;</span> <span class="o">|</span> <span class="s2">&#34;f&#34;</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// &#34;b&#34; | &#34;d&#34;
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">T31</span> <span class="o">=</span> <span class="nx">Filter</span><span class="o">&lt;</span><span class="s2">&#34;a&#34;</span> <span class="o">|</span> <span class="s2">&#34;b&#34;</span> <span class="o">|</span> <span class="s2">&#34;c&#34;</span> <span class="o">|</span> <span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span> <span class="o">|</span> <span class="s2">&#34;c&#34;</span> <span class="o">|</span> <span class="s2">&#34;f&#34;</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// &#34;a&#34; | &#34;c&#34;
+</span><span class="c1"></span>
+<span class="kr">type</span> <span class="nx">T34</span> <span class="o">=</span> <span class="nx">NonNullable</span><span class="p">&lt;</span><span class="nt">string</span> <span class="err">|</span> <span class="na">number</span> <span class="err">|</span> <span class="na">undefined</span><span class="p">&gt;;</span> <span class="c1">// string | number
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">T35</span> <span class="o">=</span> <span class="nx">NonNullable</span><span class="p">&lt;</span><span class="nt">string</span> <span class="err">|</span> <span class="na">string</span><span class="err">[]</span> <span class="err">|</span> <span class="na">null</span> <span class="err">|</span> <span class="na">undefined</span><span class="p">&gt;;</span> <span class="c1">// string | string[]
+</span></code></pre></td></tr></table>
+</div>
+</div><p>条件类型通常会结合 <a href="/daily/54-typescript-mapped-types">映射类型</a> 一起使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">FunctionPropertyNames</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">K</span> <span class="k">in</span> <span class="k">keyof</span> <span class="nx">T</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span> <span class="kr">extends</span> <span class="nb">Function</span> <span class="o">?</span> <span class="nx">K</span> : <span class="kt">never</span><span class="p">;</span>
+<span class="p">}[</span><span class="k">keyof</span> <span class="nx">T</span><span class="p">];</span>
+<span class="kr">type</span> <span class="nx">FunctionProperties</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">Pick</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">,</span> <span class="na">FunctionPropertyNames</span><span class="err">&lt;</span><span class="na">T</span><span class="p">&gt;</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kr">type</span> <span class="nx">NonFunctionPropertyNames</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">[</span><span class="nx">K</span> <span class="k">in</span> <span class="k">keyof</span> <span class="nx">T</span><span class="p">]</span><span class="o">:</span> <span class="nx">T</span><span class="p">[</span><span class="nx">K</span><span class="p">]</span> <span class="kr">extends</span> <span class="nb">Function</span> <span class="o">?</span> <span class="kt">never</span> <span class="o">:</span> <span class="nx">K</span><span class="p">;</span>
+<span class="p">}[</span><span class="k">keyof</span> <span class="nx">T</span><span class="p">];</span>
+<span class="kr">type</span> <span class="nx">NonFunctionProperties</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">Pick</span><span class="p">&lt;</span><span class="nt">T</span><span class="err">,</span> <span class="na">NonFunctionPropertyNames</span><span class="err">&lt;</span><span class="na">T</span><span class="p">&gt;</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">Part</span> <span class="p">{</span>
+  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="nx">subparts</span>: <span class="kt">Part</span><span class="p">[];</span>
+  <span class="nx">updatePart</span><span class="p">(</span><span class="nx">newName</span>: <span class="kt">string</span><span class="p">)</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">type</span> <span class="nx">T40</span> <span class="o">=</span> <span class="nx">FunctionPropertyNames</span><span class="p">&lt;</span><span class="nt">Part</span><span class="p">&gt;;</span> <span class="c1">// &#34;updatePart&#34;
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">T41</span> <span class="o">=</span> <span class="nx">NonFunctionPropertyNames</span><span class="p">&lt;</span><span class="nt">Part</span><span class="p">&gt;;</span> <span class="c1">// &#34;id&#34; | &#34;name&#34; | &#34;subparts&#34;
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">T42</span> <span class="o">=</span> <span class="nx">FunctionProperties</span><span class="p">&lt;</span><span class="nt">Part</span><span class="p">&gt;;</span> <span class="c1">// { updatePart(newName: string): void }
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">T43</span> <span class="o">=</span> <span class="nx">NonFunctionProperties</span><span class="p">&lt;</span><span class="nt">Part</span><span class="p">&gt;;</span> <span class="c1">// { id: number, name: string, subparts: Part[] }
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="infer-关键字"><code>infer</code> 关键字</h2>
+<p>可以使用 <code>infer</code> 来定义要推断的类型变量。例如获取函数的返回类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">ReturnType</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="p">(...</span><span class="nx">args</span>: <span class="kt">any</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="k">infer</span> <span class="nx">R</span> <span class="o">?</span> <span class="nx">R</span> : <span class="kt">any</span><span class="p">;</span>
+
+<span class="kr">type</span> <span class="nx">T0</span> <span class="o">=</span> <span class="nx">ReturnType</span><span class="o">&lt;</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="kt">string</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// string
+</span></code></pre></td></tr></table>
+</div>
+</div><p>获取属性类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Foo</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="p">{</span> <span class="nx">a</span>: <span class="kt">infer</span> <span class="nx">U</span><span class="p">;</span> <span class="nx">b</span>: <span class="kt">infer</span> <span class="nx">U</span> <span class="p">}</span> <span class="o">?</span> <span class="nx">U</span> : <span class="kt">never</span><span class="p">;</span>
+
+<span class="kr">type</span> <span class="nx">T1</span> <span class="o">=</span> <span class="nx">Foo</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">a</span>: <span class="kt">string</span><span class="p">;</span> <span class="nx">b</span>: <span class="kt">number</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// string | number
+</span></code></pre></td></tr></table>
+</div>
+</div><p>获取函数参数类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Bar</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="p">(</span><span class="nx">x</span>: <span class="kt">infer</span> <span class="nx">U</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span> <span class="nx">b</span><span class="o">:</span> <span class="p">(</span><span class="nx">x</span>: <span class="kt">infer</span> <span class="nx">U</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span> <span class="p">}</span>
+  <span class="o">?</span> <span class="nx">U</span>
+  : <span class="kt">never</span><span class="p">;</span>
+
+<span class="kr">type</span> <span class="nx">T20</span> <span class="o">=</span> <span class="nx">Bar</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="p">(</span><span class="nx">x</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span> <span class="nx">b</span><span class="o">:</span> <span class="p">(</span><span class="nx">x</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// string
+</span><span class="c1"></span><span class="kr">type</span> <span class="nx">T21</span> <span class="o">=</span> <span class="nx">Bar</span><span class="o">&lt;</span><span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="p">(</span><span class="nx">x</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span> <span class="nx">b</span><span class="o">:</span> <span class="p">(</span><span class="nx">x</span>: <span class="kt">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span> <span class="p">}</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// string &amp; number 其实也就是 never
+</span></code></pre></td></tr></table>
+</div>
+</div><p>获取构造函数中参数类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">ConstructorParameters</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="k">new</span> <span class="p">(...</span><span class="nx">args</span>: <span class="kt">infer</span> <span class="nx">R</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kt">any</span>
+  <span class="o">?</span> <span class="nx">R</span>
+  : <span class="kt">never</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>获取实例类型：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">InstanceType</span><span class="p">&lt;</span><span class="nt">T</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="k">new</span> <span class="p">(...</span><span class="nx">args</span>: <span class="kt">any</span><span class="p">[])</span> <span class="o">=&gt;</span> <span class="k">infer</span> <span class="nx">R</span> <span class="o">?</span> <span class="nx">R</span> : <span class="kt">any</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="使用示例">使用示例</h2>
+<div class="admonition info"><p class="admonition-title">数组示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Pop</span><span class="p">&lt;</span><span class="nt">T</span> <span class="na">extends</span> <span class="na">unknown</span><span class="err">[]</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="p">[...</span><span class="k">infer</span> <span class="nx">U</span><span class="p">,</span> <span class="kt">unknown</span><span class="p">]</span> <span class="o">?</span> <span class="nx">U</span> : <span class="kt">T</span>
+<span class="kr">type</span> <span class="nx">Push</span><span class="p">&lt;</span><span class="nt">T</span> <span class="na">extends</span> <span class="na">unknown</span><span class="err">[],</span> <span class="na">U</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">T</span><span class="p">,</span> <span class="nx">U</span><span class="p">]</span>
+<span class="kr">type</span> <span class="nx">Shift</span><span class="p">&lt;</span><span class="nt">T</span> <span class="na">extends</span> <span class="na">unknown</span><span class="err">[]</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">T</span> <span class="kr">extends</span> <span class="p">[</span><span class="kt">unknown</span><span class="p">,</span> <span class="p">...</span><span class="k">infer</span> <span class="nx">U</span><span class="p">]</span> <span class="o">?</span> <span class="nx">U</span> : <span class="kt">T</span>
+<span class="kr">type</span> <span class="nx">Unshift</span><span class="p">&lt;</span><span class="nt">T</span> <span class="na">extends</span> <span class="na">unknown</span><span class="err">[],</span> <span class="na">U</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">[</span><span class="nx">U</span><span class="p">,</span> <span class="p">...</span><span class="nx">T</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<div class="admonition info"><p class="admonition-title">字符串示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">type</span> <span class="nx">Blank</span> <span class="o">=</span> <span class="s1">&#39;\t&#39;</span><span class="o">|</span> <span class="s1">&#39;\n&#39;</span> <span class="o">|</span> <span class="s1">&#39; &#39;</span>
+<span class="kr">type</span> <span class="nx">TrimLeft</span><span class="p">&lt;</span><span class="nt">S</span> <span class="na">extends</span> <span class="na">string</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">S</span> <span class="kr">extends</span> <span class="sb">`</span><span class="si">${</span><span class="nx">Blank</span><span class="si">}${</span><span class="k">infer</span> <span class="nx">R</span><span class="si">}</span><span class="sb">`</span> <span class="o">?</span> <span class="nx">TrimLeft</span><span class="p">&lt;</span><span class="nt">R</span><span class="p">&gt;</span> <span class="o">:</span> <span class="nx">S</span><span class="p">;</span>
+<span class="kr">type</span> <span class="nx">TrimRight</span><span class="p">&lt;</span><span class="nt">S</span> <span class="na">extends</span> <span class="na">string</span><span class="p">&gt;</span> <span class="o">=</span> <span class="nx">S</span> <span class="kr">extends</span> <span class="sb">`</span><span class="si">${</span><span class="k">infer</span> <span class="nx">R</span><span class="si">}${</span><span class="nx">Blank</span><span class="si">}</span><span class="sb">`</span> <span class="o">?</span> <span class="nx">TrimRight</span><span class="p">&lt;</span><span class="nt">R</span><span class="p">&gt;</span> <span class="o">:</span> <span class="nx">S</span><span class="p">;</span>
+<span class="kr">type</span> <span class="nx">Trim</span><span class="p">&lt;</span><span class="nt">S</span> <span class="na">extends</span> <span class="na">string</span><span class="p">&gt;</span> <span class="o">=</span>  <span class="nx">TrimLeft</span><span class="p">&lt;</span><span class="nt">TrimRight</span><span class="err">&lt;</span><span class="na">S</span><span class="p">&gt;</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xuyou</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2023-07-12
+    </span>
+  </p>
+  
+  
+  
+</div>
+
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/typescript/">Typescript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/daily/62-how-to-fix-400/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">如何修复 http code 400</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/daily/57-lyric-please/">
+            <span class="next-text nav-default">讨好</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+      
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2023-07-12 15:12:20 \u002b0800 \u002b0800',
+        title: 'Typescript 条件类型和 infer',
+        clientID: 'e4834619e7a306a7137b',
+        clientSecret: '0931ad0ebb2cf3c20900daea5f065b73ee842bac',
+        repo: 'luckyoneday.github.io',
+        owner: 'luckyoneday',
+        admin: ['luckyoneday'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/luckyoneday" class="iconfont icon-github" title="github"></a>
+  <a href="https://luckyoneday.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2023<span class="heart"><i class="iconfont icon-heart"></i></span><span>xuyou</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

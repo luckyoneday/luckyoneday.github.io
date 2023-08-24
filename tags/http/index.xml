@@ -6,7 +6,16 @@
     <description>Recent content in HTTP on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 May 2021 12:38:36 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 10:27:19 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/http/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何修复 http code 400</title>
+      <link>https://luckyoneday.github.io/daily/62-how-to-fix-400/</link>
+      <pubDate>Sat, 12 Aug 2023 10:27:19 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/daily/62-how-to-fix-400/</guid>
+      <description>什么情况会导致 400 错误 当我们访问一个网站的时候，客户端会向服务器发起请求，服务端响应请求并将页面信息返回。400 Bad Request 响应通常发生在服务器不理解</description>
+    </item>
+    
     <item>
       <title>TCP</title>
       <link>https://luckyoneday.github.io/daily/45-tcp-resend/</link>

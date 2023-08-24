@@ -6,7 +6,25 @@
     <description>Recent content in Tags on xuyou&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 19 Feb 2023 16:28:00 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Aug 2023 10:27:19 +0800</lastBuildDate><atom:link href="https://luckyoneday.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTP</title>
+      <link>https://luckyoneday.github.io/tags/http/</link>
+      <pubDate>Sat, 12 Aug 2023 10:27:19 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/tags/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TypeScript</title>
+      <link>https://luckyoneday.github.io/tags/typescript/</link>
+      <pubDate>Wed, 12 Jul 2023 15:12:20 +0800</pubDate>
+      
+      <guid>https://luckyoneday.github.io/tags/typescript/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>JavaScript</title>
       <link>https://luckyoneday.github.io/tags/javascript/</link>
@@ -44,15 +62,6 @@
     </item>
     
     <item>
-      <title>TypeScript</title>
-      <link>https://luckyoneday.github.io/tags/typescript/</link>
-      <pubDate>Wed, 09 Nov 2022 12:36:44 +0800</pubDate>
-      
-      <guid>https://luckyoneday.github.io/tags/typescript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Translation</title>
       <link>https://luckyoneday.github.io/tags/translation/</link>
       <pubDate>Fri, 06 May 2022 09:08:30 +0800</pubDate>
@@ -76,15 +85,6 @@
       <pubDate>Wed, 04 Aug 2021 20:57:35 +0800</pubDate>
       
       <guid>https://luckyoneday.github.io/tags/taro/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HTTP</title>
-      <link>https://luckyoneday.github.io/tags/http/</link>
-      <pubDate>Mon, 31 May 2021 12:38:36 +0800</pubDate>
-      
-      <guid>https://luckyoneday.github.io/tags/http/</guid>
       <description></description>
     </item>
     
